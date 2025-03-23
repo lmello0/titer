@@ -1,17 +1,28 @@
 <header class="w-full">
-  <div class="bg-gray-950 shadow-2xl shadow-black">
+  <div
+    class="bg-gray-950 shadow-gray-200/20 transition duration-200 ease-in-out hover:shadow-[inset_0_50px_50px_-50px]"
+    (mouseover)="isOnNavbarHover = true"
+    (mouseout)="isOnNavbarHover = false"
+  >
     <nav class="sm:flex sm:items-center sm:justify-between sm:px-4 sm:py-3">
       <div class="flex items-center justify-between px-4 py-3 sm:p-0">
         <a routerLink="/" (click)="closeMenu()">
           <div
-            class="text-nav flex h-full cursor-pointer items-center gap-1.5 rounded px-2 py-1"
+            class="flex h-full cursor-pointer items-center gap-1.5 rounded px-2 py-1"
+            (mouseover)="isMouseOnLogo = true"
+            (mouseout)="isMouseOnLogo = false"
           >
             <img class="h-7" src="assets/logo/logo-64.png" />
-            <h1 class="hidden font-black tracking-wider sm:block">Títer</h1>
+            <h1
+              [ngClass]="{ 'text-gray-200': isOnNavbarHover && !isMouseOnLogo }"
+              class="text-nav hidden font-black tracking-wider transition duration-200 ease-in-out sm:block"
+            >
+              Títer
+            </h1>
           </div>
         </a>
 
-        <div class="sm:hidden">
+        <div class="flex items-center justify-center sm:hidden">
           <button
             (click)="toggleMenu()"
             type="button"
@@ -36,12 +47,14 @@
       <div
         [ngClass]="{
           'max-h-[500px] pt-2 pb-4 opacity-600': isMenuOpen,
-          'max-h-0 opacity-0': !isMenuOpen,
+          'pointer-events-none max-h-0 opacity-0 sm:pointer-events-auto':
+            !isMenuOpen,
         }"
         class="px-2 transition-all duration-200 ease-in-out sm:flex sm:items-center sm:p-0 sm:opacity-100"
       >
         @for (item of navItems; track $index) {
           <app-nav-item
+            [isOnNavbarHover]="isOnNavbarHover"
             [item]="item"
             (itemClick)="(item.clickHandler)"
           ></app-nav-item>
@@ -50,7 +63,9 @@
         <div class="mt-2 px-2 py-1 sm:mt-0 sm:ml-2">
           <div
             class="flex w-full items-center justify-between rounded px-2 py-1 transition duration-300 ease-in-out hover:bg-gray-200"
-            ngClass="{{ isSearching ? 'bg-gray-200' : 'bg-gray-700' }}"
+            ngClass="{{
+              isSearching || isOnNavbarHover ? 'bg-gray-200' : 'bg-gray-700'
+            }}"
           >
             <span class="mr-2 h-4 fill-current text-gray-500">
               <svg

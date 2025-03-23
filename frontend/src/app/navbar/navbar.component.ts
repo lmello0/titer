@@ -10,15 +10,22 @@ import { NavItemComponent } from './nav-item/nav-item.component';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  logo: NavItem = { label: 'Títer', route: '#' };
   navItems: NavItem[] = [
     { label: 'Sign In', route: '#' },
     { label: 'Create Account', route: '#' },
   ];
 
   @Input() isMenuOpen: boolean = false;
-  isSearching: boolean = false;
-
   @Output() menuOpenEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  isSearching: boolean = false;
+  isOnNavbarHover: boolean = false;
+  isMouseOnLogo: boolean = false;
+
+  constructor() {
+    this.prepareNavItems();
+  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -37,7 +44,7 @@ export class NavbarComponent {
     }));
 
     const sortedNavItems = [...navItems].sort(
-      (a, b) => a.position - b.position
+      (a, b) => a.position - b.position,
     );
 
     if (sortedNavItems.length > 0) {

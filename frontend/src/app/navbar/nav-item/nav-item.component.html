@@ -1,16 +1,22 @@
 <a
+  [ngClass]="{ 'text-gray-200': isOnNavbarHover && !isMouseOn }"
   *ngIf="item.route && !item.useClickHandler"
   [routerLink]="item.route"
   routerLinkActive="text-gray-400"
-  class="text-nav nav-item"
+  class="text-nav nav-item text-nav-animation-hover"
+  (mouseover)="isMouseOn = true"
+  (mouseout)="isMouseOn = false"
 >
   {{ item.label }}
 </a>
 
 <button
+  [ngClass]="{ 'text-gray-200': isOnNavbarHover && !isMouseOn }"
   *ngIf="item.useClickHandler && item.clickHandler"
   (click)="onItemClick($event)"
-  class="text-nav nav-item"
+  class="text-nav nav-item text-nav-animation-hover"
+  (mouseover)="isMouseOn = true"
+  (mouseout)="isMouseOn = false"
 >
   {{ item.label }}
 </button>

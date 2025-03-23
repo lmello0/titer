@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+  .text-nav {
+    @apply font-black tracking-wider text-gray-200 transition duration-200 ease-in-out hover:bg-gray-700 hover:text-gray-400;
+  }
+}

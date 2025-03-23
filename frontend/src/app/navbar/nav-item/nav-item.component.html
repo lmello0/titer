@@ -1,0 +1,16 @@
+<a
+  *ngIf="item.route && !item.useClickHandler"
+  [routerLink]="item.route"
+  routerLinkActive="text-gray-400"
+  class="text-nav nav-item"
+>
+  {{ item.label }}
+</a>
+
+<button
+  *ngIf="item.useClickHandler && item.clickHandler"
+  (click)="onItemClick($event)"
+  class="text-nav nav-item"
+>
+  {{ item.label }}
+</button>

@@ -1,0 +1,19 @@
+<div class="w-full">
+  <div class="flex items-center px-3 pt-4 pb-2">
+    <h2
+      class="cursor-pointer font-extrabold tracking-wider text-gray-200 uppercase underline-offset-4 hover:underline"
+    >
+      {{ title }}
+      <a class="fa-solid fa-chevron-right"></a>
+    </h2>
+  </div>
+  <div class="w-full">
+    <div
+      class="grid grid-flow-col grid-cols-6 place-items-center gap-4 px-1 sm:gap-2"
+    >
+      @for (item of items; track $index) {
+        <app-play-card></app-play-card>
+      }
+    </div>
+  </div>
+</div>

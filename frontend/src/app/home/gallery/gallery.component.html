@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full py-2">
   <div class="flex items-center px-3 pt-4 pb-2">
     <h2
       class="cursor-pointer font-extrabold tracking-wider text-gray-200 uppercase underline-offset-4 hover:underline"
@@ -7,10 +7,20 @@
       <a class="fa-solid fa-chevron-right"></a>
     </h2>
   </div>
-  <div class="w-full overflow-x-auto">
-    <div class="flex flex-row gap-4 p-2 whitespace-nowrap sm:gap-7">
+
+  <div class="overflow-auto">
+    <div class="flex min-w-full items-stretch gap-7 p-2">
       @for (item of items; track $index) {
-        <app-play-card></app-play-card>
+        <div
+          class="shrink-0"
+          ngClass="{{ $index === items.length - 1 ? 'pr-2' : 'pr-0' }}"
+        >
+          <app-play-card
+            [url]="item.imageSrc"
+            [reviews]="item.reviewCount"
+            [watched]="item.watchedCount"
+          ></app-play-card>
+        </div>
       }
     </div>
   </div>

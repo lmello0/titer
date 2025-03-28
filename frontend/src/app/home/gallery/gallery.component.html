@@ -7,9 +7,9 @@
       <a class="fa-solid fa-chevron-right"></a>
     </h2>
   </div>
-  <div class="w-full">
+  <div class="w-full overflow-x-auto">
     <div
-      class="grid grid-flow-col grid-cols-6 place-items-center gap-4 px-1 sm:gap-2"
+      class="grid grid-flow-col grid-cols-6 place-items-center gap-4 px-1 py-2 sm:gap-2"
     >
       @for (item of items; track $index) {
         <app-play-card></app-play-card>

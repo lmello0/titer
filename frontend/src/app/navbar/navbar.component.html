@@ -1,6 +1,9 @@
 <header class="w-full">
   <div
-    class="bg-gray-950 shadow-gray-200/20 transition duration-200 ease-in-out hover:shadow-[inset_0_50px_50px_-50px]"
+    class="shadow-gray-200/20 transition duration-200 ease-in-out hover:shadow-[inset_0_50px_50px_-50px]"
+    [ngClass]="{
+      'bg-gray-950': isMenuOpen,
+    }"
     (mouseover)="isOnNavbarHover = true"
     (mouseout)="isOnNavbarHover = false"
   >

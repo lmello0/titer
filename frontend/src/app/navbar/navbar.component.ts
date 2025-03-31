@@ -1,20 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NavItem } from './interface/nav-item';
-import { CommonModule, NgClass } from '@angular/common';
-import { NavItemComponent } from './nav-item/nav-item.component';
+import { NavItem } from './nav-item-list/interface/nav-item.interface';
+import { CommonModule } from '@angular/common';
+import { NavLogoComponent } from './nav-logo/nav-logo.component';
+import { NavItemListComponent } from './nav-item-list/nav-item-list.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, NavItemComponent],
+  imports: [CommonModule, NavLogoComponent, NavItemListComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
   logo: NavItem = { label: 'Títer', route: '#' };
-  navItems: NavItem[] = [
-    { label: 'Sign In', route: '#' },
-    { label: 'Create Account', route: '#' },
-  ];
 
   @Input() isMenuOpen: boolean = false;
   @Output() menuOpenEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -22,10 +19,6 @@ export class NavbarComponent {
   isSearching: boolean = false;
   isOnNavbarHover: boolean = false;
   isMouseOnLogo: boolean = false;
-
-  constructor() {
-    this.prepareNavItems();
-  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -35,23 +28,5 @@ export class NavbarComponent {
   closeMenu(): void {
     this.isMenuOpen = false;
     this.menuOpenEvent.emit(this.isMenuOpen);
-  }
-
-  private prepareNavItems(): void {
-    const navItems = this.navItems.map((item, index) => ({
-      ...item,
-      position: item.position ?? index,
-    }));
-
-    const sortedNavItems = [...navItems].sort(
-      (a, b) => a.position - b.position,
-    );
-
-    if (sortedNavItems.length > 0) {
-      sortedNavItems.forEach((item) => (item.rightest = false));
-      sortedNavItems[sortedNavItems.length - 1].rightest = true;
-    }
-
-    this.navItems = sortedNavItems;
   }
 }

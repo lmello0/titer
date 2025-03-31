@@ -1,0 +1,10 @@
+<a
+  [ngClass]="{ 'text-gray-200': isOnNavbarHover && !isMouseOn }"
+  [routerLink]="route"
+  routerLinkActive="text-gray-400"
+  class="text-nav nav-item text-nav-animation-hover"
+  (mouseover)="isMouseOn = true"
+  (mouseout)="isMouseOn = false"
+>
+  {{ label }}
+</a>

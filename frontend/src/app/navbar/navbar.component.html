@@ -6,21 +6,7 @@
   >
     <nav class="sm:flex sm:items-center sm:justify-between sm:px-4 sm:py-3">
       <div class="flex items-center justify-between px-4 py-3 sm:p-0">
-        <a routerLink="/" (click)="closeMenu()">
-          <div
-            class="flex h-full cursor-pointer items-center gap-1.5 rounded px-2 py-1"
-            (mouseover)="isMouseOnLogo = true"
-            (mouseout)="isMouseOnLogo = false"
-          >
-            <img class="h-7" src="assets/logo/logo-64.png" />
-            <h1
-              [ngClass]="{ 'text-gray-200': isOnNavbarHover && !isMouseOnLogo }"
-              class="text-nav hidden font-black tracking-wider transition duration-200 ease-in-out sm:block"
-            >
-              Títer
-            </h1>
-          </div>
-        </a>
+        <app-nav-logo [isOnNavbarHover]="isOnNavbarHover"></app-nav-logo>
 
         <div class="flex items-center justify-center sm:hidden">
           <button
@@ -44,55 +30,10 @@
         </div>
       </div>
 
-      <div
-        [ngClass]="{
-          'max-h-[500px] pt-2 pb-4 opacity-600': isMenuOpen,
-          'pointer-events-none max-h-0 opacity-0 sm:pointer-events-auto':
-            !isMenuOpen,
-        }"
-        class="px-2 transition-all duration-200 ease-in-out sm:flex sm:items-center sm:p-0 sm:opacity-100"
-      >
-        @for (item of navItems; track $index) {
-          <app-nav-item
-            [isOnNavbarHover]="isOnNavbarHover"
-            [item]="item"
-            (itemClick)="(item.clickHandler)"
-          ></app-nav-item>
-        }
-
-        <div class="mt-2 px-2 py-1 sm:mt-0 sm:ml-2">
-          <div
-            class="flex w-full items-center justify-between rounded px-2 py-1 transition duration-300 ease-in-out hover:bg-gray-200"
-            ngClass="{{
-              isSearching || isOnNavbarHover ? 'bg-gray-200' : 'bg-gray-700'
-            }}"
-          >
-            <span class="mr-2 h-4 fill-current text-gray-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                ></path>
-              </svg>
-            </span>
-
-            <input
-              (focusout)="isSearching = false"
-              (focus)="isSearching = true"
-              class="w-full font-semibold text-gray-800 focus:outline-none"
-              type="text"
-            />
-          </div>
-        </div>
-      </div>
+      <app-nav-item-list
+        [isMenuOpen]="isMenuOpen"
+        [isOnNavbarHover]="isOnNavbarHover"
+      ></app-nav-item-list>
     </nav>
   </div>
 </header>

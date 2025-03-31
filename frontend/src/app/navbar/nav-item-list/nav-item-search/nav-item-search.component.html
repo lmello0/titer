@@ -1,0 +1,36 @@
+<form #searchPlayForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="mt-2 px-2 py-1 sm:mt-0 sm:ml-2">
+    <div
+      class="flex w-full items-center justify-between rounded px-2 py-1 transition duration-300 ease-in-out hover:bg-gray-200"
+      [ngClass]="getBackgroundColor"
+    >
+      <span class="mr-2 h-4 fill-current text-gray-500">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          ></path>
+        </svg>
+      </span>
+
+      <input
+        class="w-full font-semibold text-gray-800 focus:outline-none"
+        type="text"
+        [(ngModel)]="playToSearch"
+        (focus)="changeIsSearchingStatus(true)"
+        (focusout)="changeIsSearchingStatus(false)"
+        id="play-search"
+        name="play-search"
+        required
+      />
+    </div>
+  </div>
+</form>

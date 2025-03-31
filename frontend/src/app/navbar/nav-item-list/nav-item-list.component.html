@@ -1,0 +1,19 @@
+<div
+  [ngClass]="{
+    'max-h-[500px] pt-2 pb-4 opacity-600': isMenuOpen,
+    'pointer-events-none max-h-0 opacity-0 sm:pointer-events-auto': !isMenuOpen,
+  }"
+  class="px-2 transition-all duration-200 ease-in-out sm:flex sm:items-center sm:p-0 sm:opacity-100"
+>
+  @for (item of navItems; track $index) {
+    <app-nav-item
+      [isOnNavbarHover]="isOnNavbarHover"
+      [label]="item.label"
+      [route]="item.route"
+    ></app-nav-item>
+  }
+
+  <app-nav-item-search
+    [isOnNavbarHover]="isOnNavbarHover"
+  ></app-nav-item-search>
+</div>

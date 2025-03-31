@@ -1,15 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PlayCardComponent } from './play-card/play-card.component';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
-  imports: [CommonModule, PlayCardComponent],
+  imports: [CommonModule, PlayCardComponent, RouterLink],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css',
 })
 export class GalleryComponent implements OnInit {
   @Input() title: string = '';
+  @Input() route: string = '';
 
   items: any[] = [];
 

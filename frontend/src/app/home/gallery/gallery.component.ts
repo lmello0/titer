@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './gallery.component.css',
 })
 export class GalleryComponent implements OnInit {
-  @Input() title: string = '';
+  @Input() galleryTitle: string = '';
   @Input() route: string = '';
 
   items: any[] = [];

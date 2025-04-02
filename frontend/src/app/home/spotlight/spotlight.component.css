@@ -1,7 +1,9 @@
+@import "tailwindcss";
+
 .overlay {
   background-repeat: no-repeat;
   background:
-    /* linear-gradient(to bottom, oklch(0.13 0.028 261.692) 2%, transparent 5%), */
+    linear-gradient(to bottom, oklch(0.13 0.028 261.692) 2%, transparent 5%),
     linear-gradient(to top, oklch(0.13 0.028 261.692) 2%, transparent 10%),
     linear-gradient(to right, oklch(0.13 0.028 261.692) 7%, transparent 35%),
     linear-gradient(to left, oklch(0.13 0.028 261.692) 7%, transparent 35%);

@@ -1,12 +1,48 @@
-<div class="relative flex h-full items-center justify-center py-1">
+<div
+  class="relative flex h-full items-center justify-center pt-1 pb-1 select-none"
+>
   <div class="mx-1 w-5xl">
     <img
-      class="block w-full object-cover select-none"
-      src="https://film-grab.com/wp-content/uploads/2024/07/Robin-Hood-73-19.jpg"
+      class="block h-56 w-full object-cover sm:h-152"
+      [src]="imageUrl"
       alt=""
     />
   </div>
+
+  <div class="absolute z-10 flex h-full w-full flex-col">
+    <div class="flex h-full w-full flex-col items-center justify-center">
+      <div
+        class="flex flex-row items-center space-x-2 rounded-xl bg-black/50 p-3 sm:space-x-6"
+      >
+        <img
+          class="w-10 drop-shadow-xl sm:w-34"
+          src="assets/logo/logo-512.png"
+          alt="logo image"
+        />
+        <div class="flex flex-col items-start -space-y-2 sm:-space-y-4">
+          <h1
+            class="text-3xl font-extrabold tracking-wide text-gray-200 drop-shadow-xl sm:text-9xl"
+          >
+            Títer
+          </h1>
+          <span
+            class="text-base font-medium tracking-wider text-gray-200 drop-shadow-lg sm:text-2xl"
+            >Watch. Review. Share.</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div
-    class="overlay pointer-events-none absolute top-0 left-0 h-full w-full"
+    class="overlay pointer-events-none absolute top-0 left-0 z-0 h-full w-full"
   ></div>
 </div>
+
+<!--
+<div class="flex items-center gap-1 self-center justify-self-center">
+  <img width="128" src="assets/logo/logo-512.png" alt="" />
+  <h1 class="text-9xl font-extrabold tracking-wider text-gray-200">Títer</h1>
+</div>
+<span class="slogan-text pb-10">Watch. Review. Share.</span>
+-->

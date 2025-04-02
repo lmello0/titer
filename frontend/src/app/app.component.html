@@ -1,6 +1,6 @@
 <div class="flex h-full w-full flex-col">
   <app-navbar
-    class="absolute z-11 w-full"
+    class="absolute z-60 w-full"
     (menuOpenEvent)="menuOpenEventReceiver($event)"
     [isMenuOpen]="isMenuOpen"
   ></app-navbar>
@@ -8,8 +8,8 @@
   <div class="relative mt-[58px] flex-1 overflow-hidden sm:mt-[64px]">
     <div
       [ngClass]="{
-        'z-10 opacity-50': isMenuOpen,
-        '-z-10 opacity-0': !isMenuOpen,
+        'z-50 opacity-50': isMenuOpen,
+        '-z-50 opacity-0': !isMenuOpen,
       }"
       class="absolute inset-0 bg-black backdrop-blur-md transition-all duration-200 ease-in-out"
       (click)="toggleMenu()"

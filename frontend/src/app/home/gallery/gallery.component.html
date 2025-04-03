@@ -9,12 +9,9 @@
   </div>
 
   <div class="overflow-auto select-none">
-    <div class="flex items-stretch justify-between gap-5 p-2 sm:gap-10">
+    <div class="flex items-stretch justify-around gap-5 p-2">
       @for (item of items; track $index) {
-        <div
-          class="shrink-0"
-          ngClass="{{ $index === items.length - 1 ? 'pr-2' : 'pr-0' }}"
-        >
+        <div class="shrink-0">
           <app-play-card
             [url]="item.imageSrc"
             [reviews]="item.reviewCount"

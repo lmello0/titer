@@ -1,10 +1,17 @@
-<div class="flex w-full items-center justify-center border-2 border-white">
-  <div class="grid w-full grid-cols-3 gap-2 border-2 border-red-500">
-    <div class="bg-gray-200 p-4">Send request for adding a new play</div>
-    <div class="bg-gray-200 p-4">Column 2</div>
-    <div class="bg-gray-200 p-4">Column 3</div>
-    <div class="bg-gray-200 p-4">Column 3</div>
-    <div class="bg-gray-200 p-4">Column 3</div>
-    <div class="bg-gray-200 p-4">Column 3</div>
+<div class="flex items-center px-3">
+  <h2 class="font-extrabold tracking-wider text-gray-200 uppercase">
+    Features
+  </h2>
+</div>
+<div class="flex w-full items-center justify-center py-5">
+  <div class="flex w-full flex-col flex-wrap gap-2 sm:flex-row sm:gap-3">
+    @for (card of cards; track $index) {
+      <app-card
+        [icon]="card.icon"
+        [description]="card.description"
+        [hoverColor]="card.hoverColor"
+        class="flex-1 sm:basis-1/4"
+      ></app-card>
+    }
   </div>
 </div>

@@ -1,47 +1,84 @@
-<div class="w-full px-5 sm:h-52">
-  <div class="flex h-full w-full items-center gap-10">
+<div class="w-full px-5">
+  <article class="flex h-full w-full items-center justify-between gap-7">
     <!-- cover -->
-    <div class="mt-2 w-24 min-w-24 self-start">
-      <img
-        src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg"
-        alt=""
-      />
-    </div>
+    <figure
+      class="mt-2 w-24 min-w-24 cursor-pointer self-start overflow-hidden rounded shadow-lg outline-offset-2 outline-emerald-500 duration-100 ease-in-out select-none hover:outline-2"
+    >
+      <a [routerLink]="">
+        <img
+          class="object-cover"
+          [src]="reviewData.play.posterUrl"
+          [alt]="reviewData.play.title + ' poster'"
+        />
+      </a>
+    </figure>
 
-    <div class="flex h-full flex-col gap-2">
+    <div class="flex h-full flex-col gap-4">
       <!-- title -->
-      <div class="inline-flex items-center gap-5">
-        <h3 class="font-medium sm:text-2xl">{{ title }}</h3>
-        <span class="font-medium sm:text-xl">{{ year }}</span>
-      </div>
+      <header class="inline-flex items-end">
+        <h3 class="font-medium text-wrap sm:text-2xl">
+          <a
+            [routerLink]=""
+            class="cursor-pointer transition-colors hover:text-emerald-500"
+          >
+            {{ reviewData.play.title }}
+          </a>
+        </h3>
+        <time
+          class="cursor-pointer font-extralight text-gray-300 transition-colors hover:text-emerald-500 sm:text-xl"
+        >
+          <a [routerLink]="">{{ reviewData.play.date.year }}</a>
+        </time>
+      </header>
 
       <!-- user -->
-      <div class="inline-flex items-center gap-2">
-        <img
-          class="w-6 rounded-full sm:w-8"
-          src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
-          alt=""
-        />
-        <h4>User</h4>
-        <div class="inline-flex">
+      <section class="inline-flex items-center gap-2">
+        <a
+          class="inline-flex cursor-pointer items-center gap-2 transition-colors hover:text-emerald-500"
+          [routerLink]=""
+        >
+          <img
+            class="w-6 rounded-full sm:w-7"
+            [src]="reviewData.user.avatarUrl"
+            [alt]="reviewData.user.name + ' avatar'"
+            loading="lazy"
+          />
+          <h4 class="font-semibold tracking-wider">
+            {{ reviewData.user.name }}
+          </h4>
+        </a>
+        <div class="text-amber-400" role="img">
           <span *ngFor="let star of fullStars">★</span>
           <span *ngIf="hasHalfStar">½</span>
         </div>
-      </div>
+      </section>
 
       <!-- review -->
-      <p class="line- my-2 text-justify text-xs tracking-wide sm:text-sm">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus sunt,
-        odio, incidunt nulla quidem repellendus labore, maiores velit delectus
-        earum numquam! Assumenda fuga voluptates expedita accusamus amet placeat
-        veritatis voluptate.
-      </p>
+      <section>
+        <p
+          class="line-clamp-3 text-justify text-xs font-extralight tracking-wide text-gray-200 sm:text-sm"
+        >
+          {{ reviewData.reviewText }}
+        </p>
+      </section>
 
       <!-- likes etc -->
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-heart pb-0.5"></i>
-        <span class="">{{ numLikes.toLocaleString() }} likes</span>
-      </div>
+      <footer class="-mt-2 inline-flex gap-4">
+        <div class="inline-flex items-center gap-2">
+          <i class="fa-solid fa-heart fa-sm pb-0.5 text-red-500"></i>
+          <span class="text-sm text-gray-400">
+            {{ reviewData.numLikes | number }}
+            <span class="font-light">likes</span>
+          </span>
+        </div>
+        <div class="inline-flex items-center gap-2">
+          <i class="fa-solid fa-comment fa-sm pb-0.5 text-blue-500"></i>
+          <span class="text-sm text-gray-400">
+            {{ reviewData.numComments | number }}
+            <span class="font-light">comments</span>
+          </span>
+        </div>
+      </footer>
     </div>
-  </div>
+  </article>
 </div>

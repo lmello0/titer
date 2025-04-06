@@ -1,0 +1,47 @@
+<div class="w-full px-5 sm:h-52">
+  <div class="flex h-full w-full items-center gap-10">
+    <!-- cover -->
+    <div class="mt-2 w-24 min-w-24 self-start">
+      <img
+        src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg"
+        alt=""
+      />
+    </div>
+
+    <div class="flex h-full flex-col gap-2">
+      <!-- title -->
+      <div class="inline-flex items-center gap-5">
+        <h3 class="font-medium sm:text-2xl">{{ title }}</h3>
+        <span class="font-medium sm:text-xl">{{ year }}</span>
+      </div>
+
+      <!-- user -->
+      <div class="inline-flex items-center gap-2">
+        <img
+          class="w-6 rounded-full sm:w-8"
+          src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
+          alt=""
+        />
+        <h4>User</h4>
+        <div class="inline-flex">
+          <span *ngFor="let star of fullStars">★</span>
+          <span *ngIf="hasHalfStar">½</span>
+        </div>
+      </div>
+
+      <!-- review -->
+      <p class="line- my-2 text-justify text-xs tracking-wide sm:text-sm">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus sunt,
+        odio, incidunt nulla quidem repellendus labore, maiores velit delectus
+        earum numquam! Assumenda fuga voluptates expedita accusamus amet placeat
+        veritatis voluptate.
+      </p>
+
+      <!-- likes etc -->
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-heart pb-0.5"></i>
+        <span class="">{{ numLikes.toLocaleString() }} likes</span>
+      </div>
+    </div>
+  </div>
+</div>

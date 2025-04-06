@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CardComponent } from './card/card.component';
 import { Card } from './card/card.interface';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-features',
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, RouterLink],
   templateUrl: './features.component.html',
   styleUrl: './features.component.css',
 })

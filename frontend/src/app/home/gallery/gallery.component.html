@@ -1,24 +1,24 @@
-<div>
-  <div class="flex items-center px-3 pt-4 pb-2">
+<div class="flex items-center px-3 pt-4 pb-2 select-none">
+  <a [routerLink]="route">
     <h2
       class="cursor-pointer font-extrabold tracking-wider text-gray-200 uppercase underline-offset-4 hover:underline"
     >
       {{ galleryTitle }}
-      <a class="fa-solid fa-chevron-right" [routerLink]="route"></a>
+      <span class="fa-solid fa-chevron-right"></span>
     </h2>
-  </div>
+  </a>
+</div>
 
-  <div class="overflow-auto select-none">
-    <div class="flex items-stretch justify-around gap-5 p-2">
-      @for (item of items; track $index) {
-        <div class="shrink-0">
-          <app-play-card
-            [url]="item.imageSrc"
-            [reviews]="item.reviewCount"
-            [watched]="item.watchedCount"
-          ></app-play-card>
-        </div>
-      }
-    </div>
+<div class="overflow-auto select-none">
+  <div class="flex items-stretch justify-around gap-5 p-2">
+    @for (item of items; track $index) {
+      <div class="shrink-0">
+        <app-play-card
+          [url]="item.imageSrc"
+          [reviews]="item.reviewCount"
+          [watched]="item.watchedCount"
+        ></app-play-card>
+      </div>
+    }
   </div>
 </div>

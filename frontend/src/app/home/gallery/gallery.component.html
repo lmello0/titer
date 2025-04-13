@@ -12,6 +12,7 @@
     @for (item of items; track $index) {
       <div class="shrink-0">
         <app-play-card
+          [playTitle]="item.title"
           [url]="item.imageSrc"
           [reviews]="item.reviewCount"
           [watched]="item.watchedCount"

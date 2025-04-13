@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './play-card.component.css',
 })
 export class PlayCardComponent implements OnInit {
+  @Input() playTitle!: string;
   @Input() reviews!: number | string;
   @Input() watched!: number | string;
   @Input() url!: string;

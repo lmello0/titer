@@ -1,4 +1,4 @@
-<div class="flex h-full w-full flex-col">
+<!-- <div class="flex h-full w-full flex-col">
   <app-navbar
     class="absolute z-60 w-full"
     (menuOpenEvent)="menuOpenEventReceiver($event)"
@@ -16,4 +16,26 @@
     ></div>
     <router-outlet class="relative z-0"></router-outlet>
   </div>
+</div> -->
+
+<div class="flex min-h-screen flex-col">
+  <app-navbar
+    class="absolute z-60 w-full"
+    (menuOpenEvent)="menuOpenEventReceiver($event)"
+    [isMenuOpen]="isMenuOpen"
+  ></app-navbar>
+
+  <div
+    [ngClass]="{
+      'z-50 opacity-50': isMenuOpen,
+      '-z-50 opacity-0': !isMenuOpen,
+    }"
+    class="absolute inset-0 h-screen bg-black backdrop-blur-md transition-all duration-200 ease-in-out"
+    (click)="toggleMenu()"
+  ></div>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer></app-footer>
 </div>

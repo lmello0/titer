@@ -1,4 +1,4 @@
-<div class="flex min-h-screen flex-col">
+<div class="relative flex min-h-screen flex-col">
   <app-navbar
     class="absolute z-60 w-full shadow-xl shadow-gray-950"
   ></app-navbar>
@@ -8,7 +8,7 @@
       'z-50 opacity-50': isMenuOpenService.currentValue,
       '-z-50 opacity-0': !isMenuOpenService.currentValue,
     }"
-    class="absolute inset-0 h-screen bg-black backdrop-blur-md transition-all duration-200 ease-in-out"
+    class="absolute inset-0 h-full bg-black/80 transition-all duration-200 ease-in-out"
     (click)="toggleMenu()"
   ></div>
 
@@ -16,5 +16,5 @@
     <router-outlet></router-outlet>
   </main>
 
-  <app-footer></app-footer>
+  <app-footer *ngIf="!isMenuOpenService.currentValue"></app-footer>
 </div>

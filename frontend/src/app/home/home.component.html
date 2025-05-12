@@ -1,8 +1,11 @@
-<section class="mx-auto h-full scroll-smooth">
+<section
+  class="mx-auto scroll-smooth"
+  [ngClass]="{ 'h-screen overflow-hidden': isMenuOpenService.currentValue }"
+>
   <div class="w-full px-5">
     <app-spotlight></app-spotlight>
 
-    <div class="mx-auto flex w-full max-w-5xl flex-col gap-5 pb-5">
+    <div class="mx-auto flex w-full max-w-5xl flex-col gap-7 pb-5">
       <app-trending></app-trending>
       <app-features></app-features>
       <app-last-reviews></app-last-reviews>

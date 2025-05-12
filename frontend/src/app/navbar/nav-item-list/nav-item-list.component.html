@@ -1,7 +1,8 @@
 <div
   [ngClass]="{
-    'max-h-[500px] pt-2 pb-4 opacity-600': isMenuOpen,
-    'pointer-events-none max-h-0 opacity-0 sm:pointer-events-auto': !isMenuOpen,
+    'max-h-[500px] pt-2 pb-4 opacity-600': isMenuOpenService.currentValue,
+    'pointer-events-none max-h-0 opacity-0 sm:pointer-events-auto':
+      !isMenuOpenService.currentValue,
   }"
   class="px-2 transition-all duration-200 ease-in-out sm:flex sm:items-center sm:p-0 sm:opacity-100"
 >

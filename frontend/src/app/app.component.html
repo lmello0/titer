@@ -1,18 +1,17 @@
 <div class="flex min-h-screen flex-col">
   <app-navbar
     class="absolute z-60 w-full shadow-xl shadow-gray-950"
-    (menuOpenEvent)="menuOpenEventReceiver($event)"
-    [isMenuOpen]="isMenuOpen"
   ></app-navbar>
 
   <div
     [ngClass]="{
-      'z-50 opacity-50': isMenuOpen,
-      '-z-50 opacity-0': !isMenuOpen,
+      'z-50 opacity-50': isMenuOpenService.currentValue,
+      '-z-50 opacity-0': !isMenuOpenService.currentValue,
     }"
     class="absolute inset-0 h-screen bg-black backdrop-blur-md transition-all duration-200 ease-in-out"
     (click)="toggleMenu()"
   ></div>
+
   <main>
     <router-outlet></router-outlet>
   </main>

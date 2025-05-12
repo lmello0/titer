@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgClass } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
+import { MobileNavbarOpenService } from '../services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +14,9 @@ import { FooterComponent } from './footer/footer.component';
 export class AppComponent {
   title = 'titer';
 
-  isMenuOpen: boolean = false;
-
-  menuOpenEventReceiver(event: boolean): void {
-    this.isMenuOpen = event;
-  }
+  constructor(public isMenuOpenService: MobileNavbarOpenService) {}
 
   toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isMenuOpenService.toggle();
   }
 }

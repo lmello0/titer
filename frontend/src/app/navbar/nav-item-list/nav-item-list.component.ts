@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { NavItem } from './interface/nav-item.interface';
 import { NavItemLinkComponent } from './nav-item-link/nav-item-link.component';
 import { NavItemSearchComponent } from './nav-item-search/nav-item-search.component';
+import { MobileNavbarOpenService } from '../../../services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-nav-item-list',
@@ -12,7 +13,6 @@ import { NavItemSearchComponent } from './nav-item-search/nav-item-search.compon
 })
 export class NavItemListComponent {
   @Input() isOnNavbarHover: boolean = false;
-  @Input() isMenuOpen: boolean = false;
 
   isSearching: boolean = false;
 
@@ -22,4 +22,6 @@ export class NavItemListComponent {
     { label: 'Sign In', route: '#' },
     { label: 'Create Account', route: '#' },
   ];
+
+  constructor(public isMenuOpenService: MobileNavbarOpenService) {}
 }

@@ -3,6 +3,7 @@ import { NavItem } from './nav-item-list/interface/nav-item.interface';
 import { CommonModule } from '@angular/common';
 import { NavLogoComponent } from './nav-logo/nav-logo.component';
 import { NavItemListComponent } from './nav-item-list/nav-item-list.component';
+import { MobileNavbarOpenService } from '../../services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,20 +14,21 @@ import { NavItemListComponent } from './nav-item-list/nav-item-list.component';
 export class NavbarComponent {
   logo: NavItem = { label: 'Títer', route: '#' };
 
-  @Input() isMenuOpen: boolean = false;
   @Output() menuOpenEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   isSearching: boolean = false;
   isOnNavbarHover: boolean = false;
   isMouseOnLogo: boolean = false;
 
+  constructor(public isMenuOpenService: MobileNavbarOpenService) {}
+
   toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-    this.menuOpenEvent.emit(this.isMenuOpen);
+    this.isMenuOpenService.toggle();
+    this.menuOpenEvent.emit(this.isMenuOpenService.currentValue);
   }
 
   closeMenu(): void {
-    this.isMenuOpen = false;
-    this.menuOpenEvent.emit(this.isMenuOpen);
+    this.isMenuOpenService.set(false);
+    this.menuOpenEvent.emit(this.isMenuOpenService.currentValue);
   }
 }

@@ -14,34 +14,33 @@ export class FeaturesComponent {
   cards: Card[] = [
     {
       icon: 'fa-eye',
-      description: 'Mark the plays that you watched or will watch',
+      description: 'Track plays you have watched or plan to watch.',
       hoverColor: 'hover:bg-blue-500',
     },
     {
       icon: 'fa-pencil',
-      description: 'Write a review for the others to know if the play is good',
+      description: 'Write reviews to help others discover great plays',
       hoverColor: 'hover:bg-green-500',
     },
     {
       icon: 'fa-share',
-      description: 'Share the plays that you like with your friends',
+      description: 'Share your favorite plays with friends.',
       hoverColor: 'hover:bg-red-500',
     },
 
     {
       icon: 'fa-list',
-      description:
-        'Create lists with plays that you like and recommend and share it with everyone',
+      description: 'Create and share lists of you recommended plays.',
       hoverColor: 'hover:bg-blue-500',
     },
     {
       icon: 'fa-calendar',
-      description: 'Find out the plays calendar ???',
+      description: 'View upcoming play schedules. Coming soon!',
       hoverColor: 'hover:bg-green-500',
     },
     {
       icon: 'fa-building',
-      description: 'See theaters near you ???',
+      description: 'Discover theaters near you. Coming soon!',
       hoverColor: 'hover:bg-red-500',
     },
   ];

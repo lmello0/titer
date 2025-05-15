@@ -97,7 +97,7 @@
           <div class="flex w-full">
             <!-- label -->
             <div class="flex w-1/2 items-baseline gap-2 pr-4">
-              <h4 class="font-bold">Main Actors</h4>
+              <h4 class="font-bold">Main actors</h4>
               <div class="flex-1 border-b-2 border-dotted"></div>
             </div>
 
@@ -170,17 +170,19 @@
         </div>
 
         <div [class.hidden]="activeTab !== 'CAST'">
-          <div class="w-full">
+          <div class="flex w-full flex-col">
+            <!-- links section -->
             @for (actor of cast; track $index) {
-              <div class="mt-2 flex w-full">
-                <div class="flex w-full grow items-baseline gap-1">
-                  <span>{{ actor.character }}</span>
-                  <div class="grow border-b border-dotted"></div>
+              <div class="flex w-full">
+                <!-- label -->
+                <div class="flex w-1/2 items-baseline gap-2 pr-4">
+                  <span class="font-bold">{{ actor.character }}</span>
+                  <div class="flex-1 border-b-2 border-dotted"></div>
                 </div>
-                <div class="ml-1 w-1/2 grow">
+                <div class="w-1/2">
                   <a
+                    class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
                     routerLink="/actor/{{ actor.id }}"
-                    class="font-semibold whitespace-nowrap transition-colors hover:text-emerald-500"
                     >{{ actor.name }}</a
                   >
                 </div>
@@ -190,17 +192,19 @@
         </div>
 
         <div [class.hidden]="activeTab !== 'CREW'">
-          <div class="w-full">
+          <div class="flex w-full flex-col">
+            <!-- links section -->
             @for (worker of crew; track $index) {
-              <div class="mt-2 flex w-full">
-                <div class="flex w-full grow items-baseline gap-1">
-                  <span>{{ worker.role }}</span>
-                  <div class="flex-grow border-b border-dotted"></div>
+              <div class="flex w-full">
+                <!-- label -->
+                <div class="flex w-1/2 items-baseline gap-2 pr-4">
+                  <span class="font-bold">{{ worker.role }}</span>
+                  <div class="flex-1 border-b-2 border-dotted"></div>
                 </div>
-                <div class="ml-1 w-1/2 grow">
+                <div class="w-1/2">
                   <a
-                    routerLink="/actor/{{ worker.id }}"
-                    class="font-semibold whitespace-nowrap transition-colors hover:text-emerald-500"
+                    class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+                    routerLink="/worker/{{ worker.id }}"
                     >{{ worker.name }}</a
                   >
                 </div>

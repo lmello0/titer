@@ -1,0 +1,116 @@
+<!-- directors -->
+<div class="flex w-full">
+  <!-- label -->
+  <div class="flex w-1/2 items-baseline gap-2 pr-4">
+    <h4 class="font-bold">Directors</h4>
+    <div class="flex-1 border-b-2 border-dotted"></div>
+  </div>
+
+  <!-- links section -->
+  <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
+    @for (director of directors; track $index) {
+      <a
+        class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+        routerLink="/director/{{ director.id }}"
+        >{{ director.name }}</a
+      >
+    }
+  </div>
+</div>
+
+<!-- main actors -->
+<div class="flex w-full">
+  <!-- label -->
+  <div class="flex w-1/2 items-baseline gap-2 pr-4">
+    <h4 class="font-bold">Main actors</h4>
+    <div class="flex-1 border-b-2 border-dotted"></div>
+  </div>
+
+  <!-- links section -->
+  <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
+    @for (actor of mainActors; track $index) {
+      <a
+        class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+        routerLink="/actor/{{ actor.id }}"
+        >{{ actor.name }}</a
+      >
+    }
+  </div>
+</div>
+
+<!-- genres -->
+<div class="flex w-full">
+  <!-- label -->
+  <div class="flex w-1/2 items-baseline gap-2 pr-4">
+    <h4 class="font-bold">Genres</h4>
+    <div class="flex-1 border-b-2 border-dotted"></div>
+  </div>
+
+  <!-- links section -->
+  <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
+    @for (genre of genres; track $index) {
+      <a
+        class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+        routerLink="/genre/{{ genre.id }}"
+        >{{ genre.name }}</a
+      >
+    }
+  </div>
+</div>
+
+<!-- duration -->
+<div class="flex w-full">
+  <!-- label -->
+  <div class="flex w-1/2 items-baseline gap-2 pr-4">
+    <h4 class="font-bold">Duration</h4>
+    <div class="flex-1 border-b-2 border-dotted"></div>
+  </div>
+
+  <!-- info section -->
+  <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
+    <p>{{ duration }}min</p>
+  </div>
+</div>
+
+<!-- first premiere -->
+<div class="flex w-full">
+  <!-- label -->
+  <div class="flex w-1/2 items-baseline gap-2 pr-4">
+    <h4 class="font-bold">First Premiere</h4>
+    <div class="flex-1 border-b-2 border-dotted"></div>
+  </div>
+
+  <!-- info section -->
+  <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
+    <p>
+      <strong class="font-semibold">{{ this.getDate(premiereDate) }}</strong> at
+      <a
+        routerLink="/theatre/{{ premiereTheatre.id }}"
+        class="cursor-pointer font-semibold transition-colors hover:text-emerald-500"
+        >{{ premiereTheatre.name }}</a
+      >
+    </p>
+  </div>
+</div>
+
+<!-- social -->
+<div class="flex w-full">
+  <!-- label -->
+  <div class="flex w-1/2 items-baseline gap-2 pr-4">
+    <h4 class="font-bold">Socials</h4>
+    <div class="flex-1 border-b-2 border-dotted"></div>
+  </div>
+
+  <!-- links section -->
+  <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
+    @for (social of socials; track $index) {
+      <img [src]="social.socialIcon" [alt]="social.social" />
+      <a
+        class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+        [href]="social.url"
+        target="_blank"
+        >&#64;{{ social.name }}</a
+      >
+    }
+  </div>
+</div>

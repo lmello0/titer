@@ -1,0 +1,19 @@
+<div class="flex w-full flex-col gap-1">
+  <!-- links section -->
+  @for (actor of cast; track $index) {
+    <div class="flex w-full">
+      <!-- label -->
+      <div class="flex w-4/6 items-baseline gap-2 pr-4 sm:w-1/2">
+        <span class="font-bold">{{ actor.character }}</span>
+        <div class="flex-1 border-b-2 border-dotted"></div>
+      </div>
+      <div class="sm:w-1/2">
+        <a
+          class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+          routerLink="/actor/{{ actor.id }}"
+          >{{ actor.name }}</a
+        >
+      </div>
+    </div>
+  }
+</div>

@@ -1,7 +1,9 @@
-<section class="flex items-center justify-center gap-5 p-5">
-  <div class="grid max-w-208 grid-cols-[auto_1fr] items-start gap-4">
+<section class="mt-15 flex items-center justify-center gap-5 p-5">
+  <div
+    class="grid max-w-208 grid-cols-1 items-start gap-4 sm:grid-cols-[auto_1fr]"
+  >
     <!-- left: image & stats -->
-    <div class="flex flex-col overflow-hidden">
+    <div class="flex flex-col items-center overflow-hidden">
       <img class="w-60 rounded-xl shadow-sm select-none" [src]="url" alt="" />
       <div class="mt-2 inline-flex gap-4 self-center">
         <span title="Rating"
@@ -17,8 +19,8 @@
       </div>
     </div>
 
-    <!-- right: info -->
-    <div class="flex h-full max-w-xl flex-col gap-4 px-2 py-7">
+    <!-- title -->
+    <div class="flex h-full max-w-xl flex-col gap-4 px-2 py-2 sm:py-7">
       <div>
         <h2 class="text-4xl font-bold tracking-wide text-gray-50 capitalize">
           {{ title }}
@@ -37,23 +39,21 @@
           >
         </h3>
       </div>
-
-      <p class="text-justify leading-relaxed text-gray-200">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quae
-        ad omnis qui iusto sapiente, vel fugiat id magni, dolore est corrupti
-        neque eveniet! Minima modi eligendi natus explicabo sapiente.
-      </p>
-
-      <div class="flex gap-3">
-        <span>&lt; SOCIAL [WIP] &gt;</span>
-      </div>
     </div>
+    <!-- end title -->
 
-    <!-- separator -->
-    <div class="col-span-2 rounded-full border-1 border-gray-600"></div>
+    <!-- synopsis -->
+    <p class="text-justify leading-relaxed text-gray-200">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quae ad
+      omnis qui iusto sapiente, vel fugiat id magni, dolore est corrupti neque
+      eveniet! Minima modi eligendi natus explicabo sapiente.
+    </p>
+    <!-- end of synopsis -->
 
-    <!-- play info -->
-    <div class="col-span-2">
+    <div class="rounded-full border-1 border-gray-600 sm:col-span-2"></div>
+
+    <!-- tab content -->
+    <div class="sm:col-span-2">
       <!-- header -->
       <header class="flex">
         @for (tab of tabs; track $index) {
@@ -201,11 +201,11 @@
             @for (actor of cast; track $index) {
               <div class="flex w-full">
                 <!-- label -->
-                <div class="flex w-1/2 items-baseline gap-2 pr-4">
+                <div class="flex w-4/6 items-baseline gap-2 pr-4 sm:w-1/2">
                   <span class="font-bold">{{ actor.character }}</span>
                   <div class="flex-1 border-b-2 border-dotted"></div>
                 </div>
-                <div class="w-1/2">
+                <div class="sm:w-1/2">
                   <a
                     class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
                     routerLink="/actor/{{ actor.id }}"
@@ -223,11 +223,11 @@
             @for (worker of crew; track $index) {
               <div class="flex w-full">
                 <!-- label -->
-                <div class="flex w-1/2 items-baseline gap-2 pr-4">
+                <div class="flex w-4/6 items-baseline gap-2 pr-4 sm:w-1/2">
                   <span class="font-bold">{{ worker.role }}</span>
                   <div class="flex-1 border-b-2 border-dotted"></div>
                 </div>
-                <div class="w-1/2">
+                <div class="sm:w-1/2">
                   <a
                     class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
                     routerLink="/worker/{{ worker.id }}"
@@ -242,8 +242,8 @@
         <div [class.hidden]="activeTab !== 'RELEASES'">
           @for (release of sortedReleases; track $index) {
             <div class="mb-2 flex w-full border-t-2 py-1">
-              <div class="flex w-full">
-                <span class="w-1/5 font-semibold">{{ release.date }}</span>
+              <div class="flex w-full gap-5">
+                <span class="font-semibold">{{ release.date }}</span>
                 <div class="inline-flex flex-wrap gap-1">
                   @for (theatre of release.names; track $index) {
                     <span class="px-1">{{ theatre }}</span>
@@ -255,12 +255,12 @@
         </div>
       </div>
     </div>
+    <!-- end tab content -->
 
-    <!-- separator -->
-    <div class="col-span-2 rounded-full border-1 border-gray-600"></div>
+    <div class="rounded-full border-1 border-gray-600 sm:col-span-2"></div>
 
     <!-- comment section -->
-    <div class="col-span-2">
+    <div class="sm:col-span-2">
       <div
         *ngFor="let comment of comments"
         class="flex gap-4 border-t-1 border-b-1 border-gray-600 p-4"
@@ -279,9 +279,7 @@
               </span>
             </div>
           </div>
-          <p class="">
-            {{ comment.content }}
-          </p>
+          <p class="">{{ comment.content }}</p>
           <button
             (click)="toggleLike(comment)"
             class="flex items-center gap-1 text-sm text-gray-600 transition hover:text-blue-500"
@@ -296,5 +294,6 @@
         </div>
       </div>
     </div>
+    <!-- end comment section -->
   </div>
 </section>

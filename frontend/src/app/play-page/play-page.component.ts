@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Comment } from './interface/comment';
 
 @Component({
   selector: 'app-play-page',
@@ -92,6 +93,37 @@ export class PlayPageComponent implements OnInit {
     ],
     '11/05/2025': [{ id: 6, name: 'Theatre 6' }],
   };
+
+  socials: {
+    social: string;
+    socialIcon: string | null | undefined;
+    url: string;
+    name: string;
+  }[] = [
+    {
+      social: 'instagram',
+      socialIcon: null,
+      url: 'https://url.com',
+      name: 'miyazaki_hayao',
+    },
+  ];
+
+  comments: Comment[] = [
+    {
+      id: 1,
+      author: 'Jane Doe',
+      profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+      date: new Date(),
+      content: 'This is such a helpful post! Thanks for sharing',
+      likes: Math.floor(Math.random() * 100),
+      likedByUser: false,
+    },
+  ];
+
+  toggleLike(comment: Comment): void {
+    comment.likedByUser = !comment.likedByUser;
+    comment.likes += comment.likedByUser ? 1 : -1;
+  }
 
   sortedReleases: { date: string; names: string[] }[] = [];
 

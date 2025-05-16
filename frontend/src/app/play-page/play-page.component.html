@@ -43,6 +43,10 @@
         ad omnis qui iusto sapiente, vel fugiat id magni, dolore est corrupti
         neque eveniet! Minima modi eligendi natus explicabo sapiente.
       </p>
+
+      <div class="flex gap-3">
+        <span>&lt; SOCIAL [WIP] &gt;</span>
+      </div>
     </div>
 
     <!-- separator -->
@@ -167,10 +171,31 @@
               </p>
             </div>
           </div>
+
+          <!-- social -->
+          <div class="flex w-full">
+            <!-- label -->
+            <div class="flex w-1/2 items-baseline gap-2 pr-4">
+              <h4 class="font-bold">Socials</h4>
+              <div class="flex-1 border-b-2 border-dotted"></div>
+            </div>
+
+            <!-- links section -->
+            <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
+              @for (social of socials; track $index) {
+                <img [src]="social.socialIcon" [alt]="social.social" />
+                <a
+                  class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+                  [routerLink]="social.url"
+                  >&#64;{{ social.name }}</a
+                >
+              }
+            </div>
+          </div>
         </div>
 
         <div [class.hidden]="activeTab !== 'CAST'">
-          <div class="flex w-full flex-col">
+          <div class="flex w-full flex-col gap-1">
             <!-- links section -->
             @for (actor of cast; track $index) {
               <div class="flex w-full">
@@ -192,7 +217,7 @@
         </div>
 
         <div [class.hidden]="activeTab !== 'CREW'">
-          <div class="flex w-full flex-col">
+          <div class="flex w-full flex-col gap-1">
             <!-- links section -->
             @for (worker of crew; track $index) {
               <div class="flex w-full">
@@ -232,5 +257,41 @@
 
     <!-- separator -->
     <div class="col-span-2 rounded-full border-1 border-gray-600"></div>
+
+    <!-- comment section -->
+    <div class="col-span-2">
+      <div *ngFor="let comment of comments" class="flex gap-4">
+        <img
+          [src]="comment.profilePhotoUrl"
+          alt="{{ comment.author }}'s profile"
+          class="h-12 w-12 rounded-full object-cover"
+        />
+
+        <div class="flex-1">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="font-semibold">{{ comment.author }}</span>
+              <span class="ml-2 text-sm text-gray-300">
+                {{ comment.date | date: "medium" }}
+              </span>
+            </div>
+          </div>
+          <p class="mt-2">
+            {{ comment.content }}
+          </p>
+          <button
+            (click)="toggleLike(comment)"
+            class="mt-2 flex items-center gap-1 text-sm text-gray-600 transition hover:text-blue-500"
+            [ngClass]="{
+              'text-blue-500': comment.likedByUser,
+              'text-gray-600': !comment.likedByUser,
+            }"
+          >
+            <i class="fa-solid fa-heart"></i>
+            <span>{{ comment.likes }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

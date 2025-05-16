@@ -1,0 +1,24 @@
+<div class="flex h-full max-w-xl flex-col gap-4 px-2 py-2 sm:py-7">
+  <div>
+    <h2 class="text-4xl font-bold tracking-wide text-gray-50 capitalize">
+      {{ title }}
+    </h2>
+    <h3 class="mt-1 text-lg text-gray-400">
+      by
+      <span
+        class="cursor-pointer font-bold tracking-wide text-gray-50 transition-colors hover:text-emerald-500"
+      >
+        <a [routerLink]="">{{ director }}</a>
+      </span>
+      -
+      <span
+        class="cursor-pointer font-bold tracking-wide text-gray-50 transition-colors hover:text-emerald-500"
+        ><a [routerLink]="">{{ year }}</a></span
+      >
+    </h3>
+  </div>
+
+  <p class="text-justify leading-relaxed text-gray-200">
+    {{ synopsis }}
+  </p>
+</div>

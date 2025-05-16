@@ -2,30 +2,37 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Comment } from './interface/comment';
+import { PlayPosterComponent } from './play-poster/play-poster.component';
+import { PlayTitleComponent } from './play-title/play-title.component';
+import { TabContentComponent } from './tab-content/tab-content.component';
+import { CommentSectionComponent } from './comment-section/comment-section.component';
+import { MobileNavbarOpenService } from '../../services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-play-page',
-  imports: [RouterLink, CommonModule],
+  imports: [
+    CommonModule,
+    PlayPosterComponent,
+    PlayTitleComponent,
+    TabContentComponent,
+    CommentSectionComponent,
+  ],
   templateUrl: './play-page.component.html',
   styleUrl: './play-page.component.css',
 })
 export class PlayPageComponent implements OnInit {
-  formatter = Intl.NumberFormat('en', { notation: 'compact' });
-
   title: string = 'Spirited Away';
   director: string = 'Hayao Miyazaki';
   year: number = 2001;
   rating: number = 1 + Math.round(Math.random() * 5 * 10) / 10;
-  watchCount: string = this.formatter.format(
-    Math.floor(Math.random() * (1_000_000 * 10)),
-  );
-  reviewCount: string = this.formatter.format(
-    Math.floor(Math.random() * (1_000_000 * 10)),
-  );
+  watchCount: number = Math.floor(Math.random() * (1_000_000 * 10));
+  reviewCount: number = Math.floor(Math.random() * (1_000_000 * 10));
   url: string =
     'https://image.tmdb.org/t/p/w600_and_h900_bestv2/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg';
 
   playId!: string;
+  synopsis: string =
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quae ad omnis qui iusto sapiente, vel fugiat id magni, dolore est corrupti neque eveniet! Minima modi eligendi natus explicabo sapiente.';
 
   tabs: string[] = ['MAIN INFO', 'CAST', 'CREW', 'RELEASES'];
   activeTab: string = this.tabs[0];
@@ -50,9 +57,7 @@ export class PlayPageComponent implements OnInit {
 
   duration: number = 30 + Math.floor(Math.random() * 120);
 
-  currDate: Date = new Date();
-
-  premiereDate: string = this.getDate();
+  premiereDate: Date = new Date();
   premiereTheatre: { id: number; name: string } = { id: 1, name: 'Theatre' };
 
   cast: { id: number; name: string; character: string }[] = [
@@ -81,18 +86,11 @@ export class PlayPageComponent implements OnInit {
     { id: 10, name: 'Crew 10', role: 'Role 10' },
   ];
 
-  releases: any = {
-    '13/05/2025': [
-      { id: 1, name: 'Theatre 1' },
-      { id: 2, name: 'Theatre 2' },
-    ],
-    '12/05/2025': [
-      { id: 3, name: 'Theatre 3' },
-      { id: 4, name: 'Theatre 4' },
-      { id: 5, name: 'Theatre 5' },
-    ],
-    '11/05/2025': [{ id: 6, name: 'Theatre 6' }],
-  };
+  releases: { date: string; names: string[] }[] = [
+    { date: '13/05/2025', names: ['Theatre 1', 'Theatre 2'] },
+    { date: '12/05/2025', names: ['Theatre 3', 'Theatre 4', 'Theatre 5'] },
+    { date: '11/05/2025', names: ['Theatre 6'] },
+  ];
 
   socials: {
     social: string;
@@ -129,45 +127,16 @@ export class PlayPageComponent implements OnInit {
     },
   ];
 
-  toggleLike(comment: Comment): void {
-    comment.likedByUser = !comment.likedByUser;
-    comment.likes += comment.likedByUser ? 1 : -1;
-  }
-
-  sortedReleases: { date: string; names: string[] }[] = [];
-
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    public isMenuOpenService: MobileNavbarOpenService,
+  ) {}
 
   ngOnInit(): void {
     this.playId = this.route.snapshot.paramMap.get('id')!;
-
-    const dates = Object.keys(this.releases).sort((a, b) => {
-      const [da, ma, ya] = a.split('/').map(Number);
-      const [db, mb, yb] = b.split('/').map(Number);
-
-      const dateA = new Date(ya, ma - 1, da);
-      const dateB = new Date(yb, mb - 1, db);
-
-      return dateB.getTime() - dateA.getTime();
-    });
-
-    this.sortedReleases = dates.map((date) => ({
-      date,
-      names: this.releases[date].map((t: { name: any }) => t.name),
-    }));
   }
 
   selectTab(tab: string): void {
     this.activeTab = tab;
-  }
-
-  private getDate(): string {
-    const today = new Date();
-
-    const day = String(today.getDate()).padStart(2, '0');
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const year = today.getFullYear();
-
-    return `${day}/${month}/${year}`;
   }
 }

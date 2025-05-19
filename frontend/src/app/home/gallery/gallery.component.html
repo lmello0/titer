@@ -9,14 +9,9 @@
 
 <div class="overflow-auto select-none">
   <div class="flex items-stretch justify-around gap-5 p-2">
-    @for (item of items; track $index) {
+    @for (play of plays; track $index) {
       <div class="shrink-0">
-        <app-play-card
-          [playTitle]="item.title"
-          [url]="item.imageSrc"
-          [reviews]="item.reviewCount"
-          [watched]="item.watchedCount"
-        ></app-play-card>
+        <app-play-card [play]="play"></app-play-card>
       </div>
     }
   </div>

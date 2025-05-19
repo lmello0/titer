@@ -1,22 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { PlayDetails } from '../../../shared/interfaces/play-details';
+import { CompactNumberPipe } from '../../../shared/pipe/compact-number/compact-number.pipe';
 
 @Component({
   selector: 'app-play-card',
-  imports: [],
+  imports: [RouterLink, CompactNumberPipe],
   templateUrl: './play-card.component.html',
   styleUrl: './play-card.component.css',
 })
-export class PlayCardComponent implements OnInit {
-  @Input() playTitle!: string;
-  @Input() reviews!: number | string;
-  @Input() watched!: number | string;
-  @Input() url!: string;
+export class PlayCardComponent {
+  @Input() play!: PlayDetails;
 
-  ngOnInit(): void {
-    const formatter = Intl.NumberFormat('en', { notation: 'compact' });
-
-    this.reviews = formatter.format(this.reviews as number);
-
-    this.watched = formatter.format(this.watched as number);
-  }
+  // @Input() playTitle!: string;
+  // @Input() reviews!: number | string;
+  // @Input() watched!: number | string;
+  // @Input() url!: string;
 }

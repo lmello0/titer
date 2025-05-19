@@ -8,13 +8,11 @@
 
   <!-- links section -->
   <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
-    @for (director of directors; track $index) {
-      <a
-        class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-        routerLink="/director/{{ director.directorId }}"
-        >{{ director.directorName }}</a
-      >
-    }
+    <a
+      class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+      routerLink="/director/{{ director.directorId }}"
+      >{{ director.directorName }}</a
+    >
   </div>
 </div>
 

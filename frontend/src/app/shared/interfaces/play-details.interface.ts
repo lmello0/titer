@@ -17,7 +17,6 @@ export interface PlayDetails {
   watchCount: number;
   reviewCount: number;
   posterImageUrl: string;
-  directors: Director[];
   mainActors: Actor[];
   genres: Genre[];
   duration: number;

@@ -33,7 +33,7 @@ export class TabContentComponent {
   @Input() releases!: Release[];
   @Input() cast!: Actor[];
   @Input() crew!: Worker[];
-  @Input() directors!: Director[];
+  @Input() director!: Director;
   @Input() mainActors!: Actor[];
   @Input() genres!: Genre[];
   @Input() socials!: Social[];

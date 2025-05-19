@@ -17,7 +17,7 @@ export class TabMainInfoComponent {
   @Input() premiereTheatre!: Theatre;
   @Input() duration!: number;
 
-  @Input() directors!: Director[];
+  @Input() director!: Director;
   @Input() mainActors!: Actor[];
   @Input() genres!: Genre[];
   @Input() socials!: Social[];

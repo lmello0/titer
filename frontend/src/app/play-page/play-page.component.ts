@@ -44,10 +44,6 @@ export class PlayPageComponent implements OnInit {
     reviewCount: Math.floor(Math.random() * (1_000_000 * 10)),
     posterImageUrl:
       'https://image.tmdb.org/t/p/w600_and_h900_bestv2/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg',
-    directors: [
-      { directorId: '1', directorName: 'Director 1' },
-      { directorId: '2', directorName: 'Director 2' },
-    ],
     mainActors: [
       { actorId: '1', actorName: 'Actor 1', character: 'Character 1' },
       { actorId: '2', actorName: 'Actor 2', character: 'Character 2' },

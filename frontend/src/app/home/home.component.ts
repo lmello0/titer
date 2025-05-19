@@ -4,7 +4,7 @@ import { SpotlightComponent } from './spotlight/spotlight.component';
 import { FeaturesComponent } from './features/features.component';
 import { LastReviewsComponent } from './last-reviews/last-reviews.component';
 import { NgClass } from '@angular/common';
-import { MobileNavbarOpenService } from '../../services/menu-open/mobile-navbar-open.service';
+import { MobileNavbarOpenService } from '../services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-home',

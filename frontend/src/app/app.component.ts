@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule, NgClass } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
-import { MobileNavbarOpenService } from '../services/menu-open/mobile-navbar-open.service';
+import { MobileNavbarOpenService } from './services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-root',

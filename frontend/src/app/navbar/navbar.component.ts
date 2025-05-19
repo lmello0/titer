@@ -3,7 +3,7 @@ import { NavItem } from './nav-item-list/interface/nav-item.interface';
 import { CommonModule } from '@angular/common';
 import { NavLogoComponent } from './nav-logo/nav-logo.component';
 import { NavItemListComponent } from './nav-item-list/nav-item-list.component';
-import { MobileNavbarOpenService } from '../../services/menu-open/mobile-navbar-open.service';
+import { MobileNavbarOpenService } from '../services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-navbar',

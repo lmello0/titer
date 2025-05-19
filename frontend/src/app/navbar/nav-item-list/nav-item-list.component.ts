@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { NavItem } from './interface/nav-item.interface';
 import { NavItemLinkComponent } from './nav-item-link/nav-item-link.component';
 import { NavItemSearchComponent } from './nav-item-search/nav-item-search.component';
-import { MobileNavbarOpenService } from '../../../services/menu-open/mobile-navbar-open.service';
+import { MobileNavbarOpenService } from '../../services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-nav-item-list',

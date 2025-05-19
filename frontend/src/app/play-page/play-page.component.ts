@@ -6,7 +6,7 @@ import { PlayPosterComponent } from './play-poster/play-poster.component';
 import { PlayTitleComponent } from './play-title/play-title.component';
 import { TabContentComponent } from './tab-content/tab-content.component';
 import { CommentSectionComponent } from './comment-section/comment-section.component';
-import { MobileNavbarOpenService } from '../../services/menu-open/mobile-navbar-open.service';
+import { MobileNavbarOpenService } from '../services/menu-open/mobile-navbar-open.service';
 
 @Component({
   selector: 'app-play-page',

@@ -8,12 +8,14 @@
       <span
         class="cursor-pointer font-bold tracking-wide text-gray-50 transition-colors hover:text-emerald-500"
       >
-        <a [routerLink]="">{{ director }}</a>
+        <a routerLink="/director/{{ director.directorId }}">{{
+          director.directorName
+        }}</a>
       </span>
       -
       <span
         class="cursor-pointer font-bold tracking-wide text-gray-50 transition-colors hover:text-emerald-500"
-        ><a [routerLink]="">{{ year }}</a></span
+        ><a routerLink="/plays/{{ year }}">{{ year }}</a></span
       >
     </h3>
   </div>

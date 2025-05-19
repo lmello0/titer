@@ -11,9 +11,4 @@ import { CompactNumberPipe } from '../../../shared/pipe/compact-number/compact-n
 })
 export class PlayCardComponent {
   @Input() play!: PlayDetails;
-
-  // @Input() playTitle!: string;
-  // @Input() reviews!: number | string;
-  // @Input() watched!: number | string;
-  // @Input() url!: string;
 }

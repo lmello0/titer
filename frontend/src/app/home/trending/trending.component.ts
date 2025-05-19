@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryComponent } from '../gallery/gallery.component';
 import { PlayDetails } from '../../shared/interfaces/play-details.interface';
-import { mockPlays } from '../../shared/mock/mock-plays';
+import { PlayService } from '../../services/play/play.service';
 
 @Component({
   selector: 'app-trending',
@@ -10,21 +10,11 @@ import { mockPlays } from '../../shared/mock/mock-plays';
   styleUrl: './trending.component.css',
 })
 export class TrendingComponent implements OnInit {
-  mockPlays: PlayDetails[] = mockPlays();
-
   plays: PlayDetails[] = [];
 
+  constructor(private readonly playService: PlayService) {}
+
   ngOnInit() {
-    for (let i = 0; i < 5; i++) {
-      const randomPlay =
-        this.mockPlays[Math.floor(Math.random() * this.mockPlays.length)];
-
-      this.plays.push(randomPlay);
-
-      const rmIndex = this.mockPlays.findIndex(
-        (mp) => mp.playId === randomPlay.playId,
-      );
-      this.mockPlays.splice(rmIndex, 1);
-    }
+    this.playService.getTrendingPlays().subscribe((p) => (this.plays = p));
   }
 }

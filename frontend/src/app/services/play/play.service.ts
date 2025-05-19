@@ -1,8 +1,12 @@
+import { Injectable } from '@angular/core';
+import { PlayDetails } from '../../shared/interfaces/play-details.interface';
 import { Observable, of } from 'rxjs';
-import { PlayDetails } from '../interfaces/play-details.interface';
 
-export function mockPlays(): PlayDetails[] {
-  return [
+@Injectable({
+  providedIn: 'root',
+})
+export class PlayService {
+  private mockPlays: PlayDetails[] = [
     {
       playId: '1',
       title: 'The Shawshank Redemption',
@@ -79,7 +83,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'frank_darabont',
         },
       ],
       comments: [
@@ -179,7 +183,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'ffcoppola',
         },
       ],
       comments: [
@@ -279,7 +283,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'spielberg_steven',
         },
       ],
       comments: [
@@ -379,7 +383,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'chrisnolan',
         },
       ],
       comments: [
@@ -579,7 +583,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'bong_joon_ho',
         },
       ],
       comments: [
@@ -679,7 +683,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'frank_darabont',
         },
       ],
       comments: [
@@ -779,7 +783,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'tarantino',
         },
       ],
       comments: [
@@ -879,7 +883,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'shinkaimakoto',
         },
       ],
       comments: [
@@ -979,7 +983,7 @@ export function mockPlays(): PlayDetails[] {
           platform: 'instagram',
           socialIconUrl: '',
           socialLink: 'https://url.com',
-          socialName: 'miyazaki_hayao',
+          socialName: 'peter_jackson',
         },
       ],
       comments: [
@@ -1004,10 +1008,29 @@ export function mockPlays(): PlayDetails[] {
       ],
     },
   ];
-}
 
-export function getMockPlayById(
-  id: string,
-): Observable<PlayDetails | undefined> {
-  return of(mockPlays().find((mp) => mp.playId === id));
+  constructor() {}
+
+  public getAllPlays(): Observable<PlayDetails[]> {
+    return of(this.mockPlays);
+  }
+
+  public getPlayById(id: string): Observable<PlayDetails | undefined> {
+    return of(this.mockPlays.find((mp) => mp.playId === id));
+  }
+
+  public getTrendingPlays(): Observable<PlayDetails[]> {
+    const selectedPlays: PlayDetails[] = [];
+
+    while (selectedPlays.length < 5) {
+      const p =
+        this.mockPlays[Math.floor(Math.random() * this.mockPlays.length)];
+
+      if (selectedPlays.find((sp) => sp.playId === p.playId)) continue;
+
+      selectedPlays.push(p);
+    }
+
+    return of(selectedPlays);
+  }
 }

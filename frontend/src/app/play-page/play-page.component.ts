@@ -7,7 +7,7 @@ import { TabContentComponent } from './tab-content/tab-content.component';
 import { CommentSectionComponent } from './comment-section/comment-section.component';
 import { MobileNavbarOpenService } from '../services/menu-open/mobile-navbar-open.service';
 import { PlayDetails } from '../shared/interfaces/play-details.interface';
-import { getMockPlayById, mockPlays } from '../shared/mock/mock-plays';
+import { PlayService } from '../services/play/play.service';
 
 @Component({
   selector: 'app-play-page',
@@ -28,6 +28,7 @@ export class PlayPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public isMenuOpenService: MobileNavbarOpenService,
+    private readonly playService: PlayService,
   ) {}
 
   ngOnInit(): void {
@@ -38,13 +39,13 @@ export class PlayPageComponent implements OnInit {
       return;
     }
 
-    getMockPlayById(playId).subscribe((play) => {
-      if (!play) {
+    this.playService.getPlayById(playId).subscribe((p) => {
+      if (!p) {
         this.router.navigate(['/']);
         return;
       }
 
-      this.play = play;
+      this.play = p;
     });
   }
 }

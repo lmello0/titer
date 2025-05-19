@@ -4,19 +4,19 @@
   >
     <!-- image & stats -->
     <app-play-poster
-      [url]="url"
-      [rating]="rating"
-      [watchCount]="watchCount"
-      [reviewCount]="reviewCount"
+      [url]="play.posterImageUrl"
+      [rating]="play.rating"
+      [watchCount]="play.watchCount"
+      [reviewCount]="play.reviewCount"
     >
     </app-play-poster>
 
     <!-- title -->
     <app-play-title
-      [title]="title"
-      [director]="director"
-      [year]="year"
-      [synopsis]="synopsis"
+      [title]="play.title"
+      [director]="play.director"
+      [year]="play.releaseYear"
+      [synopsis]="play.synopsis"
     >
     </app-play-title>
     <!-- end title -->
@@ -25,17 +25,17 @@
 
     <app-tab-content
       class="sm:col-span-2"
-      [premiereDate]="premiereDate"
-      [premiereTheatre]="premiereTheatre"
-      [duration]="duration"
-      [releases]="releases"
-      [cast]="cast"
-      [crew]="crew"
-      [directors]="directors"
-      [mainActors]="mainActors"
-      [genres]="genres"
-      [socials]="socials"
-      [releases]="releases"
+      [premiereDate]="play.premiereDate"
+      [premiereTheatre]="play.premiereTheatre"
+      [duration]="play.duration"
+      [releases]="play.releases"
+      [cast]="play.cast"
+      [crew]="play.crew"
+      [directors]="play.directors"
+      [mainActors]="play.mainActors"
+      [genres]="play.genres"
+      [socials]="play.socials"
+      [releases]="play.releases"
     ></app-tab-content>
 
     <div class="rounded-full border-1 border-gray-600 sm:col-span-2"></div>
@@ -43,7 +43,7 @@
     <!-- comment section -->
     <app-comment-section
       class="sm:col-span-2"
-      [comments]="comments"
+      [comments]="play.comments"
     ></app-comment-section>
     <!-- end comment section -->
   </div>

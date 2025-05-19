@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Actor } from '../../../shared/interfaces/actor';
 
 @Component({
   selector: 'app-tab-cast',
@@ -8,5 +9,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './tab-cast.component.css',
 })
 export class TabCastComponent {
-  @Input() cast!: { id: number; name: string; character: string }[];
+  @Input() cast!: Actor[];
 }

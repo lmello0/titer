@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CompactNumberPipe } from './pipe/compact-number.pipe';
+import { CompactNumberPipe } from '../../shared/pipe/compact-number/compact-number.pipe';
 
 @Component({
   selector: 'app-play-poster',

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Worker } from '../../../shared/interfaces/worker';
 
 @Component({
   selector: 'app-tab-crew',
@@ -8,5 +9,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './tab-crew.component.css',
 })
 export class TabCrewComponent {
-  @Input() crew!: { id: number; name: string; role: string }[];
+  @Input() crew!: Worker[];
 }

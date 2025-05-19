@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Director } from '../../shared/interfaces/director';
 
 @Component({
   selector: 'app-play-title',
@@ -9,7 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class PlayTitleComponent {
   @Input() title!: string;
-  @Input() director!: string;
+  @Input() director!: Director;
   @Input() year!: number;
   @Input() synopsis!: string;
 }

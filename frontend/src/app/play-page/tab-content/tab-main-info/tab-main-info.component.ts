@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Theatre } from '../../../shared/interfaces/theatre';
+import { Director } from '../../../shared/interfaces/director';
+import { Actor } from '../../../shared/interfaces/actor';
+import { Genre } from '../../../shared/interfaces/genre';
+import { Social } from '../../../shared/interfaces/social';
 
 @Component({
   selector: 'app-tab-main-info',
@@ -9,19 +14,13 @@ import { RouterLink } from '@angular/router';
 })
 export class TabMainInfoComponent {
   @Input() premiereDate!: Date;
-  @Input() premiereTheatre!: { id: number; name: string };
+  @Input() premiereTheatre!: Theatre;
   @Input() duration!: number;
 
-  @Input() directors!: { id: number; name: string }[];
-  @Input() mainActors!: { id: number; name: string }[];
-  @Input() genres!: { id: number; name: string }[];
-
-  @Input() socials!: {
-    social: string;
-    socialIcon: string | null | undefined;
-    url: string;
-    name: string;
-  }[];
+  @Input() directors!: Director[];
+  @Input() mainActors!: Actor[];
+  @Input() genres!: Genre[];
+  @Input() socials!: Social[];
 
   public getDate(date: Date): string {
     const day = String(date.getDate()).padStart(2, '0');

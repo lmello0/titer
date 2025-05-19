@@ -11,8 +11,8 @@
     @for (director of directors; track $index) {
       <a
         class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-        routerLink="/director/{{ director.id }}"
-        >{{ director.name }}</a
+        routerLink="/director/{{ director.directorId }}"
+        >{{ director.directorName }}</a
       >
     }
   </div>
@@ -31,8 +31,8 @@
     @for (actor of mainActors; track $index) {
       <a
         class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-        routerLink="/actor/{{ actor.id }}"
-        >{{ actor.name }}</a
+        routerLink="/actor/{{ actor.actorId }}"
+        >{{ actor.actorName }}</a
       >
     }
   </div>
@@ -51,8 +51,8 @@
     @for (genre of genres; track $index) {
       <a
         class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-        routerLink="/genre/{{ genre.id }}"
-        >{{ genre.name }}</a
+        routerLink="/genre/{{ genre.genreId }}"
+        >{{ genre.genreName }}</a
       >
     }
   </div>
@@ -85,9 +85,9 @@
     <p>
       <strong class="font-semibold">{{ this.getDate(premiereDate) }}</strong> at
       <a
-        routerLink="/theatre/{{ premiereTheatre.id }}"
+        routerLink="/theatre/{{ premiereTheatre.theatreId }}"
         class="cursor-pointer font-semibold transition-colors hover:text-emerald-500"
-        >{{ premiereTheatre.name }}</a
+        >{{ premiereTheatre.theatreName }}</a
       >
     </p>
   </div>
@@ -104,12 +104,15 @@
   <!-- links section -->
   <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
     @for (social of socials; track $index) {
-      <img [src]="social.socialIcon" [alt]="social.social" />
+      <img
+        [src]="social.socialIconUrl"
+        alt="{{ social.platform }} - {{ social.socialName }}"
+      />
       <a
         class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-        [href]="social.url"
+        [href]="social.socialIconUrl"
         target="_blank"
-        >&#64;{{ social.name }}</a
+        >&#64;{{ social.socialName }}</a
       >
     }
   </div>

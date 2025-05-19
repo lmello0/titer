@@ -102,16 +102,19 @@
   <!-- links section -->
   <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
     @for (social of socials; track $index) {
-      <img
-        [src]="social.socialIconUrl"
-        alt="{{ social.platform }} - {{ social.socialName }}"
-      />
-      <a
-        class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-        [href]="social.socialIconUrl"
-        target="_blank"
-        >&#64;{{ social.socialName }}</a
-      >
+      <div class="inline-flex gap-1">
+        <img
+          class="w-6"
+          [src]="social.socialIconUrl"
+          alt="{{ social.platform }} - {{ social.socialName }}"
+        />
+        <a
+          class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
+          [href]="social.socialIconUrl"
+          target="_blank"
+          >&#64;{{ social.socialName }}</a
+        >
+      </div>
     }
   </div>
 </div>

@@ -81,7 +81,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'frank_darabont',
         },
@@ -181,7 +182,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'ffcoppola',
         },
@@ -281,7 +283,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'spielberg_steven',
         },
@@ -381,7 +384,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'chrisnolan',
         },
@@ -481,7 +485,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'miyazaki_hayao',
         },
@@ -581,7 +586,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'bong_joon_ho',
         },
@@ -681,7 +687,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'frank_darabont',
         },
@@ -781,7 +788,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'tarantino',
         },
@@ -881,7 +889,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'shinkaimakoto',
         },
@@ -981,7 +990,8 @@ export class PlayService {
       socials: [
         {
           platform: 'instagram',
-          socialIconUrl: '',
+          socialIconUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png',
           socialLink: 'https://url.com',
           socialName: 'peter_jackson',
         },

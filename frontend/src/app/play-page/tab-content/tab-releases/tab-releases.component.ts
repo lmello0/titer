@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Release } from '../../../shared/interfaces/release';
+import { Release } from '../../../shared/interfaces/release.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({

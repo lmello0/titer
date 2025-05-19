@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReviewComponent } from '../../review/review.component';
-import { Review } from '../../review/review.interface';
+import { Review } from '../../shared/interfaces/review.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({

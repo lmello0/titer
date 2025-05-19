@@ -1,4 +1,4 @@
-import { Theatre } from './theatre';
+import { Theatre } from './theatre.interface';
 
 export interface Release {
   releaseDate: Date;

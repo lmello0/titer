@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryComponent } from '../gallery/gallery.component';
-import { PlayDetails } from '../../shared/interfaces/play-details';
+import { PlayDetails } from '../../shared/interfaces/play-details.interface';
 
 @Component({
   selector: 'app-trending',

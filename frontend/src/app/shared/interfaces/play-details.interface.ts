@@ -1,11 +1,11 @@
-import { Actor } from './actor';
-import { Comment } from './comment';
-import { Director } from './director';
-import { Genre } from './genre';
-import { Release } from './release';
-import { Social } from './social';
-import { Theatre } from './theatre';
-import { Worker } from './worker';
+import { Actor } from './actor.interface';
+import { Comment } from './comment.interface';
+import { Director } from './director.interface';
+import { Genre } from './genre.interface';
+import { Release } from './release.interface';
+import { Social } from './social.interface';
+import { Theatre } from './theatre.interface';
+import { Worker } from './worker.interface';
 
 export interface PlayDetails {
   playId: string;

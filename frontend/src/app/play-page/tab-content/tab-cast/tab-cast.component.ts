@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Actor } from '../../../shared/interfaces/actor';
+import { Actor } from '../../../shared/interfaces/actor.interface';
 
 @Component({
   selector: 'app-tab-cast',

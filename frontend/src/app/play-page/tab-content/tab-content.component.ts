@@ -5,13 +5,13 @@ import { TabMainInfoComponent } from './tab-main-info/tab-main-info.component';
 import { TabCastComponent } from './tab-cast/tab-cast.component';
 import { TabCrewComponent } from './tab-crew/tab-crew.component';
 import { TabReleasesComponent } from './tab-releases/tab-releases.component';
-import { Theatre } from '../../shared/interfaces/theatre';
-import { Release } from '../../shared/interfaces/release';
-import { Actor } from '../../shared/interfaces/actor';
-import { Worker } from '../../shared/interfaces/worker';
-import { Director } from '../../shared/interfaces/director';
-import { Genre } from '../../shared/interfaces/genre';
-import { Social } from '../../shared/interfaces/social';
+import { Theatre } from '../../shared/interfaces/theatre.interface';
+import { Release } from '../../shared/interfaces/release.interface';
+import { Actor } from '../../shared/interfaces/actor.interface';
+import { Worker } from '../../shared/interfaces/worker.interface';
+import { Director } from '../../shared/interfaces/director.interface';
+import { Genre } from '../../shared/interfaces/genre.interface';
+import { Social } from '../../shared/interfaces/social.interface';
 
 @Component({
   selector: 'app-tab-content',

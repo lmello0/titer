@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Worker } from '../../../shared/interfaces/worker';
+import { Worker } from '../../../shared/interfaces/worker.interface';
 
 @Component({
   selector: 'app-tab-crew',

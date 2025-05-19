@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PlayDetails } from '../../../shared/interfaces/play-details';
+import { PlayDetails } from '../../../shared/interfaces/play-details.interface';
 import { CompactNumberPipe } from '../../../shared/pipe/compact-number/compact-number.pipe';
 
 @Component({

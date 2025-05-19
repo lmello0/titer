@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Review } from './review.interface';
+import { Review } from '../shared/interfaces/review.interface';
 
 @Component({
   selector: 'app-review',

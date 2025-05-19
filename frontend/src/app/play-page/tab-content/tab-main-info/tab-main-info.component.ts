@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Theatre } from '../../../shared/interfaces/theatre';
-import { Director } from '../../../shared/interfaces/director';
-import { Actor } from '../../../shared/interfaces/actor';
-import { Genre } from '../../../shared/interfaces/genre';
-import { Social } from '../../../shared/interfaces/social';
+import { Theatre } from '../../../shared/interfaces/theatre.interface';
+import { Director } from '../../../shared/interfaces/director.interface';
+import { Actor } from '../../../shared/interfaces/actor.interface';
+import { Genre } from '../../../shared/interfaces/genre.interface';
+import { Social } from '../../../shared/interfaces/social.interface';
 
 @Component({
   selector: 'app-tab-main-info',

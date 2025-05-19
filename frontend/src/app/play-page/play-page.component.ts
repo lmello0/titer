@@ -6,7 +6,7 @@ import { PlayTitleComponent } from './play-title/play-title.component';
 import { TabContentComponent } from './tab-content/tab-content.component';
 import { CommentSectionComponent } from './comment-section/comment-section.component';
 import { MobileNavbarOpenService } from '../services/menu-open/mobile-navbar-open.service';
-import { PlayDetails } from '../shared/interfaces/play-details';
+import { PlayDetails } from '../shared/interfaces/play-details.interface';
 
 @Component({
   selector: 'app-play-page',

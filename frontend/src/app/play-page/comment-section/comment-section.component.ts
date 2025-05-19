@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Comment } from '../../shared/interfaces/comment';
+import { Comment } from '../../shared/interfaces/comment.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({

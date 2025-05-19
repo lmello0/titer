@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Director } from '../../shared/interfaces/director';
+import { Director } from '../../shared/interfaces/director.interface';
 
 @Component({
   selector: 'app-play-title',

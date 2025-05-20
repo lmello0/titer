@@ -12,7 +12,7 @@ import { MobileNavbarOpenService } from '../services/menu-open/mobile-navbar-ope
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  logo: NavItem = { label: 'Títer', route: '#' };
+  logo: NavItem = { label: 'Titer', route: '#' };
 
   @Output() menuOpenEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 

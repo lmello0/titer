@@ -1,0 +1,11 @@
+.group {
+  position: relative;
+}
+
+.group > svg {
+  z-index: 0;
+}
+
+.group > div.absolute {
+  z-index: 1;
+}

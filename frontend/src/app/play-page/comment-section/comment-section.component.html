@@ -1,32 +1,102 @@
-<div
-  *ngFor="let comment of comments"
-  class="flex gap-4 border-t-1 border-b-1 border-gray-600 p-4"
->
-  <img
-    [src]="comment.profilePhotoUrl"
-    alt="{{ comment.author }}'s profile"
-    class="h-8 w-8 rounded-full object-cover"
-  />
-  <div class="flex flex-1 flex-col justify-between gap-2">
-    <div class="flex items-center justify-between">
-      <div>
-        <span class="font-semibold">{{ comment.author }}</span>
-        <span class="ml-2 text-sm text-gray-300">
-          {{ comment.date | date: "dd/MM/yyyy HH:mm" }}
-        </span>
-      </div>
+<form class="flex flex-col gap-y-2 p-2">
+  <textarea
+    class="w-full resize-none overflow-hidden rounded-sm bg-gray-800 p-2 focus:ring-2 focus:ring-gray-500 focus:outline-none"
+    rows="1"
+    (input)="autoResize($event)"
+    placeholder="Post your review..."
+  ></textarea>
+  <div class="flex justify-between">
+    <div class="mx-1 flex items-center space-x-1">
+      <span class="mr-1">Rate:</span>
+      <ng-container *ngFor="let star of [0, 1, 2, 3, 4]">
+        <div
+          class="relative h-6 w-6 cursor-pointer"
+          (mouseleave)="setHover(null)"
+        >
+          <!-- Left half -->
+          <div
+            class="absolute top-0 left-0 z-10 h-full w-1/2"
+            (mouseenter)="setHover(star + 0.5)"
+            (click)="setRating(star + 0.5)"
+          ></div>
+
+          <!-- Right half -->
+          <div
+            class="absolute top-0 right-0 z-10 h-full w-1/2"
+            (mouseenter)="setHover(star + 1)"
+            (click)="setRating(star + 1)"
+          ></div>
+
+          <!-- Empty star -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.21 3.726a1 1 0 00.95.69h3.915c.969 0 1.371 1.24.588 1.81l-3.17 2.304a1 1 0 00-.364 1.118l1.21 3.726c.3.921-.755 1.688-1.54 1.118l-3.17-2.304a1 1 0 00-1.176 0l-3.17 2.304c-.784.57-1.838-.197-1.539-1.118l1.21-3.726a1 1 0 00-.364-1.118L2.097 9.153c-.783-.57-.38-1.81.588-1.81h3.915a1 1 0 00.95-.69l1.21-3.726z"
+            />
+          </svg>
+
+          <!-- Filled portion -->
+          <div
+            class="absolute top-0 left-0 h-full overflow-hidden text-yellow-400"
+            [ngStyle]="{ width: getFillPercentage(star) + '%' }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.21 3.726a1 1 0 00.95.69h3.915c.969 0 1.371 1.24.588 1.81l-3.17 2.304a1 1 0 00-.364 1.118l1.21 3.726c.3.921-.755 1.688-1.54 1.118l-3.17-2.304a1 1 0 00-1.176 0l-3.17 2.304c-.784.57-1.838-.197-1.539-1.118l1.21-3.726a1 1 0 00-.364-1.118L2.097 9.153c-.783-.57-.38-1.81.588-1.81h3.915a1 1 0 00.95-.69l1.21-3.726z"
+              />
+            </svg>
+          </div>
+        </div>
+      </ng-container>
     </div>
-    <p class="">{{ comment.content }}</p>
     <button
-      (click)="toggleLike(comment)"
-      class="flex items-center gap-1 text-sm text-gray-600 transition hover:text-blue-500"
-      [ngClass]="{
-        'text-blue-500': comment.likedByUser,
-        'text-gray-600': !comment.likedByUser,
-      }"
+      class="mx-1 w-25 cursor-pointer self-end rounded-xl bg-gray-200 py-2 font-semibold text-black transition-colors hover:bg-emerald-500 hover:text-white"
+      [disabled]=""
     >
-      <i class="fa-solid fa-heart"></i>
-      <span>{{ comment.likes }}</span>
+      Post!
     </button>
+  </div>
+</form>
+<div class="max-h-200 min-h-20 overflow-auto">
+  <div
+    *ngFor="let comment of comments"
+    class="flex gap-4 border-t-1 border-b-1 border-gray-600 p-4"
+  >
+    <img
+      [src]="comment.profilePhotoUrl"
+      alt="{{ comment.author }}'s profile"
+      class="h-8 w-8 rounded-full object-cover"
+    />
+    <div class="flex flex-1 flex-col justify-between gap-2">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="font-semibold">{{ comment.author }}</span>
+          <span class="ml-2 text-sm text-gray-300">
+            {{ comment.date | date: "dd/MM/yyyy HH:mm" }}
+          </span>
+        </div>
+      </div>
+      <p class="">{{ comment.content }}</p>
+      <button
+        (click)="toggleLike(comment)"
+        class="flex items-center gap-1 text-sm text-gray-600 transition hover:text-blue-500"
+        [ngClass]="{
+          'text-blue-500': comment.likedByUser,
+          'text-gray-600': !comment.likedByUser,
+        }"
+      >
+        <i class="fa-solid fa-heart"></i>
+        <span>{{ comment.likes }}</span>
+      </button>
+    </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 export class PlayService {
   private mockPlays: PlayDetails[] = [
     {
-      playId: '1',
+      playId: 1,
       title: 'The Shawshank Redemption',
       director: { directorId: '1', directorName: 'Frank Darabont' },
       synopsis:
@@ -90,26 +90,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 1,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 1,
         },
       ],
     },
     {
-      playId: '2',
+      playId: 2,
       title: 'The Godfather',
       director: { directorId: '1', directorName: 'Francis Ford Coppola' },
       synopsis:
@@ -191,26 +201,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 2,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 2,
         },
       ],
     },
     {
-      playId: '3',
+      playId: 3,
       title: "Schindler's List",
       director: { directorId: '1', directorName: 'Steven Spielberg' },
       synopsis:
@@ -292,26 +312,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 3,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 3,
         },
       ],
     },
     {
-      playId: '4',
+      playId: 4,
       title: 'The Dark Knight',
       director: { directorId: '1', directorName: 'Christopher Nolan' },
       synopsis:
@@ -393,26 +423,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 4,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 4,
         },
       ],
     },
     {
-      playId: '5',
+      playId: 5,
       title: 'Spirited Away',
       director: { directorId: '1', directorName: 'Hayao Miyazaki' },
       synopsis:
@@ -494,26 +534,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 5,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 5,
         },
       ],
     },
     {
-      playId: '6',
+      playId: 6,
       title: 'Parasite',
       director: { directorId: '1', directorName: 'Bong Joon-Ho' },
       synopsis:
@@ -595,26 +645,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 6,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 6,
         },
       ],
     },
     {
-      playId: '7',
+      playId: 7,
       title: 'The Green Mile',
       director: { directorId: '1', directorName: 'Frank Darabont' },
       synopsis:
@@ -696,26 +756,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 7,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 7,
         },
       ],
     },
     {
-      playId: '8',
+      playId: 8,
       title: 'Pulp Fiction',
       director: { directorId: '1', directorName: 'Quentin Tarantino' },
       synopsis:
@@ -797,26 +867,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 8,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 8,
         },
       ],
     },
     {
-      playId: '9',
+      playId: 9,
       title: 'Your Name',
       director: { directorId: '1', directorName: 'Makoto Shinkai' },
       synopsis:
@@ -898,26 +978,36 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 9,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 9,
         },
       ],
     },
     {
-      playId: '10',
+      playId: 10,
       title: 'The Lord of the Rings: The return of the king',
       director: { directorId: '1', directorName: 'Peter Jackson' },
       synopsis:
@@ -999,21 +1089,31 @@ export class PlayService {
       comments: [
         {
           id: 1,
-          author: 'Jane Doe',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          author: {
+            userId: 1,
+            username: 'Jane Doe',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=5',
+          },
           date: new Date(),
           content: 'This is such a helpful post! Thanks for sharing',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 10,
         },
         {
           id: 2,
-          author: 'John Smith',
-          profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          author: {
+            userId: 2,
+            username: 'John Smith',
+            profilePhotoUrl: 'https://i.pravatar.cc/150?img=3',
+          },
           date: new Date(),
           content: 'I disagree with your take, but interesting perspective!',
           likes: Math.floor(Math.random() * 100),
           likedByUser: false,
+          rating: 0.5 + Math.floor(Math.random() * 10) * 0.5,
+          playId: 10,
         },
       ],
     },
@@ -1025,7 +1125,7 @@ export class PlayService {
     return of(this.mockPlays);
   }
 
-  public getPlayById(id: string): Observable<PlayDetails | undefined> {
+  public getPlayById(id: number): Observable<PlayDetails | undefined> {
     return of(this.mockPlays.find((mp) => mp.playId === id));
   }
 

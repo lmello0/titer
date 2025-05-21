@@ -39,7 +39,7 @@ export class PlayPageComponent implements OnInit {
       return;
     }
 
-    this.playService.getPlayById(playId).subscribe((p) => {
+    this.playService.getPlayById(parseInt(playId)).subscribe((p) => {
       if (!p) {
         this.router.navigate(['/']);
         return;

@@ -1,20 +1,12 @@
+import { User } from './user.interface';
+
 export interface Review {
-  play: {
-    title: string;
-    date: {
-      fullDate: Date;
-      year: number;
-      month: number;
-      day: number;
-    };
-    posterUrl: string;
-  };
-  user: {
-    name: string;
-    avatarUrl: string;
-  };
+  id: number;
+  author: User;
+  date: Date;
+  content: string;
+  likes: number;
+  likedByUser: boolean;
   rating: number;
-  numLikes: number;
-  reviewText: string;
-  numComments: number;
+  playId: number;
 }

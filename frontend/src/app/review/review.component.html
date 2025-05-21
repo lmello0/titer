@@ -7,8 +7,8 @@
       <a [routerLink]="">
         <img
           class="object-cover"
-          [src]="reviewData.play.posterUrl"
-          [alt]="reviewData.play.title + ' poster'"
+          [src]="playData.posterImageUrl"
+          [alt]="playData.title + ' poster'"
         />
       </a>
     </figure>
@@ -21,13 +21,13 @@
             [routerLink]=""
             class="cursor-pointer transition-colors hover:text-emerald-500"
           >
-            {{ reviewData.play.title }}
+            {{ playData.title }}
           </a>
         </h3>
         <time
           class="cursor-pointer font-extralight text-gray-300 transition-colors hover:text-emerald-500 sm:text-xl"
         >
-          <a [routerLink]="">{{ reviewData.play.date.year }}</a>
+          <a [routerLink]="">{{ playData.premiereDate | date: "yyyy" }}</a>
         </time>
       </header>
 
@@ -39,12 +39,12 @@
         >
           <img
             class="w-6 rounded-full sm:w-7"
-            [src]="reviewData.user.avatarUrl"
-            [alt]="reviewData.user.name + ' avatar'"
+            [src]="reviewData.author.profilePhotoUrl"
+            [alt]="reviewData.author.username + ' avatar'"
             loading="lazy"
           />
           <h4 class="font-semibold tracking-wider">
-            {{ reviewData.user.name }}
+            {{ reviewData.author.username }}
           </h4>
         </a>
         <div class="text-amber-400" role="img">
@@ -58,7 +58,7 @@
         <p
           class="line-clamp-3 text-justify text-xs font-extralight tracking-wide text-gray-200 sm:text-sm"
         >
-          {{ reviewData.reviewText }}
+          {{ reviewData.content }}
         </p>
       </section>
 
@@ -67,17 +67,17 @@
         <div class="inline-flex items-center gap-2">
           <i class="fa-solid fa-heart fa-sm pb-0.5 text-red-500"></i>
           <span class="text-sm text-gray-400">
-            {{ reviewData.numLikes | number }}
+            {{ reviewData.likes | number }}
             <span class="font-light">likes</span>
           </span>
         </div>
-        <div class="inline-flex items-center gap-2">
+        <!-- <div class="inline-flex items-center gap-2">
           <i class="fa-solid fa-comment fa-sm pb-0.5 text-blue-500"></i>
           <span class="text-sm text-gray-400">
             {{ reviewData.numComments | number }}
             <span class="font-light">comments</span>
           </span>
-        </div>
+        </div> -->
       </footer>
     </div>
   </article>

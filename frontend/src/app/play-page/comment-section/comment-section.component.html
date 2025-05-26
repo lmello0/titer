@@ -1,2 +1,6 @@
-<app-post-review (submitReview)="addReviewToComments($event)"></app-post-review>
+<app-login-to-review-it *ngIf="!isLoggedIn"></app-login-to-review-it>
+<app-post-review
+  *ngIf="isLoggedIn"
+  (submitReview)="addReviewToComments($event)"
+></app-post-review>
 <app-comment-list [comments]="comments"></app-comment-list>

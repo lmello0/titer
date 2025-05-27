@@ -1,10 +1,10 @@
 <div class="mb-4 flex items-center justify-center gap-2 p-2">
-  <a
+  <button
     class="cursor-pointer rounded-md bg-emerald-500 px-2 py-1 font-semibold transition-colors hover:bg-white hover:text-emerald-500"
-    routerLink="/login"
+    (click)="isLoginOpen = true"
   >
     Sign In
-  </a>
+  </button>
   <p>or</p>
   <a
     class="cursor-pointer rounded-md bg-emerald-500 px-2 py-1 font-semibold transition-colors hover:bg-white hover:text-emerald-500"
@@ -14,3 +14,8 @@
   </a>
   <p>to review!</p>
 </div>
+
+<app-sign-in
+  [isLoginOpen]="isLoginOpen"
+  (onClose)="isLoginOpen = false"
+></app-sign-in>

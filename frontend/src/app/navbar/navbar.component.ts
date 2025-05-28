@@ -44,6 +44,7 @@ export class NavbarComponent {
   }
 
   click(label: string): void {
+    this.closeMenu();
     switch (label) {
       case 'Sign In':
         this.isSignInOpen = true;

@@ -18,8 +18,9 @@ export class NavItemListComponent {
   isSearching: boolean = false;
 
   navItems: NavItem[] = [
-    { label: 'Sign In', route: '#' },
-    { label: 'Create Account', route: '#' },
+    { label: 'Submit New Play' },
+    { label: 'Sign In' },
+    { label: 'Create Account' },
   ];
 
   constructor(public isMenuOpenService: MobileNavbarOpenService) {}

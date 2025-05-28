@@ -11,7 +11,7 @@ export class ModalComponent {
   @Input() isOpen = false;
   @Input() modalTitle = 'Modal Title';
 
-  @Output() close = new EventEmitter();
+  @Output() close = new EventEmitter<void>();
 
   onClose() {
     this.isOpen = false;

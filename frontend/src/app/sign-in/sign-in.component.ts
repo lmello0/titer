@@ -20,7 +20,10 @@ export class SignInComponent {
   errorMessage = '';
 
   loginForm = this.formBuilder.group({
-    username: ['', [Validators.required, Validators.maxLength(25)]],
+    username: [
+      '',
+      [Validators.required, Validators.minLength(4), Validators.maxLength(25)],
+    ],
     password: [
       '',
       [
@@ -43,7 +46,6 @@ export class SignInComponent {
     const { username, password } = this.loginForm.value;
 
     // TODO: add login logic
-    console.log(username, password);
     setTimeout(() => {
       console.log('Login successful!');
 

@@ -6,12 +6,12 @@
     Sign In
   </button>
   <p>or</p>
-  <a
+  <button
     class="cursor-pointer rounded-md bg-emerald-500 px-2 py-1 font-semibold transition-colors hover:bg-white hover:text-emerald-500"
-    routerLink="/create-account"
+    (click)="isCreateAccountOpen = true"
   >
     Create Account
-  </a>
+  </button>
   <p>to review!</p>
 </div>
 
@@ -19,3 +19,9 @@
   [isLoginOpen]="isLoginOpen"
   (onClose)="isLoginOpen = false"
 ></app-sign-in>
+
+<app-create-account
+  [isCreateAccountOpen]="isCreateAccountOpen"
+  (onClose)="isCreateAccountOpen = false"
+>
+</app-create-account>

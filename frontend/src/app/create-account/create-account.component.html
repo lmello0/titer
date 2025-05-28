@@ -1,0 +1,171 @@
+<app-modal
+  [isOpen]="isCreateAccountOpen"
+  modalTitle="Create Account"
+  (close)="closeModal()"
+>
+  <form [formGroup]="createAccountForm" class="w-full flex-col" modal-content>
+    <div class="mb-2 flex flex-col">
+      <div class="flex justify-between">
+        <label for="username">Username</label>
+        <input
+          class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+          type="text"
+          id="username"
+          formControlName="username"
+          required
+        />
+      </div>
+      <div
+        *ngIf="createAccountForm.get('username')?.touched"
+        class="mt-0.5 text-sm text-red-500"
+      >
+        <span *ngIf="getError('username', 'required')">
+          Username is required.
+        </span>
+        <span *ngIf="getError('username', 'minlength')">
+          Username must be at least 4 characters.
+        </span>
+        <span *ngIf="getError('username', 'maxlength')">
+          Username cannot exceed 25 characters.
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-2 flex flex-col">
+      <div class="flex justify-between">
+        <label for="email">Email</label>
+        <input
+          class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+          type="email"
+          id="email"
+          formControlName="email"
+          required
+        />
+      </div>
+      <div
+        *ngIf="createAccountForm.get('email')?.touched"
+        class="mt-0.5 text-sm text-red-500"
+      >
+        <span *ngIf="getError('email', 'required')">Email is required.</span>
+        <span *ngIf="getError('email', 'email')">Invalid email format.</span>
+      </div>
+    </div>
+
+    <div class="mb-2 flex flex-col">
+      <div class="flex justify-between">
+        <label for="password">Password</label>
+        <input
+          class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+        />
+      </div>
+      <div
+        *ngIf="createAccountForm.get('password')?.touched"
+        class="mt-0.5 text-sm text-red-500"
+      >
+        <span *ngIf="getError('password', 'required')">
+          Password is required.
+        </span>
+        <span *ngIf="getError('password', 'minlength')">
+          Password must be at least 12 characters.
+        </span>
+        <span *ngIf="getError('password', 'maxlength')">
+          Password cannot exceed 32 characters.
+        </span>
+        <span *ngIf="getError('password', 'pattern')">
+          Password must include uppercase, lowercase, number and special
+          character.
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-10 flex flex-col">
+      <div class="flex justify-between">
+        <label for="confirmPassword">Confirm password</label>
+        <input
+          class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+          type="password"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          required
+        />
+      </div>
+
+      <div
+        *ngIf="createAccountForm.get('confirmPassword')?.touched"
+        class="mt-0.5 text-sm text-red-500"
+      >
+        <span *ngIf="!isPasswordsEqual()"> The passwords does not match. </span>
+      </div>
+    </div>
+
+    <div class="mb-2 flex flex-col">
+      <div class="flex justify-between">
+        <label for="termsOfUse">Terms of use</label>
+        <input
+          class="bg-gray-500 px-2 py-0.5 focus:outline-none"
+          type="checkbox"
+          id="termsOfUse"
+          formControlName="termsOfUse"
+          required
+        />
+      </div>
+      <div
+        *ngIf="createAccountForm.get('termsOfUse')?.touched"
+        class="mt-0.5 text-sm text-red-500"
+      >
+        <span *ngIf="getError('termsOfUse', 'required')">
+          You must accept the terms of use.
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-5 flex flex-col">
+      <div class="flex justify-between">
+        <label for="privacyPolicy">Privacy Policy</label>
+        <input
+          class="bg-gray-500 px-2 py-0.5 focus:outline-none"
+          type="checkbox"
+          id="privacyPolicy"
+          formControlName="privacyPolicy"
+          required
+        />
+      </div>
+      <div
+        *ngIf="createAccountForm.get('privacyPolicy')?.touched"
+        class="mt-0.5 text-sm text-red-500"
+      >
+        <span *ngIf="getError('privacyPolicy', 'required')">
+          You must accept the privacy policy.
+        </span>
+      </div>
+    </div>
+
+    <div class="mt-3 flex w-full justify-end space-x-2" modal-actions>
+      <button
+        (click)="submit()"
+        [disabled]="createAccountForm.invalid || isLoading"
+        class="rounded-lg px-5 py-2 transition-colors"
+        [ngClass]="{
+          'cursor-default bg-gray-600': createAccountForm.invalid || isLoading,
+          'cursor-pointer bg-emerald-500 hover:bg-emerald-700':
+            !createAccountForm.invalid && !isLoading,
+        }"
+      >
+        <span *ngIf="isLoading" class="animate-spin">G</span>
+        <span *ngIf="!isLoading">Create Account</span>
+      </button>
+
+      <button
+        (click)="closeModal()"
+        class="cursor-pointer rounded-lg bg-red-500 px-5 py-2 transition-colors hover:bg-red-700"
+        [disabled]="isLoading"
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</app-modal>

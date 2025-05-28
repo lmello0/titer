@@ -5,7 +5,7 @@
 >
   <form [formGroup]="createAccountForm" class="w-full flex-col" modal-content>
     <div class="mb-2 flex flex-col">
-      <div class="flex justify-between">
+      <div class="flex flex-col justify-between sm:flex-row">
         <label for="username">Username</label>
         <input
           class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
@@ -32,7 +32,7 @@
     </div>
 
     <div class="mb-2 flex flex-col">
-      <div class="flex justify-between">
+      <div class="flex flex-col justify-between sm:flex-row">
         <label for="email">Email</label>
         <input
           class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
@@ -52,7 +52,7 @@
     </div>
 
     <div class="mb-2 flex flex-col">
-      <div class="flex justify-between">
+      <div class="flex flex-col justify-between sm:flex-row">
         <label for="password">Password</label>
         <input
           class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
@@ -82,8 +82,8 @@
       </div>
     </div>
 
-    <div class="mb-10 flex flex-col">
-      <div class="flex justify-between">
+    <div class="mb-5 flex flex-col sm:mb-10">
+      <div class="flex flex-col justify-between sm:flex-row">
         <label for="confirmPassword">Confirm password</label>
         <input
           class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
@@ -123,7 +123,7 @@
       </div>
     </div>
 
-    <div class="mb-5 flex flex-col">
+    <div class="mb-10 flex flex-col sm:mb-5">
       <div class="flex justify-between">
         <label for="privacyPolicy">Privacy Policy</label>
         <input

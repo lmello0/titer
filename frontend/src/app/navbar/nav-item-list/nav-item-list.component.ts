@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NavItem } from './interface/nav-item.interface';
 import { NavItemLinkComponent } from './nav-item-link/nav-item-link.component';
 import { NavItemSearchComponent } from './nav-item-search/nav-item-search.component';
@@ -13,15 +13,18 @@ import { MobileNavbarOpenService } from '../../services/menu-open/mobile-navbar-
 })
 export class NavItemListComponent {
   @Input() isOnNavbarHover: boolean = false;
+  @Output() onItemClick = new EventEmitter<string>();
 
   isSearching: boolean = false;
 
   navItems: NavItem[] = [
-    { label: 'Plays', route: '#' },
-    { label: 'Lists', route: '#' },
     { label: 'Sign In', route: '#' },
     { label: 'Create Account', route: '#' },
   ];
 
   constructor(public isMenuOpenService: MobileNavbarOpenService) {}
+
+  click(label: string) {
+    this.onItemClick.emit(label);
+  }
 }

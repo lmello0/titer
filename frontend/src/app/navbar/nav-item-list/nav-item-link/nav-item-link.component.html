@@ -5,6 +5,7 @@
   class="text-nav nav-item text-nav-animation-hover"
   (mouseover)="isMouseOn = true"
   (mouseout)="isMouseOn = false"
+  (click)="onClick.emit(label)"
 >
   {{ label }}
 </a>

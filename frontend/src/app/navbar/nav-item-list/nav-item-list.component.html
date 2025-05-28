@@ -11,6 +11,7 @@
       [isOnNavbarHover]="isOnNavbarHover"
       [label]="item.label"
       [route]="item.route"
+      (onClick)="click($event)"
     ></app-nav-item>
   }
 

@@ -32,7 +32,13 @@
 
       <app-nav-item-list
         [isOnNavbarHover]="isOnNavbarHover"
+        (onItemClick)="click($event)"
       ></app-nav-item-list>
     </nav>
   </div>
 </header>
+
+<app-sign-in [isLoginOpen]="isSignInOpen"></app-sign-in>
+<app-create-account
+  [isCreateAccountOpen]="isCreateAccountOpen"
+></app-create-account>

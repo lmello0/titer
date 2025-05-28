@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 export class SignInComponent {
   private formBuilder = inject(FormBuilder);
 
-  @Input() isLoginOpen = false;
+  @Input() isSignInOpen = false;
   @Output() onClose = new EventEmitter<void>();
 
   isLoading = false;
@@ -57,7 +57,7 @@ export class SignInComponent {
   closeModal(): void {
     if (this.isLoading) return;
 
-    this.isLoginOpen = false;
+    this.isSignInOpen = false;
     this.loginForm.reset();
     this.onClose.emit();
   }

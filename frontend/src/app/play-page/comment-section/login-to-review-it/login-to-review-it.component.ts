@@ -5,11 +5,11 @@ import { CreateAccountComponent } from '../../../create-account/create-account.c
 
 @Component({
   selector: 'app-login-to-review-it',
-  imports: [RouterLink, SignInComponent, CreateAccountComponent],
+  imports: [SignInComponent, CreateAccountComponent],
   templateUrl: './login-to-review-it.component.html',
   styleUrl: './login-to-review-it.component.css',
 })
 export class LoginToReviewItComponent {
-  isLoginOpen = false;
+  isSignInOpen = false;
   isCreateAccountOpen = false;
 }

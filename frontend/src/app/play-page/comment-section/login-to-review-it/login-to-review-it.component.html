@@ -1,7 +1,7 @@
 <div class="mb-4 flex items-center justify-center gap-2 p-2">
   <button
     class="cursor-pointer rounded-md bg-emerald-500 px-2 py-1 font-semibold transition-colors hover:bg-white hover:text-emerald-500"
-    (click)="isLoginOpen = true"
+    (click)="isSignInOpen = true"
   >
     Sign In
   </button>
@@ -16,8 +16,8 @@
 </div>
 
 <app-sign-in
-  [isLoginOpen]="isLoginOpen"
-  (onClose)="isLoginOpen = false"
+  [isSignInOpen]="isSignInOpen"
+  (onClose)="isSignInOpen = false"
 ></app-sign-in>
 
 <app-create-account

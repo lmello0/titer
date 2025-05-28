@@ -61,4 +61,10 @@ export class SignInComponent {
     this.loginForm.reset();
     this.onClose.emit();
   }
+
+  getError(controlName: string, error: string): boolean {
+    const control = this.loginForm.get(controlName);
+
+    return !!(control && control.touched && control.hasError(error));
+  }
 }

@@ -1,33 +1,52 @@
 <app-modal [isOpen]="isLoginOpen" modalTitle="Login" (close)="closeModal()">
   <form [formGroup]="loginForm" class="w-full flex-col" modal-content>
-    <div class="mb-2 flex justify-between">
-      <label for="username">Email or Username</label>
-      <input
-        class="bg-gray-500 px-2 py-0.5 focus:outline-none"
-        type="text"
-        id="username"
-        formControlName="username"
-        required
-      />
-    </div>
-
-    <div class="mb-0.5 flex justify-between">
-      <label for="password">Password</label>
-      <input
-        class="bg-gray-500 px-2 py-0.5 focus:outline-none"
-        type="password"
-        id="password"
-        formControlName="password"
-        required
-      />
-    </div>
-
-    <div class="inline-flex w-full justify-end">
-      <a
-        class="cursor-pointer text-sm underline underline-offset-2 transition-colors hover:text-emerald-500"
-        routerLink=""
-        >Feeling forgotten?</a
+    <div class="mb-2 flex flex-col">
+      <div class="flex justify-between">
+        <label for="username">Email or Username</label>
+        <input
+          class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+          type="text"
+          id="username"
+          formControlName="username"
+          required
+        />
+      </div>
+      <div
+        *ngIf="loginForm.get('username')?.touched"
+        class="mt-0.5 text-sm text-red-500"
       >
+        <span *ngIf="getError('username', 'required')"
+          >Username is required.</span
+        >
+      </div>
+    </div>
+
+    <div class="mb-0.5 flex flex-col">
+      <div class="flex justify-between">
+        <label for="password">Password</label>
+        <input
+          class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+        />
+      </div>
+      <div class="inline-flex w-full justify-end">
+        <a
+          class="cursor-pointer text-sm underline underline-offset-2 transition-colors hover:text-emerald-500"
+          routerLink=""
+          >Feeling forgotten?</a
+        >
+      </div>
+      <div
+        *ngIf="loginForm.get('password')?.touched"
+        class="mt-0.5 text-sm text-red-500"
+      >
+        <span *ngIf="getError('password', 'required')"
+          >Password is required.</span
+        >
+      </div>
     </div>
 
     <div *ngIf="errorMessage" class="mt-2 text-red-500">{{ errorMessage }}</div>

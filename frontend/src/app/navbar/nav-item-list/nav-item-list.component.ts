@@ -18,7 +18,7 @@ export class NavItemListComponent {
   isSearching: boolean = false;
 
   navItems: NavItem[] = [
-    { label: 'Submit New Play' },
+    { label: 'Submit New Play', route: 'submit-new-play' },
     { label: 'Sign In' },
     { label: 'Create Account' },
   ];

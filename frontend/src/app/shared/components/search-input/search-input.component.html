@@ -1,0 +1,57 @@
+<div class="relative w-full">
+  <div class="relative">
+    <!-- input field -->
+    <input
+      [formControl]="searchControl"
+      type="text"
+      [placeholder]="placeholder"
+      class="w-full bg-gray-500 px-2 py-1 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      autocomplete="off"
+    />
+
+    <!-- Search Icon -->
+    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+      <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        ></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- dropdown list -->
+  <div
+    *ngIf="showDropdown && filteredOptions.length > 0"
+    class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto bg-gray-500 shadow-xl"
+  >
+    <ul class="py-1">
+      <!-- add new option -->
+      <li
+        *ngIf="allowAddNew"
+        (click)="selectAddNew()"
+        class="cursor-pointer border-b border-gray-700 px-4 py-1 transition-colors duration-150 last:border-b-0 hover:bg-gray-400"
+      >
+        <div class="flex items-center">
+          <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          <span>{{ addNewText }}</span>
+        </div>
+      </li>
+
+      <li
+        *ngFor="let option of filteredOptions; trackBy: trackByFn"
+        (click)="selectOption(option)"
+        class="cursor-pointer border-b border-gray-700 px-4 py-1 transition-colors duration-150 last:border-b-0 hover:bg-gray-400"
+        [class.bg-gray-900]="isSelected(option)"
+      >
+        <span>{{ option.label }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

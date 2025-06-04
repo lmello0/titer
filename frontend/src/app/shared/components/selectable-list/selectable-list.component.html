@@ -1,0 +1,71 @@
+<div class="w-full space-y-2 px-5">
+  <div class="flex w-full items-center gap-2">
+    <div class="relative w-60">
+      <div class="relative">
+        <input
+          [formControl]="formControl"
+          type="text"
+          [placeholder]="placeholder"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+          class="w-full rounded-xs bg-gray-500 px-2 py-1 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+          autocomplete="off"
+        />
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+          <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div
+        *ngIf="showDropdown && options.length > 0"
+        class="absolute z-10 mt-1 max-h-40 w-full overflow-y-auto rounded-xs bg-gray-500 shadow-xl"
+      >
+        <ul class="py-1">
+          <li
+            *ngIf="allowAddNew"
+            class="cursor-pointer border-b border-gray-700 px-4 py-1 transition-colors duration-150 hover:bg-gray-400"
+          >
+            <div class="flex items-center">
+              <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>{{ addNewLabel }}</span>
+            </div>
+          </li>
+
+          <li
+            *ngFor="let option of options"
+            (click)="selectOption(option)"
+            class="cursor-pointer border-b border-gray-700 px-4 py-1 transition-colors duration-150 hover:bg-gray-400"
+          >
+            <span>{{ option.label }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button (click)="onAddItem()" class="cursor-pointer rounded-xs bg-green-500 px-2 py-1 hover:bg-green-600">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+
+  <div class="w-full">
+    <ul class="flex flex-row gap-2">
+      <li class="w-fit rounded-xs bg-gray-500 px-2" *ngFor="let item of selected">
+        {{ item.label }}
+        <button
+          class="my-0.5 cursor-pointer rounded-xs bg-gray-600 px-1 hover:bg-gray-700"
+          (click)="onRemoveItem(item)"
+        >
+          X
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

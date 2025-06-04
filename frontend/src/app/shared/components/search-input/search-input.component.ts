@@ -19,6 +19,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
 
   @Output() selectionChange = new EventEmitter<Option | null>();
   @Output() searchChange = new EventEmitter<string>();
+  @Output() newInputChange = new EventEmitter<string>();
 
   searchControl = new FormControl('');
 

@@ -2,7 +2,7 @@
   <div class="w-5xl">
     <h2 class="mx-1 border-b-2 border-gray-600 text-4xl font-semibold">Submit a new play</h2>
 
-    <form [formGroup]="newPlayForm">
+    <form [formGroup]="playForm">
       <!-- content -->
       <div class="mt-5 grid gap-10">
         <div class="grid grid-cols-3 gap-4">
@@ -76,30 +76,16 @@
         <div class="grid gap-4">
           <div class="mx-3 border-b-2 border-gray-600 px-2">Director Info</div>
 
-          <div class="mx-5 flex flex-col justify-center gap-2">
-            <div class="flex items-center space-x-2">
-              <label class="block w-30 font-medium">Select Director</label>
-              <app-search-input
-                [options]="directors"
-                [allowAddNew]="true"
-                addNewText="Add new director"
-                newInputLabel="Director Name"
-                newInputPlaceholder="Enter director name"
-                placeholder="Search directors..."
-                (selectionChange)="onDirectorSelect($event)"
-              >
-              </app-search-input>
-            </div>
-
-            <div *ngIf="showNewDirectorInput" class="flex">
-              <label class="mr-2 block min-w-30 font-medium">Director name</label>
-              <input
-                formControlName="director"
-                type="text"
-                placeholder="Enter new director name"
-                class="w-54.5 bg-gray-500 px-2 py-1 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
-              />
-            </div>
+          <div class="w-full px-5">
+            <app-search-input-with-field
+              [options]="directorsOptions"
+              searchPlaceholder="Search directors"
+              label="Director name:"
+              [allowAddNew]="true"
+              addPlaceholder="Add new director"
+              (selectionChange)="onDirectorSelect($event)"
+              (fieldChange)="onFieldChange($event)"
+            ></app-search-input-with-field>
           </div>
         </div>
 
@@ -107,36 +93,11 @@
         <div class="grid gap-4">
           <div class="mx-3 border-b-2 border-gray-600 px-2">Genre Info</div>
 
-          <div class="mx-5 flex flex-col justify-center gap-2">
-            <div class="flex items-center space-x-2">
-              <label class="block w-30 font-medium">Select Genre</label>
-              <app-search-input
-                [options]="genres"
-                [allowAddNew]="false"
-                placeholder="Search genres..."
-                (selectionChange)="onGenreSelect($event)"
-              >
-              </app-search-input>
-            </div>
-          </div>
-        </div>
-
-        <!-- actor section -->
-        <div class="grid gap-4">
-          <div class="mx-3 border-b-2 border-gray-600 px-2">Actor Info</div>
-
-          <div class="mx-5 flex flex-col justify-center gap-2">
-            <div class="flex items-center space-x-2">
-              <label class="block w-30 font-medium">Add actors</label>
-              <app-search-input
-                [options]="actors"
-                [allowAddNew]="false"
-                placeholder="Search actors..."
-                (selectionChange)="onActorSelect($event)"
-              >
-              </app-search-input>
-            </div>
-          </div>
+          <app-selectable-list
+            [options]="genreOptions"
+            [allowAddNew]="true"
+            (selectedChange)="onUpdateGenres($event)"
+          ></app-selectable-list>
         </div>
       </div>
     </form>

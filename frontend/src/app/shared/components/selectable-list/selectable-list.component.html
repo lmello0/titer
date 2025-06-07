@@ -1,9 +1,9 @@
-<div class="w-full space-y-2 px-5">
+<div class="flex w-full flex-col gap-2 px-5">
   <div class="flex w-full items-center gap-2">
     <div class="relative w-60">
       <div class="relative">
         <input
-          [formControl]="formControl"
+          [formControl]="searchControl"
           type="text"
           [placeholder]="placeholder"
           (focus)="onFocus()"
@@ -24,12 +24,13 @@
       </div>
 
       <div
-        *ngIf="showDropdown && options.length > 0"
+        *ngIf="showDropdown"
         class="absolute z-10 mt-1 max-h-40 w-full overflow-y-auto rounded-xs bg-gray-500 shadow-xl"
       >
         <ul class="py-1">
           <li
             *ngIf="allowAddNew"
+            (click)="selectOption()"
             class="cursor-pointer border-b border-gray-700 px-4 py-1 transition-colors duration-150 hover:bg-gray-400"
           >
             <div class="flex items-center">
@@ -41,29 +42,42 @@
           </li>
 
           <li
-            *ngFor="let option of options"
+            *ngFor="let option of filteredOptions"
             (click)="selectOption(option)"
             class="cursor-pointer border-b border-gray-700 px-4 py-1 transition-colors duration-150 hover:bg-gray-400"
           >
             <span>{{ option.label }}</span>
           </li>
+
+          <li *ngIf="filteredOptions.length === 0" class="border-b border-gray-700 px-4 py-1">No results found</li>
         </ul>
       </div>
     </div>
+
+    <div *ngIf="showNewField" class="inline-flex items-center gap-2">
+      <label class="font-medium text-nowrap">{{ newLabel }}</label>
+      <input
+        [formControl]="newOptionControl"
+        type="text"
+        [placeholder]="newPlaceholder"
+        class="w-full rounded-xs bg-gray-500 px-2 py-1 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+      />
+    </div>
+
     <button (click)="onAddItem()" class="cursor-pointer rounded-xs bg-green-500 px-2 py-1 hover:bg-green-600">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
 
-  <div class="w-full">
+  <div *ngIf="selected.length > 0" class="w-full">
     <ul class="flex flex-row gap-2">
       <li class="w-fit rounded-xs bg-gray-500 px-2" *ngFor="let item of selected">
         {{ item.label }}
         <button
-          class="my-0.5 cursor-pointer rounded-xs bg-gray-600 px-1 hover:bg-gray-700"
+          class="my-0.5 cursor-pointer rounded-xs bg-gray-600 px-1 py-0.5 text-xs hover:bg-gray-700"
           (click)="onRemoveItem(item)"
         >
-          X
+          <i class="fa-solid fa-x"></i>
         </button>
       </li>
     </ul>

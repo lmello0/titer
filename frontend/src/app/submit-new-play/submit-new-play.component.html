@@ -14,14 +14,14 @@
           <!-- poster photo -->
           <div class="flex w-full justify-center">
             <div
-              class="group relative w-48 rounded-lg outline-offset-2 hover:outline-2"
+              class="group relative w-48 rounded-sm outline-offset-2 hover:outline-2"
               (dragover)="onDragOver($event)"
               (drop)="onDrop($event)"
             >
               <input type="file" accept="image/*" (change)="onFileSelected($event)" class="hidden" #fileInput />
               <label (click)="fileInput.click()" class="relative block w-full cursor-pointer transition-all">
                 <div
-                  class="relative flex aspect-[2/3] w-full items-center justify-center overflow-hidden rounded-lg bg-gray-200"
+                  class="relative flex aspect-[2/3] w-full items-center justify-center overflow-hidden rounded-sm bg-gray-200"
                 >
                   <div
                     class="absolute inset-0 bg-black/50 opacity-0 transition group-hover:opacity-100 hover:opacity-100"
@@ -51,7 +51,7 @@
               <div class="flex flex-col">
                 <label for="title">Title</label>
                 <input
-                  class="bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+                  class="rounded-xs bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
                   type="text"
                   id="title"
                   formControlName="title"
@@ -62,7 +62,7 @@
               <div class="flex h-full flex-col">
                 <label for="synopsis">Synopsis</label>
                 <textarea
-                  class="h-full w-full flex-1 resize-none bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
+                  class="h-full w-full flex-1 resize-none rounded-xs bg-gray-500 px-2 py-0.5 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
                   name="synopsis"
                   id="synopsis"
                   formControlName="synopsis"

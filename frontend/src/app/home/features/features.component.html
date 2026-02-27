@@ -1,20 +1,12 @@
-<div class="flex items-center px-3">
-  <a
-    class="inline-flex cursor-pointer items-center gap-2 font-extrabold tracking-wider text-gray-200 uppercase transition-colors hover:text-emerald-500"
-    [routerLink]=""
-  >
+<div class="flex items-center px-1">
+  <a class="ui-link inline-flex cursor-pointer items-center gap-2 text-sm font-extrabold tracking-wider uppercase sm:text-base" [routerLink]="['/list', 'features']">
     <h2>Features <span class="fa-solid fa-chevron-right"></span></h2>
   </a>
 </div>
-<div class="flex w-full items-center justify-center py-5">
-  <div class="flex w-full flex-col flex-wrap gap-2 sm:flex-row sm:gap-3">
+<div class="flex w-full items-center justify-center py-4">
+  <div class="grid w-full grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-3">
     @for (card of cards; track $index) {
-      <app-card
-        [icon]="card.icon"
-        [description]="card.description"
-        [hoverColor]="card.hoverColor"
-        class="flex-1 sm:basis-1/4"
-      ></app-card>
+      <app-card [icon]="card.icon" [description]="card.description" [hoverColor]="card.hoverColor"></app-card>
     }
   </div>
 </div>

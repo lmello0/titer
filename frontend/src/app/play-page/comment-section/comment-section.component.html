@@ -1,6 +1,23 @@
-<app-login-to-review-it *ngIf="!isLoggedIn"></app-login-to-review-it>
-<app-post-review
-  *ngIf="isLoggedIn"
-  (submitReview)="addReviewToComments($event)"
-></app-post-review>
-<app-comment-list [comments]="comments"></app-comment-list>
+<section class="ui-section">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="ui-heading-lg">Reviews</h3>
+
+    <div class="inline-flex items-center gap-2" *ngIf="comments.length > 0">
+      <label class="ui-meta" for="review-sort">Sort by</label>
+      <select
+        id="review-sort"
+        class="ui-select w-auto min-w-40"
+        [value]="currentSort"
+        (change)="applySort($any($event.target).value)"
+      >
+        <option *ngFor="let option of sortOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <app-login-to-review-it *ngIf="!isLoggedIn"></app-login-to-review-it>
+  <app-post-review *ngIf="isLoggedIn" (submitReview)="addReviewToComments($event)"></app-post-review>
+  <app-comment-list [comments]="displayedComments"></app-comment-list>
+</section>

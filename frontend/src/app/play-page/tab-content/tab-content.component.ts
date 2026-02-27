@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { TabMainInfoComponent } from './tab-main-info/tab-main-info.component';
 import { TabCastComponent } from './tab-cast/tab-cast.component';
 import { TabCrewComponent } from './tab-crew/tab-crew.component';

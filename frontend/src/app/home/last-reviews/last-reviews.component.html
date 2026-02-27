@@ -1,17 +1,12 @@
-<div class="flex items-center px-3 pb-2 select-none">
-  <a
-    class="inline-flex cursor-pointer items-center gap-2 font-extrabold tracking-wider text-gray-200 uppercase transition-colors hover:text-emerald-500"
-    [routerLink]=""
-  >
+<div class="flex items-center px-1 pb-2 select-none">
+  <a class="ui-link inline-flex cursor-pointer items-center gap-2 text-sm font-extrabold tracking-wider uppercase sm:text-base" [routerLink]="['/list', 'last-reviews']">
     <h2>Last Reviews <span class="fa-solid fa-chevron-right"></span></h2>
   </a>
 </div>
 
-<div class="flex w-full flex-col flex-wrap gap-3 sm:flex-row">
-  @for (review of lastReviews; track $index) {
-    <div
-      class="flex-1 border-b-2 border-gray-600 py-2 first:border-t-2 sm:basis-1/4 sm:nth-[-n+2]:border-t-2"
-    >
+<div class="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
+  @for (review of lastReviews; track review.id + '-' + review.playId) {
+    <div class="ui-card p-2">
       <app-review [reviewData]="review"></app-review>
     </div>
   }

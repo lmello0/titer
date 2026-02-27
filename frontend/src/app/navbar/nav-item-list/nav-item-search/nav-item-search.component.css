@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+.nav-search-box {
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid var(--ui-border);
+  background: rgba(15, 23, 38, 0.75);
+  padding: 0.35rem 0.5rem;
+  transition: background var(--ui-transition), border-color var(--ui-transition);
+}
+
+.nav-search-box-active {
+  background: var(--ui-surface-subtle);
+  border-color: var(--ui-border-strong);
+}

@@ -1,26 +1,19 @@
-<!-- tab content -->
 <div>
-  <!-- header -->
-  <header class="flex">
-    @for (tab of tabs; track $index) {
+  <header class="flex flex-wrap border-b border-[var(--ui-border)]">
+    @for (tab of tabs; track tab) {
       <button
         (click)="selectTab(tab)"
-        class="cursor-pointer border-b-2 px-4 py-2 text-sm font-semibold uppercase transition-colors duration-300"
-        [ngClass]="{
-          'border-emerald-500 text-emerald-600': activeTab === tab,
-          'border-transparent text-gray-600 hover:text-emerald-500':
-            activeTab != tab,
-        }"
+        class="ui-tab"
+        [ngClass]="{ 'ui-tab-active': activeTab === tab }"
       >
         {{ tab }}
       </button>
     }
   </header>
 
-  <!-- tabs content -->
-  <div class="min-h-[200px] space-y-4 border-gray-200 px-6 py-3">
+  <div class="min-h-[200px] space-y-4 px-2 py-4 sm:px-4">
     <app-tab-main-info
-      class="flex w-full flex-col gap-y-1"
+      class="flex w-full flex-col gap-y-2"
       *ngIf="activeTab === 'MAIN INFO'"
       [premiereDate]="premiereDate"
       [premiereTheatre]="premiereTheatre"
@@ -35,10 +28,6 @@
 
     <app-tab-crew *ngIf="activeTab === 'CREW'" [crew]="crew"></app-tab-crew>
 
-    <app-tab-releases
-      *ngIf="activeTab === 'RELEASES'"
-      [releases]="releases"
-    ></app-tab-releases>
+    <app-tab-releases *ngIf="activeTab === 'RELEASES'" [releases]="releases"></app-tab-releases>
   </div>
 </div>
-<!-- end tab content -->

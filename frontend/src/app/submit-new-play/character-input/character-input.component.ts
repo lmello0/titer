@@ -39,7 +39,7 @@ export class CharacterInputComponent implements OnInit, OnDestroy {
 
   onCastSelect(option: Option | null) {
     this.actorId = option?.value || '-1';
-    this.actorName = option?.value || '';
+    this.actorName = option?.label || '';
   }
 
   onFieldChange(value: string | null) {

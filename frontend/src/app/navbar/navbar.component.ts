@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NavItem } from './nav-item-list/interface/nav-item.interface';
 import { CommonModule } from '@angular/common';
 import { NavLogoComponent } from './nav-logo/nav-logo.component';
@@ -24,10 +24,7 @@ export class NavbarComponent {
 
   @Output() menuOpenEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  isSearching: boolean = false;
-  isOnNavbarHover: boolean = false;
-  isMouseOnLogo: boolean = false;
-
+  isOnNavbarHover = false;
   isSignInOpen = false;
   isCreateAccountOpen = false;
 
@@ -45,15 +42,14 @@ export class NavbarComponent {
 
   click(label: string): void {
     this.closeMenu();
-    switch (label) {
-      case 'Sign In':
-        this.isSignInOpen = true;
-        break;
-      case 'Create Account':
-        this.isCreateAccountOpen = true;
-        break;
-      default:
-        throw new Error('Action not mapped');
+
+    if (label === 'Sign In') {
+      this.isSignInOpen = true;
+      return;
+    }
+
+    if (label === 'Create Account') {
+      this.isCreateAccountOpen = true;
     }
   }
 }

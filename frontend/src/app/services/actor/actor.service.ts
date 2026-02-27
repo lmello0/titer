@@ -7,10 +7,10 @@ import { delay, Observable, of } from 'rxjs';
 })
 export class ActorService {
   private mockActors: Actor[] = [
-    { actorId: '1', actorName: 'Tom Cruise' },
-    { actorId: '2', actorName: 'Ana de Armas' },
-    { actorId: '3', actorName: 'Tramel Tillman' },
-    { actorId: '4', actorName: 'Natalie Portman' },
+    { actorId: 'a1', actorName: 'David Oyelowo' },
+    { actorId: 'a2', actorName: 'Ruth Wilson' },
+    { actorId: 'a3', actorName: 'Mark Rylance' },
+    { actorId: 'a4', actorName: 'Wendell Pierce' },
   ];
 
   constructor() {}

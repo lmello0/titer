@@ -1,11 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post-review',
@@ -22,18 +17,17 @@ export class PostReviewComponent {
   private formBuilder = inject(FormBuilder);
 
   reviewForm = this.formBuilder.group({
-    content: ['', [Validators.required, Validators.minLength(5)]],
-    rating: [0, [Validators.required, Validators.min(0.5)]],
+    content: ['', [Validators.required, Validators.minLength(50), Validators.maxLength(5000)]],
+    rating: [0, [Validators.required, Validators.min(1), Validators.max(5)]],
   });
 
-  content = new FormControl('');
   rating = 0;
   hover: number | null = null;
 
   autoResize(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
+    textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
   setHover(value: number | null): void {
@@ -49,16 +43,24 @@ export class PostReviewComponent {
     if (this.hover !== null) {
       return Math.min(Math.max((this.hover - star) * 100, 0), 100);
     }
+
     return Math.min(Math.max((this.rating - star) * 100, 0), 100);
   }
 
   postReview(): void {
-    if (this.reviewForm.invalid) return;
+    if (this.reviewForm.invalid) {
+      this.reviewForm.markAllAsTouched();
+      return;
+    }
 
-    this.submitReview.emit(
-      this.reviewForm.value as { content: string; rating: number },
-    );
-    this.content.setValue('');
+    const { content, rating } = this.reviewForm.getRawValue();
+
+    this.submitReview.emit({
+      content: content ?? '',
+      rating: rating ?? 1,
+    });
+
+    this.reviewForm.reset({ content: '', rating: 0 });
     this.rating = 0;
     this.hover = null;
   }

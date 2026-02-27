@@ -1,9 +1,9 @@
 <div
-  class="flex h-12 cursor-pointer justify-center rounded-sm bg-gray-500 px-6 py-2 duration-150 ease-in-out select-none sm:h-24 sm:py-4"
+  class="ui-card-subtle flex min-h-12 cursor-pointer justify-center px-4 py-3 duration-150 ease-in-out select-none"
   [ngClass]="hoverColor"
 >
   <div class="flex w-full items-center gap-2.5">
     <i class="{{ icon }} fa-solid sm:fa-lg"></i>
-    <span class="text-sm tracking-tighter antialiased">{{ description }}</span>
+    <span class="text-sm text-[var(--ui-text-muted)]">{{ description }}</span>
   </div>
 </div>

@@ -1,27 +1,10 @@
-<div class="mb-4 flex items-center justify-center gap-2 p-2">
-  <button
-    class="cursor-pointer rounded-md bg-emerald-500 px-2 py-1 font-semibold transition-colors hover:bg-white hover:text-emerald-500"
-    (click)="isSignInOpen = true"
-  >
-    Sign In
-  </button>
-  <p>or</p>
-  <button
-    class="cursor-pointer rounded-md bg-emerald-500 px-2 py-1 font-semibold transition-colors hover:bg-white hover:text-emerald-500"
-    (click)="isCreateAccountOpen = true"
-  >
-    Create Account
-  </button>
-  <p>to review!</p>
+<div class="ui-card-subtle mb-4 flex flex-wrap items-center justify-center gap-2 p-3 text-sm">
+  <button class="ui-btn ui-btn-primary" (click)="isSignInOpen = true">Sign In</button>
+  <p class="ui-meta">or</p>
+  <button class="ui-btn ui-btn-secondary" (click)="isCreateAccountOpen = true">Create Account</button>
+  <p class="ui-meta">to review this play.</p>
 </div>
 
-<app-sign-in
-  [isSignInOpen]="isSignInOpen"
-  (onClose)="isSignInOpen = false"
-></app-sign-in>
+<app-sign-in [isSignInOpen]="isSignInOpen" (onClose)="isSignInOpen = false"></app-sign-in>
 
-<app-create-account
-  [isCreateAccountOpen]="isCreateAccountOpen"
-  (onClose)="isCreateAccountOpen = false"
->
-</app-create-account>
+<app-create-account [isCreateAccountOpen]="isCreateAccountOpen" (onClose)="isCreateAccountOpen = false"></app-create-account>

@@ -1,16 +1,6 @@
 <div class="px-2 py-1">
-  <a routerLink="/" class="cursor-pointer">
-    <div
-      class="flex items-center gap-1.5"
-      (mouseover)="changeMouseOnLogo(true)"
-      (mouseout)="changeMouseOnLogo(false)"
-    >
-      <img class="h-7 w-7" alt="logo image" src="assets/logo/logo-64.png" />
-      <h1
-        class="text-nav hidden font-black tracking-wider transition-colors hover:text-gray-200 sm:block"
-      >
-        Titer
-      </h1>
-    </div>
+  <a routerLink="/" class="inline-flex cursor-pointer items-center gap-2">
+    <img class="h-8 w-8" alt="logo image" src="assets/logo/logo-64.png" />
+    <h1 class="hidden text-xl font-black tracking-wide text-[var(--ui-text-muted)] transition-colors hover:text-white sm:block">Titer</h1>
   </a>
 </div>

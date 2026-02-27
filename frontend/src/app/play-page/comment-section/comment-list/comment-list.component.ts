@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 })
 export class CommentListComponent {
   @Input() comments!: Review[];
-  @Input() rating = 0;
 
   toggleLike(comment: Review): void {
     comment.likedByUser = !comment.likedByUser;

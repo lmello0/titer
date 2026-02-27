@@ -39,7 +39,14 @@ export class PlayPageComponent implements OnInit {
       return;
     }
 
-    this.playService.getPlayById(parseInt(playId)).subscribe((p) => {
+    const parsedId = Number(playId);
+
+    if (Number.isNaN(parsedId)) {
+      this.router.navigate(['/']);
+      return;
+    }
+
+    this.playService.getPlayById(parsedId).subscribe((p) => {
       if (!p) {
         this.router.navigate(['/']);
         return;

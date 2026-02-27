@@ -1,37 +1,34 @@
-<div
-  class="group relative h-56 w-36 overflow-hidden rounded-lg shadow-lg outline-offset-4 outline-white duration-100 ease-in-out hover:outline-4 sm:h-64 sm:w-44"
->
+<div class="group relative w-38 overflow-hidden rounded-lg border border-[var(--ui-border)] shadow-lg sm:w-46">
   <img
     [src]="play.posterImageUrl"
-    class="h-full w-full object-cover transition-all duration-300 group-hover:brightness-[25%]"
+    class="h-58 w-full object-cover transition-all duration-300 group-hover:brightness-[32%] sm:h-66"
   />
 
   <a
-    class="absolute inset-0 flex h-full cursor-pointer flex-col items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-    routerLink="/play/{{ play.playId }}"
+    class="absolute inset-0 flex h-full cursor-pointer flex-col opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+    [routerLink]="['/play', play.playId]"
   >
-    <div
-      class="flex flex-1 flex-col items-center justify-center gap-5 text-center text-white"
-    >
+    <div class="flex flex-1 flex-col items-center justify-center gap-4 text-center text-white">
       <div class="flex flex-col gap-1">
-        <i class="fa-solid fa-eye text-red-800"></i>
-        <span class="text-lg font-bold">{{
-          play.watchCount | compactNumber
-        }}</span>
+        <i class="fa-solid fa-eye text-red-600"></i>
+        <span class="text-lg font-bold">{{ play.watchCount | compactNumber }}</span>
       </div>
 
       <div class="flex flex-col gap-1">
-        <i class="fa-solid fa-pencil text-amber-500"></i>
-        <span class="text-lg font-bold">{{
-          play.reviewCount | compactNumber
-        }}</span>
+        <i class="fa-solid fa-pencil text-amber-400"></i>
+        <span class="text-lg font-bold">{{ play.totalReviewCount | compactNumber }}</span>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <i [class]="statusClass"></i>
+        <span class="text-lg font-bold capitalize">{{ play.status }}</span>
       </div>
     </div>
-    <div class="flex h-12 w-full items-center justify-center bg-black px-2">
-      <span
-        class="text-center text-sm leading-tight font-semibold break-words"
-        >{{ play.title }}</span
-      >
+
+    <div class="w-full bg-black/85 px-2 py-4">
+      <span class="block truncate text-left text-sm leading-tight font-semibold" [title]="play.title">{{
+        play.title
+      }}</span>
     </div>
   </a>
 </div>

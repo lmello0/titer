@@ -20,19 +20,14 @@ export class SignInComponent {
   errorMessage = '';
 
   loginForm = this.formBuilder.group({
-    username: [
-      '',
-      [Validators.required, Validators.minLength(4), Validators.maxLength(25)],
-    ],
+    username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]],
     password: [
       '',
       [
         Validators.required,
         Validators.minLength(12),
         Validators.maxLength(32),
-        Validators.pattern(
-          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=\+\[\]{};:]).{8,32}$/,
-        ),
+        Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=\+\[\]{};:]).{8,32}$/),
       ],
     ],
   });
@@ -43,15 +38,10 @@ export class SignInComponent {
     this.isLoading = true;
     this.errorMessage = '';
 
-    const { username, password } = this.loginForm.value;
-
-    // TODO: add login logic
     setTimeout(() => {
-      console.log('Login successful!');
-
       this.isLoading = false;
       this.closeModal();
-    }, 10_000);
+    }, 900);
   }
 
   closeModal(): void {

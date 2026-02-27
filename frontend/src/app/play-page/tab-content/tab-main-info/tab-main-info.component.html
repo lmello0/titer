@@ -1,119 +1,71 @@
-<!-- directors -->
 <div class="flex w-full">
-  <!-- label -->
   <div class="flex w-1/2 items-baseline gap-2 pr-4">
-    <h4 class="font-bold">Directors</h4>
-    <div class="flex-1 border-b-2 border-dotted"></div>
+    <h4 class="font-bold">Director</h4>
+    <div class="flex-1 border-b border-dotted border-[var(--ui-border)]"></div>
   </div>
-
-  <!-- links section -->
   <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
-    <a
-      class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-      routerLink="/director/{{ director.directorId }}"
-      >{{ director.directorName }}</a
-    >
+    <a class="ui-link" [routerLink]="['/director', director.directorId]">{{ director.directorName }}</a>
   </div>
 </div>
 
-<!-- main actors -->
 <div class="flex w-full">
-  <!-- label -->
   <div class="flex w-1/2 items-baseline gap-2 pr-4">
     <h4 class="font-bold">Main actors</h4>
-    <div class="flex-1 border-b-2 border-dotted"></div>
+    <div class="flex-1 border-b border-dotted border-[var(--ui-border)]"></div>
   </div>
-
-  <!-- links section -->
   <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
-    @for (actor of mainActors; track $index) {
-      <a
-        class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-        routerLink="/actor/{{ actor.actorId }}"
-        >{{ actor.actorName }}</a
-      >
+    @for (actor of mainActors; track actor.actorId) {
+      <a class="ui-link" [routerLink]="['/actor', actor.actorId]">{{ actor.actorName }}</a>
     }
   </div>
 </div>
 
-<!-- genres -->
 <div class="flex w-full">
-  <!-- label -->
   <div class="flex w-1/2 items-baseline gap-2 pr-4">
     <h4 class="font-bold">Genres</h4>
-    <div class="flex-1 border-b-2 border-dotted"></div>
+    <div class="flex-1 border-b border-dotted border-[var(--ui-border)]"></div>
   </div>
-
-  <!-- links section -->
   <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
-    @for (genre of genres; track $index) {
-      <a
-        class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-        routerLink="/genre/{{ genre.genreId }}"
-        >{{ genre.genreName }}</a
-      >
+    @for (genre of genres; track genre.genreId) {
+      <a class="ui-link" [routerLink]="['/genre', genre.genreId]">{{ genre.genreName }}</a>
     }
   </div>
 </div>
 
-<!-- duration -->
 <div class="flex w-full">
-  <!-- label -->
   <div class="flex w-1/2 items-baseline gap-2 pr-4">
     <h4 class="font-bold">Duration</h4>
-    <div class="flex-1 border-b-2 border-dotted"></div>
+    <div class="flex-1 border-b border-dotted border-[var(--ui-border)]"></div>
   </div>
-
-  <!-- info section -->
   <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
-    <p>{{ duration }}min</p>
+    <p>{{ duration }} min</p>
   </div>
 </div>
 
-<!-- first premiere -->
 <div class="flex w-full">
-  <!-- label -->
   <div class="flex w-1/2 items-baseline gap-2 pr-4">
     <h4 class="font-bold">First Premiere</h4>
-    <div class="flex-1 border-b-2 border-dotted"></div>
+    <div class="flex-1 border-b border-dotted border-[var(--ui-border)]"></div>
   </div>
-
-  <!-- info section -->
   <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
     <p>
-      <strong class="font-semibold">{{ this.getDate(premiereDate) }}</strong> at
-      <a
-        routerLink="/theatre/{{ premiereTheatre.theatreId }}"
-        class="cursor-pointer font-semibold transition-colors hover:text-emerald-500"
-        >{{ premiereTheatre.theatreName }}</a
-      >
+      <strong class="font-semibold">{{ getDate(premiereDate) }}</strong>
+      at
+      <a [routerLink]="['/theatre', premiereTheatre.theatreId]" class="ui-link font-semibold">{{ premiereTheatre.theatreName }}</a>
     </p>
   </div>
 </div>
 
-<!-- social -->
 <div class="flex w-full">
-  <!-- label -->
   <div class="flex w-1/2 items-baseline gap-2 pr-4">
     <h4 class="font-bold">Socials</h4>
-    <div class="flex-1 border-b-2 border-dotted"></div>
+    <div class="flex-1 border-b border-dotted border-[var(--ui-border)]"></div>
   </div>
-
-  <!-- links section -->
-  <div class="flex w-1/2 flex-wrap gap-x-2 gap-y-1">
-    @for (social of socials; track $index) {
-      <div class="inline-flex gap-1">
-        <img
-          class="w-6"
-          [src]="social.socialIconUrl"
-          alt="{{ social.platform }} - {{ social.socialName }}"
-        />
-        <a
-          class="cursor-pointer underline underline-offset-2 transition-colors hover:text-emerald-500"
-          [href]="social.socialIconUrl"
-          target="_blank"
-          >&#64;{{ social.socialName }}</a
-        >
+  <div class="flex w-1/2 flex-wrap gap-x-3 gap-y-2">
+    @for (social of socials; track social.socialName) {
+      <div class="inline-flex items-center gap-1">
+        <img class="w-4" [src]="social.socialIconUrl" alt="{{ social.platform }} - {{ social.socialName }}" />
+        <a class="ui-link" [href]="social.socialLink" target="_blank" rel="noopener noreferrer">&#64;{{ social.socialName }}</a>
       </div>
     }
   </div>

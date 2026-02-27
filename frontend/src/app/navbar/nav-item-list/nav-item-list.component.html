@@ -1,12 +1,11 @@
 <div
   [ngClass]="{
-    'max-h-[500px] pt-2 pb-4 opacity-600': isMenuOpenService.currentValue,
-    'pointer-events-none max-h-0 opacity-0 sm:pointer-events-auto':
-      !isMenuOpenService.currentValue,
+    'max-h-[500px] py-2 opacity-100': isMenuOpenService.currentValue,
+    'pointer-events-none max-h-0 opacity-0 sm:pointer-events-auto': !isMenuOpenService.currentValue,
   }"
   class="px-2 transition-all duration-200 ease-in-out sm:flex sm:items-center sm:p-0 sm:opacity-100"
 >
-  @for (item of navItems; track $index) {
+  @for (item of navItems; track item.label) {
     <app-nav-item
       [isOnNavbarHover]="isOnNavbarHover"
       [label]="item.label"
@@ -15,7 +14,5 @@
     ></app-nav-item>
   }
 
-  <app-nav-item-search
-    [isOnNavbarHover]="isOnNavbarHover"
-  ></app-nav-item-search>
+  <app-nav-item-search [isOnNavbarHover]="isOnNavbarHover"></app-nav-item-search>
 </div>

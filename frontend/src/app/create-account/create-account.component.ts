@@ -1,18 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ModalComponent } from '../shared/components/modal/modal.component';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -30,20 +18,15 @@ export class CreateAccountComponent {
   isLoading = false;
 
   createAccountForm = this.formBuilder.group({
-    username: [
-      '',
-      [Validators.required, Validators.minLength(4), Validators.maxLength(25)],
-    ],
-    email: ['', Validators.required, Validators.email],
+    username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]],
+    email: ['', [Validators.required, Validators.email]],
     password: [
       '',
       [
         Validators.required,
         Validators.minLength(12),
         Validators.maxLength(32),
-        Validators.pattern(
-          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=\+\[\]{};:]).{8,32}$/,
-        ),
+        Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=\+\[\]{};:]).{8,32}$/),
       ],
     ],
     confirmPassword: [
@@ -52,9 +35,7 @@ export class CreateAccountComponent {
         Validators.required,
         Validators.minLength(12),
         Validators.maxLength(32),
-        Validators.pattern(
-          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=\+\[\]{};:]).{8,32}$/,
-        ),
+        Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=\+\[\]{};:]).{8,32}$/),
       ],
     ],
     termsOfUse: [false, Validators.requiredTrue],
@@ -66,21 +47,10 @@ export class CreateAccountComponent {
 
     this.isLoading = true;
 
-    const {
-      username,
-      email,
-      password,
-      confirmPassword,
-      termsOfUse,
-      privacyPolicy,
-    } = this.createAccountForm.value;
-
     setTimeout(() => {
-      console.log('Account created!');
-
       this.isLoading = false;
       this.closeModal();
-    }, 1_000);
+    }, 900);
   }
 
   closeModal(): void {
@@ -95,11 +65,7 @@ export class CreateAccountComponent {
     const password = this.createAccountForm.get('password');
     const confirmPassword = this.createAccountForm.get('confirmPassword');
 
-    return (
-      !!password?.value &&
-      !!confirmPassword?.value &&
-      password?.value === confirmPassword?.value
-    );
+    return !!password?.value && !!confirmPassword?.value && password.value === confirmPassword.value;
   }
 
   getError(controlName: string, error: string): boolean {

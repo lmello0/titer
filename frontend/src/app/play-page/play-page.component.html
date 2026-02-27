@@ -1,50 +1,49 @@
-<section class="mt-15 flex items-center justify-center gap-5 p-5 sm:mt-5">
-  <div
-    class="grid max-w-208 grid-cols-1 items-start gap-4 sm:grid-cols-[auto_1fr]"
-  >
-    <!-- image & stats -->
-    <app-play-poster
-      [url]="play.posterImageUrl"
-      [rating]="play.rating"
-      [watchCount]="play.watchCount"
-      [reviewCount]="play.reviewCount"
-    >
-    </app-play-poster>
+<section class="ui-page">
+  <div class="ui-container" *ngIf="play as currentPlay; else loadingPlay">
+    <div class="ui-section grid grid-cols-1 gap-5 sm:grid-cols-[auto_1fr]">
+      <app-play-poster
+        [url]="currentPlay.posterImageUrl"
+        [rating]="currentPlay.aggregateRating"
+        [watchCount]="currentPlay.watchCount"
+        [reviewCount]="currentPlay.totalReviewCount"
+        [status]="currentPlay.status"
+      ></app-play-poster>
 
-    <!-- title -->
-    <app-play-title
-      [title]="play.title"
-      [director]="play.director"
-      [year]="play.releaseYear"
-      [synopsis]="play.synopsis"
-    >
-    </app-play-title>
-    <!-- end title -->
+      <app-play-title
+        [title]="currentPlay.title"
+        [director]="currentPlay.director"
+        [year]="currentPlay.releaseYear"
+        [synopsis]="currentPlay.synopsis"
+        [playwright]="currentPlay.playwright"
+      ></app-play-title>
 
-    <div class="rounded-full border-1 border-gray-600 sm:col-span-2"></div>
+      <div class="ui-divider sm:col-span-2"></div>
 
-    <app-tab-content
-      class="sm:col-span-2"
-      [premiereDate]="play.premiereDate"
-      [premiereTheatre]="play.premiereTheatre"
-      [duration]="play.duration"
-      [releases]="play.releases"
-      [cast]="play.cast"
-      [crew]="play.crew"
-      [director]="play.director"
-      [mainActors]="play.mainActors"
-      [genres]="play.genres"
-      [socials]="play.socials"
-      [releases]="play.releases"
-    ></app-tab-content>
+      <app-tab-content
+        class="sm:col-span-2"
+        [premiereDate]="currentPlay.premiereDate"
+        [premiereTheatre]="currentPlay.premiereTheatre"
+        [duration]="currentPlay.duration"
+        [releases]="currentPlay.releases"
+        [cast]="currentPlay.cast"
+        [crew]="currentPlay.crew"
+        [director]="currentPlay.director"
+        [mainActors]="currentPlay.mainActors"
+        [genres]="currentPlay.genres"
+        [socials]="currentPlay.socials"
+      ></app-tab-content>
 
-    <div class="rounded-full border-1 border-gray-600 sm:col-span-2"></div>
+      <div class="ui-divider sm:col-span-2"></div>
 
-    <!-- comment section -->
-    <app-comment-section
-      class="sm:col-span-2"
-      [comments]="play.comments"
-    ></app-comment-section>
-    <!-- end comment section -->
+      <app-comment-section class="sm:col-span-2" [playId]="currentPlay.playId" [comments]="currentPlay.comments"></app-comment-section>
+    </div>
   </div>
 </section>
+
+<ng-template #loadingPlay>
+  <section class="ui-page">
+    <div class="ui-container">
+      <div class="ui-section text-center text-[var(--ui-text-muted)]">Loading play details...</div>
+    </div>
+  </section>
+</ng-template>

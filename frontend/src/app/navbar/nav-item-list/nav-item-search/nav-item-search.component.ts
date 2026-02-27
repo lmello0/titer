@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-item-search',
@@ -9,28 +10,24 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './nav-item-search.component.css',
 })
 export class NavItemSearchComponent {
-  @Input() isOnNavbarHover: boolean = false;
+  @Input() isOnNavbarHover = false;
 
-  isSearching: boolean = false;
-  playToSearch: string = '';
+  isSearching = false;
+  playToSearch = '';
 
-  get getBackgroundColor(): string {
-    if (this.isSearching || this.isOnNavbarHover) {
-      return 'bg-gray-200';
-    }
+  constructor(private readonly router: Router) {}
 
-    if (!this.isSearching && !this.isOnNavbarHover) {
-      return 'bg-gray-700';
-    }
-
-    return '';
-  }
-
-  changeIsSearchingStatus(value: boolean) {
+  changeIsSearchingStatus(value: boolean): void {
     this.isSearching = value;
   }
 
   onSubmit(): void {
-    // TODO: Add search logic
+    const searchTerm = this.playToSearch.trim();
+
+    if (!searchTerm) {
+      return;
+    }
+
+    this.router.navigate(['/list/search-results'], { queryParams: { q: searchTerm } });
   }
 }

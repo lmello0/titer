@@ -1,83 +1,47 @@
-<div class="w-full px-5">
-  <article class="flex h-full w-full items-center justify-between gap-7">
-    <!-- cover -->
+<div class="w-full px-3">
+  <article class="flex h-full w-full items-stretch gap-4 p-3" *ngIf="playData as play">
     <figure
-      class="mt-2 w-24 min-w-24 cursor-pointer self-start overflow-hidden rounded shadow-lg outline-offset-2 outline-emerald-500 duration-100 ease-in-out select-none hover:outline-2"
+      class="aspect-[9/16] h-full min-h-[7.5rem] max-w-[5.75rem] shrink-0 overflow-hidden rounded-md border border-[var(--ui-border)]"
     >
-      <a [routerLink]="">
-        <img
-          class="object-cover"
-          [src]="playData.posterImageUrl"
-          [alt]="playData.title + ' poster'"
-        />
+      <a class="block h-full" [routerLink]="['/play', play.playId]">
+        <img class="h-full w-full object-cover" [src]="play.posterImageUrl" [alt]="play.title + ' poster'" />
       </a>
     </figure>
 
-    <div class="flex h-full flex-col gap-4">
-      <!-- title -->
-      <header class="inline-flex items-end">
-        <h3 class="font-medium text-wrap sm:text-2xl">
-          <a
-            [routerLink]=""
-            class="cursor-pointer transition-colors hover:text-emerald-500"
-          >
-            {{ playData.title }}
-          </a>
+    <div class="flex h-full flex-1 flex-col gap-2 py-1">
+      <header class="flex flex-col items-start gap-1 sm:inline-flex sm:flex-row sm:items-end sm:gap-2">
+        <h3 class="text-base font-semibold sm:text-xl">
+          <a [routerLink]="['/play', play.playId]" class="ui-link text-[var(--ui-text)]">{{ play.title }}</a>
         </h3>
-        <time
-          class="cursor-pointer font-extralight text-gray-300 transition-colors hover:text-emerald-500 sm:text-xl"
-        >
-          <a [routerLink]="">{{ playData.premiereDate | date: "yyyy" }}</a>
-        </time>
+        <time class="ui-meta">{{ play.premiereDate | date: "yyyy" }}</time>
       </header>
 
-      <!-- user -->
-      <section class="inline-flex items-center gap-2">
-        <a
-          class="inline-flex cursor-pointer items-center gap-2 transition-colors hover:text-emerald-500"
-          [routerLink]=""
-        >
+      <section class="flex flex-col items-start gap-1 sm:inline-flex sm:flex-row sm:items-center sm:gap-2">
+        <a class="ui-link inline-flex items-center gap-2" [routerLink]="['/list', 'reviewers']">
           <img
             class="w-6 rounded-full sm:w-7"
             [src]="reviewData.author.profilePhotoUrl"
             [alt]="reviewData.author.username + ' avatar'"
-            loading="lazy"
           />
-          <h4 class="font-semibold tracking-wider">
-            {{ reviewData.author.username }}
-          </h4>
+          <h4 class="text-sm font-semibold tracking-wide">{{ reviewData.author.username }}</h4>
         </a>
-        <div class="text-amber-400" role="img">
+        <div class="text-amber-400" role="img" aria-label="rating stars">
           <span *ngFor="let star of fullStars">★</span>
           <span *ngIf="hasHalfStar">½</span>
         </div>
       </section>
 
-      <!-- review -->
       <section>
-        <p
-          class="line-clamp-3 text-justify text-xs font-extralight tracking-wide text-gray-200 sm:text-sm"
-        >
+        <p class="line-clamp-3 text-xs tracking-wide text-[var(--ui-text-muted)] sm:text-sm">
           {{ reviewData.content }}
         </p>
       </section>
 
-      <!-- likes etc -->
-      <footer class="-mt-2 inline-flex gap-4">
-        <div class="inline-flex items-center gap-2">
+      <footer class="inline-flex gap-4 text-sm">
+        <div class="inline-flex items-center gap-2 text-[var(--ui-text-soft)]">
           <i class="fa-solid fa-heart fa-sm pb-0.5 text-red-500"></i>
-          <span class="text-sm text-gray-400">
-            {{ reviewData.likes | number }}
-            <span class="font-light">likes</span>
-          </span>
+          <span>{{ reviewData.likes | number }} <span class="font-light">likes</span></span>
         </div>
-        <!-- <div class="inline-flex items-center gap-2">
-          <i class="fa-solid fa-comment fa-sm pb-0.5 text-blue-500"></i>
-          <span class="text-sm text-gray-400">
-            {{ reviewData.numComments | number }}
-            <span class="font-light">comments</span>
-          </span>
-        </div> -->
       </footer>
     </div>
   </article>

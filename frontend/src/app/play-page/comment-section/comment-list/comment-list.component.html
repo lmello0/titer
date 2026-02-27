@@ -1,35 +1,36 @@
-<div class="max-h-200 min-h-20 overflow-auto">
-  @for (comment of comments; track $index) {
-    <div class="flex gap-4 border-t-1 border-b-1 border-gray-600 p-4">
+<div class="max-h-180 overflow-auto rounded-md border border-[var(--ui-border)]" *ngIf="comments.length > 0; else emptyState">
+  @for (comment of comments; track comment.id) {
+    <div class="flex gap-4 border-b border-[var(--ui-border)] p-4 last:border-b-0">
       <img
         [src]="comment.author.profilePhotoUrl"
         alt="{{ comment.author.username }}'s profile"
         class="h-8 w-8 rounded-full object-cover"
       />
-      <div class="flex flex-1 flex-col justify-between gap-2">
+      <div class="flex flex-1 flex-col gap-2">
         <div class="flex items-center justify-between">
           <div>
             <span class="font-semibold">{{ comment.author.username }}</span>
-            <span class="ml-2 text-sm text-gray-300">
-              {{ comment.date | date: "dd/MM/yyyy HH:mm" }}
-            </span>
+            <span class="ml-2 text-sm text-[var(--ui-text-soft)]">{{ comment.date | date: 'dd/MM/yyyy HH:mm' }}</span>
           </div>
+          <span class="ui-meta">{{ comment.rating | number: '1.1-1' }} ★</span>
         </div>
-        <p>{{ comment.content }}</p>
-        <div>
+        <p class="text-sm text-[var(--ui-text-muted)]">{{ comment.content }}</p>
+        <div class="inline-flex gap-4 text-sm">
           <button
             (click)="toggleLike(comment)"
-            class="flex cursor-pointer items-center gap-1 text-sm text-gray-600 transition hover:text-blue-500"
-            [ngClass]="{
-              'text-blue-500': comment.likedByUser,
-              'text-gray-600': !comment.likedByUser,
-            }"
+            class="inline-flex cursor-pointer items-center gap-1 text-[var(--ui-text-soft)] transition hover:text-emerald-300"
+            [ngClass]="{ 'text-emerald-300': comment.likedByUser }"
           >
             <i class="fa-solid fa-heart"></i>
             <span>{{ comment.likes }}</span>
           </button>
+          <span class="ui-meta" *ngIf="comment.numComments">{{ comment.numComments }} comments</span>
         </div>
       </div>
     </div>
   }
 </div>
+
+<ng-template #emptyState>
+  <div class="ui-card-subtle p-4 text-sm text-[var(--ui-text-muted)]">No reviews yet. Be the first to review this play.</div>
+</ng-template>

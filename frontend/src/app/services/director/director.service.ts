@@ -7,12 +7,12 @@ import { delay, Observable, of } from 'rxjs';
 })
 export class DirectorService {
   private mockDirectors: Director[] = [
-    { directorId: '1', directorName: 'Greta Gerwig' },
-    { directorId: '2', directorName: 'Quentin Tarantino' },
-    { directorId: '3', directorName: 'Martin Scorsese' },
-    { directorId: '4', directorName: 'Christopher Nolan' },
-    { directorId: '5', directorName: 'Francis Ford Coppola' },
-    { directorId: '6', directorName: 'Frank Darabont' },
+    { directorId: 'd1', directorName: 'Sam Mendes' },
+    { directorId: 'd2', directorName: 'Kenny Leon' },
+    { directorId: 'd3', directorName: 'Yael Farber' },
+    { directorId: 'd4', directorName: 'Phylicia Rashad' },
+    { directorId: 'd5', directorName: 'Jamie Lloyd' },
+    { directorId: 'd6', directorName: 'Ivo van Hove' },
   ];
 
   constructor() {}

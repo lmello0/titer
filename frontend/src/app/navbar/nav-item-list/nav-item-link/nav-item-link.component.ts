@@ -17,4 +17,12 @@ export class NavItemLinkComponent implements NavItem {
   @Output() onClick = new EventEmitter<string>();
 
   isMouseOn: boolean = false;
+
+  handleClick(event: MouseEvent): void {
+    if (!this.route) {
+      event.preventDefault();
+    }
+
+    this.onClick.emit(this.label);
+  }
 }

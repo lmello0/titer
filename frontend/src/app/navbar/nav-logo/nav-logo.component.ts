@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,10 +10,4 @@ import { RouterLink } from '@angular/router';
 })
 export class NavLogoComponent {
   @Input() isOnNavbarHover: boolean = false;
-
-  isMouseOnLogo: boolean = false;
-
-  changeMouseOnLogo(value: boolean) {
-    this.isMouseOnLogo = value;
-  }
 }

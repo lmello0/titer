@@ -1,25 +1,13 @@
-<div
-  *ngIf="isOpen"
-  class="fixed inset-0 z-100 flex w-full items-center justify-center"
->
-  <!-- backdrop -->
-  <div class="fixed h-full w-full bg-black opacity-50"></div>
+<div *ngIf="isOpen" class="fixed inset-0 z-100 flex w-full items-center justify-center px-3">
+  <div class="ui-overlay fixed inset-0"></div>
 
-  <!-- content -->
-  <div
-    class="z-110 w-sm rounded-lg bg-gray-800 p-6 shadow-lg sm:max-w-lg sm:min-w-lg"
-  >
-    <div class="flex justify-between">
-      <h4 class="text-xl font-semibold tracking-wider">{{ modalTitle }}</h4>
-      <button
-        (click)="onClose()"
-        class="cursor-pointer transition-colors hover:text-gray-400"
-      >
-        &times;
-      </button>
+  <div class="ui-card z-110 w-full max-w-xl p-5 sm:min-w-lg">
+    <div class="mb-2 flex items-center justify-between">
+      <h4 class="ui-heading-lg">{{ modalTitle }}</h4>
+      <button (click)="onClose()" class="ui-btn ui-btn-secondary !px-3 !py-1" aria-label="Close modal">&times;</button>
     </div>
 
-    <div class="m-6">
+    <div class="mb-5">
       <ng-content select="[modal-content]"></ng-content>
     </div>
 

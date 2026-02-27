@@ -1,41 +1,21 @@
-<div class="w-full border-t-[0.2px] border-gray-600 py-5">
-  <div class="space-y-4 sm:space-y-3">
-    <div class="flex w-full items-center justify-around py-2">
+<footer class="mt-8 w-full border-t border-[var(--ui-border)] bg-[rgba(10,16,28,0.72)] py-5">
+  <div class="mx-auto max-w-6xl space-y-4 px-4">
+    <div class="flex flex-wrap items-center justify-between gap-3">
       <div class="inline-flex items-center gap-2">
-        <img
-          class="h-7 object-cover"
-          src="assets/logo/logo-64.png"
-          alt="logo image"
-        />
+        <img class="h-7 object-cover" src="assets/logo/logo-64.png" alt="logo image" />
         <h2 class="text-xl font-bold tracking-wider">Titer</h2>
       </div>
 
-      <div>
-        <ul class="inline-flex gap-5">
-          <li>
-            <a class="cursor-pointer underline-offset-4 hover:underline"
-              >Privacy Policy</a
-            >
-          </li>
-          <li>
-            <a class="cursor-pointer underline-offset-4 hover:underline"
-              >Terms of Use</a
-            >
-          </li>
-        </ul>
-      </div>
+      <ul class="inline-flex gap-5 text-sm">
+        <li><a class="ui-link" routerLink="/list/privacy-policy">Privacy Policy</a></li>
+        <li><a class="ui-link" routerLink="/list/terms-of-use">Terms of Use</a></li>
+      </ul>
     </div>
-    <div>
-      <p class="text-center text-sm font-light tracking-wide text-gray-300">
-        Made by
-        <span
-          class="cursor-pointer font-semibold text-white underline-offset-4 hover:underline"
-          ><a href="https://github.com/lmello0" target="_blank"
-            >Lucas Mello dos Santos</a
-          ></span
-        >
-        - Copyright {{ currentYear }}
-      </p>
-    </div>
+
+    <p class="text-center text-sm text-[var(--ui-text-soft)]">
+      Made by
+      <a class="ui-link font-semibold" href="https://github.com/lmello0" target="_blank" rel="noopener noreferrer">Lucas Mello dos Santos</a>
+      · Copyright {{ currentYear }}
+    </p>
   </div>
-</div>
+</footer>

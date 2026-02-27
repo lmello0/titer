@@ -10,12 +10,7 @@
   ></app-search-input-with-field>
 
   <div *ngIf="actorName.length > 0" class="inline-flex items-center gap-2">
-    <label class="font-medium text-nowrap">As:</label>
-    <input
-      [formControl]="characterControl"
-      type="text"
-      placeholder="Romeo"
-      class="w-full bg-gray-500 px-2 py-1 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
-    />
+    <label class="ui-label !mb-0 text-nowrap">As:</label>
+    <input [formControl]="characterControl" type="text" placeholder="Romeo" class="ui-input" />
   </div>
 </div>

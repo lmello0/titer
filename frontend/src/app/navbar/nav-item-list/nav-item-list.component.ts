@@ -12,20 +12,18 @@ import { MobileNavbarOpenService } from '../../services/menu-open/mobile-navbar-
   styleUrl: './nav-item-list.component.css',
 })
 export class NavItemListComponent {
-  @Input() isOnNavbarHover: boolean = false;
+  @Input() isOnNavbarHover = false;
   @Output() onItemClick = new EventEmitter<string>();
 
-  isSearching: boolean = false;
-
   navItems: NavItem[] = [
-    { label: 'Submit New Play', route: 'submit-new-play' },
+    { label: 'Submit New Play', route: '/submit-new-play' },
     { label: 'Sign In' },
     { label: 'Create Account' },
   ];
 
   constructor(public isMenuOpenService: MobileNavbarOpenService) {}
 
-  click(label: string) {
+  click(label: string): void {
     this.onItemClick.emit(label);
   }
 }

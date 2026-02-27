@@ -1,5 +1,6 @@
-<div class="inline-flex gap-2">
+<div class="flex flex-col gap-2 sm:flex-row sm:items-center">
   <app-search-input
+    class="w-full"
     [options]="options"
     [placeholder]="searchPlaceholder"
     [selectedValue]="selectedValue"
@@ -8,13 +9,8 @@
     (selectionChange)="onSelectionChange($event)"
   ></app-search-input>
 
-  <div *ngIf="showField" class="inline-flex items-center gap-2">
-    <label class="font-medium text-nowrap">{{ label }}</label>
-    <input
-      [formControl]="fieldControl"
-      type="text"
-      [placeholder]="addPlaceholder"
-      class="w-full rounded-xs bg-gray-500 px-2 py-1 focus:shadow-[0_0_15px_rgba(0,0,0,0.75)] focus:outline-none"
-    />
+  <div *ngIf="showField" class="inline-flex w-full items-center gap-2">
+    <label class="ui-label !mb-0 text-nowrap">{{ label }}</label>
+    <input [formControl]="fieldControl" type="text" [placeholder]="addPlaceholder" class="ui-input" />
   </div>
 </div>

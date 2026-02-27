@@ -7,9 +7,12 @@ import { delay, Observable, of } from 'rxjs';
 })
 export class GenreService {
   private mockGenres: Genre[] = [
-    { genreId: '1', genreName: 'Action' },
-    { genreId: '2', genreName: 'Drama' },
-    { genreId: '3', genreName: 'Comedy' },
+    { genreId: 'g1', genreName: 'Drama' },
+    { genreId: 'g2', genreName: 'Comedy' },
+    { genreId: 'g3', genreName: 'Musical' },
+    { genreId: 'g4', genreName: 'Tragedy' },
+    { genreId: 'g5', genreName: 'Experimental' },
+    { genreId: 'g6', genreName: 'Other' },
   ];
 
   constructor() {}

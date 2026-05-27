@@ -1,0 +1,4 @@
+#file: noinspection YAMLSchemaValidation
+spring:
+  application:
+    name: titer

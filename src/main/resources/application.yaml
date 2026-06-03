@@ -1,12 +1,20 @@
 #file: noinspection YAMLSchemaValidation
 spring:
-  application:
-    name: titer
   datasource:
-    url: jdbc:sqlite:./data/app.db
-    username: sa
-    password: sa
+    url: jdbc:postgresql://localhost:5432/titer
+    username: titer_user
+    password: 1234
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        type:
+          preferred_uuid_jdbc_type: VARCHAR
+
+app:
+  jwt:
+    secret: "fF1ydJYfTJwJDXZDAOLzk9CZIeQJPBuaflmrpanodEz"
+    expiration-ms: 86400000

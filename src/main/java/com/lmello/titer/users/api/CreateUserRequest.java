@@ -1,9 +1,6 @@
-package com.lmello.titer.user;
+package com.lmello.titer.users.api;
 
-import java.util.UUID;
-
-public record UserDTO(
-        UUID id,
+public record CreateUserRequest(
         String username,
         String email,
         String name,

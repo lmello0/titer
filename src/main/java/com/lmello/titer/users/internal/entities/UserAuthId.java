@@ -1,0 +1,26 @@
+package com.lmello.titer.users.internal.entities;
+
+import com.lmello.titer.users.internal.enums.AuthProvider;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.*;
+
+import java.io.Serializable;
+import java.util.UUID;
+
+@Embeddable
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@Setter
+@EqualsAndHashCode
+public class UserAuthId implements Serializable {
+
+    private UUID userId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    AuthProvider provider;
+}

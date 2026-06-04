@@ -1,20 +1,31 @@
 #file: noinspection YAMLSchemaValidation
 spring:
+  application:
+    name: titer
+
   datasource:
     url: jdbc:postgresql://localhost:5432/titer
     username: titer_user
     password: 1234
+    driver-class-name: org.postgresql.Driver
+
   jpa:
-    show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+    show-sql: true
     open-in-view: false
-    properties:
-      hibernate:
-        type:
-          preferred_uuid_jdbc_type: VARCHAR
 
 app:
-  jwt:
-    secret: "fF1ydJYfTJwJDXZDAOLzk9CZIeQJPBuaflmrpanodEz"
-    expiration-ms: 86400000
+  security:
+    jwt-secret: "fF1ydJYfTJwJDXZDAOLzk9CZIeQJPBuaflmrpanodEz"
+    jwt-expiration-ms: 86400000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,modulith

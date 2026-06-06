@@ -1,6 +1,5 @@
 package com.lmello.titer.users.api;
 
-import com.lmello.titer.users.internal.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -32,8 +31,6 @@ public record RegisterRequest(
         @Size(max = 100)
         String lastName,
 
-        String profilePicture,
-
-        Role role
+        String profilePicture
 ) {
 }

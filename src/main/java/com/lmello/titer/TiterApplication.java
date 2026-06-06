@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @SpringBootApplication
 @EnableConfigurationProperties(JwtProperties.class)
 public class TiterApplication {
-	static void main(String[] args) {
-		SpringApplication.run(TiterApplication.class, args);
-	}
+    static void main(String[] args) {
+        SpringApplication.run(TiterApplication.class, args);
+    }
 }

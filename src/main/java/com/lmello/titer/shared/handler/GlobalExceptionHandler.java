@@ -76,8 +76,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({
             IllegalArgumentException.class,
-            IllegalStateException.class,
-            DomainException.class
+            IllegalStateException.class
     })
     public ResponseEntity<ProblemDetail> handleBadRequest(RuntimeException ex) {
         ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
@@ -87,7 +86,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(problem);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({
+            Exception.class,
+            DomainException.class
+    })
     public ResponseEntity<ProblemDetail> handleUnexpected(Exception ex) {
         ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         problem.setTitle("Internal server error");

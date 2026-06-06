@@ -18,6 +18,11 @@ spring:
   flyway:
     enabled: true
 
+  web:
+    error:
+      whitelabel:
+        enabled: false
+
 app:
   security:
     jwt:

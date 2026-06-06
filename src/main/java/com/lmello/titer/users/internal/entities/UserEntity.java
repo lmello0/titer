@@ -1,5 +1,6 @@
 package com.lmello.titer.users.internal.entities;
 
+import com.lmello.titer.shared.entities.AuditableEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-public class UserEntity {
+public class UserEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

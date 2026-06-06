@@ -1,13 +1,16 @@
 package com.lmello.titer.users.internal.services;
 
 import com.lmello.titer.security.JwtService;
+import com.lmello.titer.users.AuthService;
 import com.lmello.titer.users.api.AuthResponse;
 import com.lmello.titer.users.api.LoginRequest;
 import com.lmello.titer.users.api.RegisterRequest;
 import com.lmello.titer.users.internal.entities.RoleEntity;
 import com.lmello.titer.users.internal.entities.UserAuthEntity;
 import com.lmello.titer.users.internal.entities.UserEntity;
+import com.lmello.titer.users.internal.entities.UserRoleAuditEntity;
 import com.lmello.titer.users.internal.enums.AuthProvider;
+import com.lmello.titer.users.internal.enums.UserRoleAuditAction;
 import com.lmello.titer.users.internal.exception.DuplicateUserException;
 import com.lmello.titer.users.internal.exception.InvalidCredentialsException;
 import com.lmello.titer.users.internal.exception.RoleNotFoundException;
@@ -16,6 +19,7 @@ import com.lmello.titer.users.internal.mapper.UserMapper;
 import com.lmello.titer.users.internal.repositories.RoleRepository;
 import com.lmello.titer.users.internal.repositories.UserAuthRepository;
 import com.lmello.titer.users.internal.repositories.UserRepository;
+import com.lmello.titer.users.internal.repositories.UserRoleAuditRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final UserAuthRepository authRepository;
     private final RoleRepository roleRepository;
+    private final UserRoleAuditRepository userRoleAuditRepository;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -43,7 +48,7 @@ public class AuthServiceImpl implements AuthService {
             throw new DuplicateUserException();
         }
 
-        RoleEntity defaultRole = roleRepository.findByRole(request.role())
+        RoleEntity defaultRole = roleRepository.findByName(request.role().name())
                 .orElseThrow(() -> new RoleNotFoundException(request.role()));
 
         UserEntity newUser = UserEntity.builder()
@@ -55,7 +60,21 @@ public class AuthServiceImpl implements AuthService {
                 .build();
 
         newUser.addRole(defaultRole);
-        newUser = userRepository.save(newUser);
+        newUser = userRepository.saveAndFlush(newUser);
+
+        String performedBy = newUser.getId().toString();
+
+        userRepository.setCreatedByAndModifiedByToSelf(newUser.getId());
+
+        UserRoleAuditEntity roleAudit = UserRoleAuditEntity.builder()
+                .user(newUser)
+                .role(defaultRole)
+                .action(UserRoleAuditAction.GRANTED)
+                .performedBy(performedBy)
+                .reason("Default role granted during user registration")
+                .build();
+
+        userRoleAuditRepository.save(roleAudit);
 
         String passwordHash = passwordEncoder.encode(request.password());
 

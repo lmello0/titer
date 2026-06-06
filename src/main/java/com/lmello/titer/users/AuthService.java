@@ -1,4 +1,4 @@
-package com.lmello.titer.users.internal.services;
+package com.lmello.titer.users;
 
 import com.lmello.titer.users.api.AuthResponse;
 import com.lmello.titer.users.api.LoginRequest;

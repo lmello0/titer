@@ -9,6 +9,8 @@ import com.lmello.titer.users.internal.entities.UserAuthEntity;
 import com.lmello.titer.users.internal.entities.UserEntity;
 import com.lmello.titer.users.internal.enums.AuthProvider;
 import com.lmello.titer.users.internal.exception.DuplicateUserException;
+import com.lmello.titer.users.internal.exception.InvalidCredentialsException;
+import com.lmello.titer.users.internal.exception.RoleNotFoundException;
 import com.lmello.titer.users.internal.mapper.AuthMapper;
 import com.lmello.titer.users.internal.mapper.UserMapper;
 import com.lmello.titer.users.internal.repositories.RoleRepository;
@@ -38,11 +40,11 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByUsernameOrEmail(request.username(), request.email())) {
-            throw new DuplicateUserException(request.username(), request.email());
+            throw new DuplicateUserException();
         }
 
         RoleEntity defaultRole = roleRepository.findByRole(request.role())
-                .orElseThrow(() -> new IllegalStateException(request.role() + " role not found"));
+                .orElseThrow(() -> new RoleNotFoundException(request.role()));
 
         UserEntity newUser = UserEntity.builder()
                 .username(request.username())
@@ -76,10 +78,10 @@ public class AuthServiceImpl implements AuthService {
         UserAuthEntity auth =
                 authRepository.findByUserUsernameAndIdProvider(request.identifier(), AuthProvider.LOCAL)
                         .or(() -> authRepository.findByUserEmailAndIdProvider(request.identifier(), AuthProvider.LOCAL))
-                        .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));
+                        .orElseThrow(InvalidCredentialsException::new);
 
         if (!passwordEncoder.matches(request.password(), auth.getPasswordHash())) {
-            throw new IllegalArgumentException("Invalid credentials");
+            throw new InvalidCredentialsException();
         }
 
         UserEntity u = auth.getUser();

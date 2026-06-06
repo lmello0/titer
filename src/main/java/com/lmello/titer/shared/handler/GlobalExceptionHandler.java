@@ -1,7 +1,7 @@
 package com.lmello.titer.shared.handler;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.support.PropertiesLoaderSupport;
+import com.lmello.titer.shared.exception.DomainException;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import tools.jackson.databind.exc.InvalidFormatException;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Order
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -76,7 +76,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({
             IllegalArgumentException.class,
-            IllegalStateException.class
+            IllegalStateException.class,
+            DomainException.class
     })
     public ResponseEntity<ProblemDetail> handleBadRequest(RuntimeException ex) {
         ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);

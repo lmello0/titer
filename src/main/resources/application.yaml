@@ -4,7 +4,7 @@ spring:
     name: titer
 
   datasource:
-    url: jdbc:postgresql://localhost:5432
+    url: jdbc:postgresql://localhost:5432/titer
     username: titer_user
     password: 1234
     driver-class-name: org.postgresql.Driver
@@ -33,4 +33,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,modulith
+        include: health,info,metrics,modulith,flyway

@@ -28,29 +28,29 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final UserAuthRepository authRepository;
     private final RoleRepository roleRepository;
+
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+
     private final UserMapper userMapper;
     private final AuthMapper authMapper;
 
     @Transactional
     public AuthResponse register(RegisterRequest request) {
-        if (userRepository.existsByEmailOrUsername(request.email(), request.username())) {
-            throw new DuplicateUserException(request.email(), request.username());
+        if (userRepository.existsByUsernameOrEmail(request.username(), request.email())) {
+            throw new DuplicateUserException(request.username(), request.email());
         }
 
-        RoleEntity defaultRole = roleRepository.findByName("USER")
-                .orElseThrow(() -> new IllegalStateException("USER role not found"));
+        RoleEntity defaultRole = roleRepository.findByRole(request.role())
+                .orElseThrow(() -> new IllegalStateException(request.role() + " role not found"));
 
-        UserEntity newUser = userRepository.save(
-                UserEntity.builder()
-                        .username(request.username())
-                        .email(request.email())
-                        .firstName(request.firstName())
-                        .lastName(request.lastName())
-                        .profilePicture(request.profilePicture())
-                        .build()
-        );
+        UserEntity newUser = UserEntity.builder()
+                .username(request.username())
+                .email(request.email())
+                .firstName(request.firstName())
+                .lastName(request.lastName())
+                .profilePicture(request.profilePicture())
+                .build();
 
         newUser.addRole(defaultRole);
         newUser = userRepository.save(newUser);

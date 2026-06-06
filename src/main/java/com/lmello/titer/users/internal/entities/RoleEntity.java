@@ -3,9 +3,6 @@ package com.lmello.titer.users.internal.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 @Table(name = "roles", schema = "users")
 @Getter
@@ -24,8 +21,4 @@ public class RoleEntity {
 
     @Column(columnDefinition = "text")
     private String description;
-
-    @Builder.Default
-    @ManyToMany(mappedBy = "roles")
-    private Set<UserEntity> users = new HashSet<>();
 }

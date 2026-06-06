@@ -17,7 +17,7 @@ CREATE TABLE users.user_auths
     user_id       UUID        NOT NULL,
     provider      VARCHAR(20) NOT NULL,
     CONSTRAINT pk_user_auths PRIMARY KEY (user_id, provider),
-    CONSTRAINT fk_user_auth_on_users FOREIGN KEY (user_id) REFERENCES users.users (id)
+    CONSTRAINT fk_user_auth_on_users FOREIGN KEY (user_id) REFERENCES users.users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE users.roles
@@ -48,6 +48,6 @@ CREATE TABLE users.user_roles
     role_id BIGINT NOT NULL,
     user_id UUID   NOT NULL,
     CONSTRAINT pk_user_roles PRIMARY KEY (role_id, user_id),
-    CONSTRAINT fk_user_roles_on_users FOREIGN KEY (user_id) REFERENCES users.users (id),
-    CONSTRAINT fk_user_roles_on_roles FOREIGN KEY (role_id) REFERENCES users.roles (id)
+    CONSTRAINT fk_user_roles_on_users FOREIGN KEY (user_id) REFERENCES users.users (id) ON DELETE CASCADE,
+    CONSTRAINT fk_user_roles_on_roles FOREIGN KEY (role_id) REFERENCES users.roles (id) ON DELETE CASCADE
 );

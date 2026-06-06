@@ -25,7 +25,7 @@ public class UserEntity {
     @Column(nullable = false, unique = true, length = 20)
     private String username;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(length = 100)
@@ -38,7 +38,7 @@ public class UserEntity {
     private String profilePicture;
 
     @Builder.Default
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_roles",
             schema = "users",
@@ -49,6 +49,5 @@ public class UserEntity {
 
     public void addRole(RoleEntity role) {
         this.roles.add(role);
-        role.getUsers().add(this);
     }
 }

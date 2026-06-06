@@ -4,21 +4,26 @@ spring:
     name: titer
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/titer
+    url: jdbc:postgresql://localhost:5432
     username: titer_user
     password: 1234
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
     open-in-view: false
 
+  flyway:
+    enabled: true
+
 app:
   security:
-    jwt-secret: "fF1ydJYfTJwJDXZDAOLzk9CZIeQJPBuaflmrpanodEz"
-    jwt-expiration-ms: 86400000
+    jwt:
+      secret: "w6MG6ScHfY6GYVNgyTd1pnbaZzH/Wn/akM0EPn7/I14="
+      expiration-seconds: 86_400
+      issuer: "titer-backend-eefbd064-569b-428c-a68c-bd7d94b7be64"
 
 springdoc:
   swagger-ui:

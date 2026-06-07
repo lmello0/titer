@@ -1,5 +1,6 @@
-package com.lmello.titer.security;
+package com.lmello.titer.shared.config;
 
+import com.lmello.titer.shared.properties.JwtProperties;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

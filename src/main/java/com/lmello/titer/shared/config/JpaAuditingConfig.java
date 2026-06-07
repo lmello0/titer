@@ -1,6 +1,6 @@
 package com.lmello.titer.shared.config;
 
-import com.lmello.titer.shared.entities.SpringSecurityAuditorAware;
+import com.lmello.titer.shared.services.SpringSecurityAuditorAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;

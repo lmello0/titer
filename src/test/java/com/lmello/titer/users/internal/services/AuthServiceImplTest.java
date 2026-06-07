@@ -17,9 +17,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AuthServiceImplTest {
@@ -35,6 +33,39 @@ class AuthServiceImplTest {
 
     @InjectMocks
     private AuthServiceImpl authService;
+
+    private static RegisterRequest registerRequest() {
+        return new RegisterRequest(
+                "alice",
+                "alice@example.com",
+                "P@ssw0rd!",
+                "Alice",
+                "Example",
+                "https://example.com/alice.png"
+        );
+    }
+
+    private static UserEntity user() {
+        return UserEntity.builder()
+                .id(UUID.randomUUID())
+                .username("alice")
+                .email("alice@example.com")
+                .build();
+    }
+
+    private static AuthResponse authResponse(UserEntity user) {
+        return new AuthResponse(
+                "jwt",
+                new UserResponse(
+                        user.getId(),
+                        user.getEmail(),
+                        user.getUsername(),
+                        user.getFirstName(),
+                        user.getLastName(),
+                        user.getProfilePicture()
+                )
+        );
+    }
 
     @Test
     void registerCreatesUserCredentialsAndResponse() {
@@ -83,38 +114,5 @@ class AuthServiceImplTest {
         InOrder inOrder = inOrder(localCredentialService, authResponseFactory);
         inOrder.verify(localCredentialService).authenticate(request);
         inOrder.verify(authResponseFactory).create(user);
-    }
-
-    private static RegisterRequest registerRequest() {
-        return new RegisterRequest(
-                "alice",
-                "alice@example.com",
-                "P@ssw0rd!",
-                "Alice",
-                "Example",
-                "https://example.com/alice.png"
-        );
-    }
-
-    private static UserEntity user() {
-        return UserEntity.builder()
-                .id(UUID.randomUUID())
-                .username("alice")
-                .email("alice@example.com")
-                .build();
-    }
-
-    private static AuthResponse authResponse(UserEntity user) {
-        return new AuthResponse(
-                "jwt",
-                new UserResponse(
-                        user.getId(),
-                        user.getEmail(),
-                        user.getUsername(),
-                        user.getFirstName(),
-                        user.getLastName(),
-                        user.getProfilePicture()
-                )
-        );
     }
 }

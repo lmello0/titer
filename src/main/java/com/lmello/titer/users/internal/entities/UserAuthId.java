@@ -15,12 +15,12 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
+@Builder
 @EqualsAndHashCode
 public class UserAuthId implements Serializable {
-
-    private UUID userId;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     AuthProvider provider;
+    private UUID userId;
 }

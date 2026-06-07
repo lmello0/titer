@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
 
 public record RegisterRequest(
         @NotBlank
@@ -31,6 +32,6 @@ public record RegisterRequest(
         @Size(max = 100)
         String lastName,
 
-        String profilePicture
+        MultipartFile profilePicture
 ) {
 }

@@ -1,5 +1,7 @@
-package com.lmello.titer.security;
+package com.lmello.titer.shared.api.jwt.services;
 
+import com.lmello.titer.shared.api.jwt.JwtService;
+import com.lmello.titer.shared.properties.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.jwt.JwsHeader;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;

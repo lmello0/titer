@@ -1,6 +1,6 @@
 package com.lmello.titer.users.internal.services;
 
-import com.lmello.titer.security.JwtService;
+import com.lmello.titer.shared.api.jwt.JwtService;
 import com.lmello.titer.users.api.AuthResponse;
 import com.lmello.titer.users.api.UserResponse;
 import com.lmello.titer.users.internal.entities.RoleEntity;

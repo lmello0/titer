@@ -1,5 +1,9 @@
 package com.lmello.titer.users.internal.services;
 
+import com.lmello.titer.storage.api.FileRules;
+import com.lmello.titer.storage.api.FileService;
+import com.lmello.titer.storage.api.StoreFileRequest;
+import com.lmello.titer.storage.api.StoredFile;
 import com.lmello.titer.users.api.RegisterRequest;
 import com.lmello.titer.users.internal.entities.RoleEntity;
 import com.lmello.titer.users.internal.entities.UserEntity;
@@ -13,6 +17,8 @@ import com.lmello.titer.users.internal.repositories.UserRepository;
 import com.lmello.titer.users.internal.repositories.UserRoleAuditRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +28,9 @@ public class UserRegistrationService {
     private final RoleRepository roleRepository;
     private final UserRoleAuditRepository userRoleAuditRepository;
 
+    private final FileService fileService;
+
+    @Transactional
     public UserEntity createLocalUser(RegisterRequest request) {
         if (userRepository.existsByUsernameOrEmail(request.username(), request.email())) {
             throw new DuplicateUserException();
@@ -35,14 +44,26 @@ public class UserRegistrationService {
                 .email(request.email())
                 .firstName(request.firstName())
                 .lastName(request.lastName())
-                .profilePicture(request.profilePicture())
                 .build();
 
         newUser.addRole(defaultRole);
         newUser = userRepository.saveAndFlush(newUser);
 
-        userRepository.setCreatedByAndModifiedByToSelf(newUser.getId());
+        String userId = newUser.getId().toString();
+
+        newUser.setCreatedBy(userId);
+        newUser.setModifiedBy(userId);
+
         auditDefaultRoleGrant(newUser, defaultRole);
+
+        StoredFile profilePicture = storeProfilePictureIfPresent(
+                newUser,
+                request.profilePicture()
+        );
+
+        if (profilePicture != null) {
+            newUser.setProfilePicture(profilePicture.fileId());
+        }
 
         return newUser;
     }
@@ -57,5 +78,21 @@ public class UserRegistrationService {
                 .build();
 
         userRoleAuditRepository.save(roleAudit);
+    }
+
+    private StoredFile storeProfilePictureIfPresent(UserEntity user, MultipartFile file) {
+        if (file == null || file.isEmpty()) {
+            return null;
+        }
+
+        return fileService.store(
+                new StoreFileRequest(
+                        file,
+                        "profile-pictures",
+                        "avatar_%s".formatted(user.getId()),
+                        user.getId().toString(),
+                        FileRules.defaultImage()
+                )
+        );
     }
 }

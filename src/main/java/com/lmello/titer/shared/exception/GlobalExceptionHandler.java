@@ -1,6 +1,5 @@
-package com.lmello.titer.shared.handler;
+package com.lmello.titer.shared.exception;
 
-import com.lmello.titer.shared.exception.DomainException;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;

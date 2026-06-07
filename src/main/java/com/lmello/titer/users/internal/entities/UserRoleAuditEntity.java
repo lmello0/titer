@@ -3,6 +3,7 @@ package com.lmello.titer.users.internal.entities;
 import com.lmello.titer.users.internal.enums.UserRoleAuditAction;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -17,7 +18,9 @@ import java.util.UUID;
 public class UserRoleAuditEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue
+    @UuidGenerator(style = UuidGenerator.Style.VERSION_7)
+    @Column(nullable = false, updatable = false)
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

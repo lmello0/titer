@@ -1,4 +1,4 @@
-package com.lmello.titer.security;
+package com.lmello.titer.shared.api.jwt;
 
 import java.util.Set;
 import java.util.UUID;

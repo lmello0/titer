@@ -23,9 +23,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserRegistrationServiceTest {
@@ -41,6 +39,17 @@ class UserRegistrationServiceTest {
 
     @InjectMocks
     private UserRegistrationService userRegistrationService;
+
+    private static RegisterRequest registerRequest() {
+        return new RegisterRequest(
+                "alice",
+                "alice@example.com",
+                "P@ssw0rd!",
+                "Alice",
+                "Example",
+                "https://example.com/alice.png"
+        );
+    }
 
     @Test
     void createLocalUserAlwaysGrantsDefaultUserRole() {
@@ -85,16 +94,5 @@ class UserRegistrationServiceTest {
         verify(roleRepository, never()).findByName(any());
         verify(userRepository, never()).saveAndFlush(any());
         verify(userRoleAuditRepository, never()).save(any());
-    }
-
-    private static RegisterRequest registerRequest() {
-        return new RegisterRequest(
-                "alice",
-                "alice@example.com",
-                "P@ssw0rd!",
-                "Alice",
-                "Example",
-                "https://example.com/alice.png"
-        );
     }
 }

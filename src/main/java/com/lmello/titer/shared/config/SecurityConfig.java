@@ -1,4 +1,4 @@
-package com.lmello.titer.security;
+package com.lmello.titer.shared.config;
 
 import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;

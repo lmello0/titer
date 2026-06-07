@@ -23,12 +23,29 @@ spring:
       whitelabel:
         enabled: false
 
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 10MB
+
 app:
   security:
     jwt:
       secret: "w6MG6ScHfY6GYVNgyTd1pnbaZzH/Wn/akM0EPn7/I14="
       expiration-seconds: 86_400
       issuer: "titer-backend-eefbd064-569b-428c-a68c-bd7d94b7be64"
+  storage:
+    provider: local
+    local:
+      base-path: "uploads"
+      public-base-url:
+
+aws:
+  region: us-east-1
+  s3:
+    endpoint: http://localhost:4566
+    access-key-id: test
+    secret-access-key: test
 
 springdoc:
   swagger-ui:

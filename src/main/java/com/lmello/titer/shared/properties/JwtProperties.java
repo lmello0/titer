@@ -1,4 +1,4 @@
-package com.lmello.titer.security;
+package com.lmello.titer.shared.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -19,8 +19,9 @@ import java.util.UUID;
 public class UserEntity extends AuditableEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @UuidGenerator
+    @GeneratedValue
+    @UuidGenerator(style = UuidGenerator.Style.VERSION_7)
+    @Column(nullable = false, updatable = false)
     private UUID id;
 
     @Column(nullable = false, unique = true, length = 20)
@@ -35,8 +36,8 @@ public class UserEntity extends AuditableEntity {
     @Column(length = 100)
     private String lastName;
 
-    @Column(length = 2048)
-    private String profilePicture;
+    @Column(name = "profile_picture_file_id", length = 2048)
+    private UUID profilePicture;
 
     @Builder.Default
     @ManyToMany(fetch = FetchType.LAZY)

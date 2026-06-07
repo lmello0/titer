@@ -1,0 +1,4 @@
+#file: noinspection YAMLSchemaValidation
+app:
+  storage:
+    provider: database

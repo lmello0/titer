@@ -30,10 +30,11 @@ public class UserAuthEntity {
             String passwordHash
     ) {
         return UserAuthEntity.builder()
-                .id(new UserAuthId(
-                        user.getId(),
-                        AuthProvider.LOCAL
-                ))
+                .id(UserAuthId.builder()
+                        .userId(user.getId())
+                        .provider(AuthProvider.LOCAL)
+                        .build()
+                )
                 .user(user)
                 .passwordHash(passwordHash)
                 .build();

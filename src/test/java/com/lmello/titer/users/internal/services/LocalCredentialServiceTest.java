@@ -20,9 +20,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class LocalCredentialServiceTest {
@@ -35,6 +33,22 @@ class LocalCredentialServiceTest {
 
     @InjectMocks
     private LocalCredentialService localCredentialService;
+
+    private static UserEntity user() {
+        return UserEntity.builder()
+                .id(UUID.randomUUID())
+                .username("alice")
+                .email("alice@example.com")
+                .build();
+    }
+
+    private static UserAuthEntity localAuth(UserEntity user) {
+        return UserAuthEntity.builder()
+                .id(new UserAuthId(user.getId(), AuthProvider.LOCAL))
+                .user(user)
+                .passwordHash("hash")
+                .build();
+    }
 
     @Test
     void createHashesPasswordAndSavesLocalAuth() {
@@ -104,21 +118,5 @@ class LocalCredentialServiceTest {
 
         assertThatThrownBy(() -> localCredentialService.authenticate(request))
                 .isInstanceOf(InvalidCredentialsException.class);
-    }
-
-    private static UserEntity user() {
-        return UserEntity.builder()
-                .id(UUID.randomUUID())
-                .username("alice")
-                .email("alice@example.com")
-                .build();
-    }
-
-    private static UserAuthEntity localAuth(UserEntity user) {
-        return UserAuthEntity.builder()
-                .id(new UserAuthId(user.getId(), AuthProvider.LOCAL))
-                .user(user)
-                .passwordHash("hash")
-                .build();
     }
 }

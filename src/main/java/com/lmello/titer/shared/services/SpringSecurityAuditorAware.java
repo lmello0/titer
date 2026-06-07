@@ -1,4 +1,4 @@
-package com.lmello.titer.shared.entities;
+package com.lmello.titer.shared.services;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

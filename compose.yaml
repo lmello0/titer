@@ -7,3 +7,17 @@ services:
       - 'POSTGRES_PASSWORD=titer_admin'
     ports:
       - '5432:5432'
+
+  ministack:
+    image: ministackorg/ministack:full
+    ports:
+      - '4566:4566'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - REDIS_HOST=redis
+
+  redis:
+    image: redis:8.8.0-alpine
+    ports:
+      - '6379:6379'

@@ -1,12 +1,29 @@
 package com.lmello.titer.users.internal.mapper;
 
+import com.lmello.titer.storage.api.FileService;
 import com.lmello.titer.users.api.UserResponse;
 import com.lmello.titer.users.internal.entities.UserEntity;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface UserMapper {
+@Component
+@RequiredArgsConstructor
+public class UserMapper {
 
-    UserResponse toResponse(UserEntity entity);
+    private final FileService fileService;
+
+    public UserResponse toResponse(UserEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+
+        return new UserResponse(
+                entity.getId(),
+                entity.getEmail(),
+                entity.getUsername(),
+                entity.getFirstName(),
+                entity.getLastName(),
+                entity.getProfilePicture() == null ? null : fileService.publicUrl(entity.getProfilePicture())
+        );
+    }
 }

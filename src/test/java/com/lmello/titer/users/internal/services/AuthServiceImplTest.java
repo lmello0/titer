@@ -41,7 +41,7 @@ class AuthServiceImplTest {
                 "P@ssw0rd!",
                 "Alice",
                 "Example",
-                "https://example.com/alice.png"
+                null
         );
     }
 
@@ -62,7 +62,7 @@ class AuthServiceImplTest {
                         user.getUsername(),
                         user.getFirstName(),
                         user.getLastName(),
-                        user.getProfilePicture()
+                        user.getProfilePicture() == null ? null : "/files/" + user.getProfilePicture()
                 )
         );
     }

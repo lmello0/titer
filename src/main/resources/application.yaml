@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/titer
     username: titer_user
-    password: 1234
+    password: titer_admin
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -36,9 +36,9 @@ app:
       issuer: "titer-backend-eefbd064-569b-428c-a68c-bd7d94b7be64"
   storage:
     provider: local
+    public-base-url: "http://localhost:8080"
     local:
       base-path: "uploads"
-      public-base-url:
 
 aws:
   region: us-east-1

@@ -44,7 +44,7 @@ class LocalCredentialServiceTest {
 
     private static UserAuthEntity localAuth(UserEntity user) {
         return UserAuthEntity.builder()
-                .id(new UserAuthId(user.getId(), AuthProvider.LOCAL))
+                .id(new UserAuthId(AuthProvider.LOCAL, user.getId()))
                 .user(user)
                 .passwordHash("hash")
                 .build();
@@ -64,7 +64,7 @@ class LocalCredentialServiceTest {
         UserAuthEntity saved = captor.getValue();
         assertThat(saved.getUser()).isSameAs(user);
         assertThat(saved.getPasswordHash()).isEqualTo("hash");
-        assertThat(saved.getId()).isEqualTo(new UserAuthId(user.getId(), AuthProvider.LOCAL));
+        assertThat(saved.getId()).isEqualTo(new UserAuthId(AuthProvider.LOCAL, user.getId()));
     }
 
     @Test

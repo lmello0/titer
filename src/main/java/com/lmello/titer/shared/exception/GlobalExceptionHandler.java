@@ -1,5 +1,6 @@
 package com.lmello.titer.shared.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Order
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -94,6 +96,7 @@ public class GlobalExceptionHandler {
         problem.setTitle("Internal server error");
         problem.setDetail("Unexpected error");
 
+        log.error("Internal server error", ex);
         return ResponseEntity.internalServerError().body(problem);
     }
 }

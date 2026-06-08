@@ -18,7 +18,7 @@
         <spring-modulith.version>2.0.6</spring-modulith.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <aws.java.sdk.version>2.46.5</aws.java.sdk.version>
-    <kotlin.version>2.3.10</kotlin.version>
+        <byte-buddy.version>1.17.8</byte-buddy.version>
     </properties>
 
     <dependencies>
@@ -287,6 +287,13 @@
                         <option>all-open:annotation=jakarta.persistence.Embeddable</option>
                         <option>all-open:annotation=jakarta.persistence.MappedSuperclass</option>
                     </pluginOptions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
                 </configuration>
             </plugin>
             <plugin>

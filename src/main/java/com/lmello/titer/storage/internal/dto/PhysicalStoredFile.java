@@ -1,4 +1,4 @@
-package com.lmello.titer.storage.api;
+package com.lmello.titer.storage.internal.dto;
 
 import com.lmello.titer.storage.internal.enums.StorageProvider;
 

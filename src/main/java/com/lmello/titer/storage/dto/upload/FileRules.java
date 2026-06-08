@@ -1,4 +1,4 @@
-package com.lmello.titer.storage.api;
+package com.lmello.titer.storage.dto.upload;
 
 import java.util.Set;
 

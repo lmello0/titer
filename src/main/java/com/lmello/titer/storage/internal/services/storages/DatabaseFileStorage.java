@@ -1,14 +1,19 @@
-package com.lmello.titer.storage.internal.services;
+package com.lmello.titer.storage.internal.services.storages;
 
-import com.lmello.titer.storage.api.PhysicalStoredFile;
-import com.lmello.titer.storage.api.StoreFileCommand;
+import com.lmello.titer.storage.dto.download.FileDownload;
+import com.lmello.titer.storage.dto.file.StoredFile;
+import com.lmello.titer.storage.internal.dto.PhysicalStoredFile;
+import com.lmello.titer.storage.internal.dto.PreparedStoredFile;
+import com.lmello.titer.storage.internal.dto.StoreFileCommand;
+import com.lmello.titer.storage.internal.entities.FileEntity;
 import com.lmello.titer.storage.internal.enums.StorageProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 @Service
 @ConditionalOnProperty(
@@ -18,7 +23,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class DatabaseFileStorage implements FileStorage {
 
-    private final FileValidator fileValidator;
+    private final FileStorageSupport support;
 
     @Override
     public StorageProvider provider() {
@@ -27,28 +32,30 @@ public class DatabaseFileStorage implements FileStorage {
 
     @Override
     public PhysicalStoredFile store(StoreFileCommand command) {
-        MultipartFile file = command.file();
+        PreparedStoredFile preparedFile = support.prepare(command);
 
-        fileValidator.validate(file, command.rules());
-
-        String extension = fileValidator.extensionFrom(file);
-
-        String storedName = "%s.%s".formatted(command.fileId(), extension);
-
-        try {
+        try (InputStream inputStream = preparedFile.file().content()) {
             return new PhysicalStoredFile(
                     provider(),
-                    storedName,
+                    preparedFile.storedName(),
                     null,
                     String.valueOf(command.fileId()),
                     "/files/" + command.fileId(),
                     null,
-                    file.getBytes()
+                    inputStream.readAllBytes()
             );
         } catch (IOException exception) {
             throw new IllegalStateException("Could not read file bytes", exception);
         }
 
+    }
+
+    @Override
+    public FileDownload download(FileEntity file, StoredFile metadata) {
+        return new FileDownload(
+                metadata,
+                new ByteArrayInputStream(file.getData())
+        );
     }
 
     @Override

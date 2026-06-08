@@ -1,5 +1,6 @@
 package com.lmello.titer.users.internal.services;
 
+import com.lmello.titer.storage.api.FileService;
 import com.lmello.titer.users.api.RegisterRequest;
 import com.lmello.titer.users.internal.entities.RoleEntity;
 import com.lmello.titer.users.internal.entities.UserEntity;
@@ -37,6 +38,9 @@ class UserRegistrationServiceTest {
     @Mock
     private UserRoleAuditRepository userRoleAuditRepository;
 
+    @Mock
+    private FileService fileService;
+
     @InjectMocks
     private UserRegistrationService userRegistrationService;
 
@@ -47,7 +51,7 @@ class UserRegistrationServiceTest {
                 "P@ssw0rd!",
                 "Alice",
                 "Example",
-                "https://example.com/alice.png"
+                null
         );
     }
 
@@ -69,8 +73,6 @@ class UserRegistrationServiceTest {
         assertThat(result.getUsername()).isEqualTo(request.username());
         assertThat(result.getEmail()).isEqualTo(request.email());
         assertThat(result.getRoles()).containsExactly(role);
-
-        verify(userRepository).setCreatedByAndModifiedByToSelf(result.getId());
 
         ArgumentCaptor<UserRoleAuditEntity> auditCaptor = ArgumentCaptor.forClass(UserRoleAuditEntity.class);
         verify(userRoleAuditRepository).save(auditCaptor.capture());

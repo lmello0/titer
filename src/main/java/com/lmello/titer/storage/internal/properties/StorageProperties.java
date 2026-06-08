@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "app.storage")
 public record StorageProperties(
         StorageProvider provider,
+        String publicBaseUrl,
         Local local,
         S3 s3
 ) {
@@ -15,14 +16,12 @@ public record StorageProperties(
     }
 
     public record Local(
-            String basePath,
-            String publicBaseUrl
+            String basePath
     ) {
     }
 
     public record S3(
-            String bucket,
-            String publicBaseUrl
+            String bucket
     ) {
     }
 }

@@ -1,9 +1,11 @@
 package com.lmello.titer.users.internal.services;
 
-import com.lmello.titer.storage.api.FileRules;
 import com.lmello.titer.storage.api.FileService;
-import com.lmello.titer.storage.api.StoreFileRequest;
-import com.lmello.titer.storage.api.StoredFile;
+import com.lmello.titer.storage.dto.file.StoredFile;
+import com.lmello.titer.storage.dto.upload.FileRules;
+import com.lmello.titer.storage.dto.upload.StoreFileRequest;
+import com.lmello.titer.storage.dto.upload.UploadFile;
+import com.lmello.titer.storage.dto.upload.UploadFileMetadata;
 import com.lmello.titer.users.api.RegisterRequest;
 import com.lmello.titer.users.internal.entities.RoleEntity;
 import com.lmello.titer.users.internal.entities.UserEntity;
@@ -19,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
@@ -80,19 +84,34 @@ public class UserRegistrationService {
         userRoleAuditRepository.save(roleAudit);
     }
 
-    private StoredFile storeProfilePictureIfPresent(UserEntity user, MultipartFile file) {
-        if (file == null || file.isEmpty()) {
+    private StoredFile storeProfilePictureIfPresent(UserEntity user, MultipartFile requestFile) {
+        if (requestFile == null || requestFile.isEmpty()) {
             return null;
         }
 
-        return fileService.store(
-                new StoreFileRequest(
-                        file,
-                        "profile-pictures",
-                        "avatar_%s".formatted(user.getId()),
-                        user.getId().toString(),
-                        FileRules.defaultImage()
-                )
-        );
+        try {
+            UploadFileMetadata metadata = UploadFileMetadata.builder()
+                    .originalName(requestFile.getOriginalFilename())
+                    .namePrefix("pfp")
+                    .contentType(requestFile.getContentType())
+                    .sizeBytes(requestFile.getSize())
+                    .build();
+
+            UploadFile f = UploadFile.builder()
+                    .metadata(metadata)
+                    .content(requestFile.getInputStream())
+                    .build();
+
+            return fileService.store(
+                    new StoreFileRequest(
+                            f,
+                            null,
+                            user.getId().toString(),
+                            FileRules.defaultImage()
+                    )
+            );
+        } catch (IOException exception) {
+            throw new IllegalStateException("Could not read profile picture", exception);
+        }
     }
 }

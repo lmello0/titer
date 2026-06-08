@@ -1,11 +1,8 @@
-package com.lmello.titer.storage.api;
-
-import org.springframework.web.multipart.MultipartFile;
+package com.lmello.titer.storage.dto.upload;
 
 public record StoreFileRequest(
-        MultipartFile file,
+        UploadFile file,
         String path,
-        String baseName,
         String createdBy,
         FileRules rules
 ) {

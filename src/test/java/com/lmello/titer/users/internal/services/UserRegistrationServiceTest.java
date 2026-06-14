@@ -1,16 +1,17 @@
 package com.lmello.titer.users.internal.services;
 
 import com.lmello.titer.storage.api.FileService;
-import com.lmello.titer.users.api.RegisterRequest;
-import com.lmello.titer.users.internal.entities.RoleEntity;
-import com.lmello.titer.users.internal.entities.UserEntity;
-import com.lmello.titer.users.internal.entities.UserRoleAuditEntity;
-import com.lmello.titer.users.internal.enums.Role;
-import com.lmello.titer.users.internal.enums.UserRoleAuditAction;
-import com.lmello.titer.users.internal.exception.DuplicateUserException;
-import com.lmello.titer.users.internal.repositories.RoleRepository;
-import com.lmello.titer.users.internal.repositories.UserRepository;
-import com.lmello.titer.users.internal.repositories.UserRoleAuditRepository;
+import com.lmello.titer.users.dto.RegisterRequest;
+import com.lmello.titer.users.entities.RoleEntity;
+import com.lmello.titer.users.entities.UserEntity;
+import com.lmello.titer.users.entities.UserRoleAuditEntity;
+import com.lmello.titer.users.enums.Role;
+import com.lmello.titer.users.enums.UserRoleAuditAction;
+import com.lmello.titer.users.exception.DuplicateUserException;
+import com.lmello.titer.users.repositories.RoleRepository;
+import com.lmello.titer.users.repositories.UserRepository;
+import com.lmello.titer.users.repositories.UserRoleAuditRepository;
+import com.lmello.titer.users.services.UserRegistrationService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

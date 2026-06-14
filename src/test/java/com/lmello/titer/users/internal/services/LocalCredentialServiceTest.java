@@ -1,12 +1,13 @@
 package com.lmello.titer.users.internal.services;
 
-import com.lmello.titer.users.api.LoginRequest;
-import com.lmello.titer.users.internal.entities.UserAuthEntity;
-import com.lmello.titer.users.internal.entities.UserAuthId;
-import com.lmello.titer.users.internal.entities.UserEntity;
-import com.lmello.titer.users.internal.enums.AuthProvider;
-import com.lmello.titer.users.internal.exception.InvalidCredentialsException;
-import com.lmello.titer.users.internal.repositories.UserAuthRepository;
+import com.lmello.titer.users.dto.LoginRequest;
+import com.lmello.titer.users.entities.UserAuthEntity;
+import com.lmello.titer.users.entities.UserAuthId;
+import com.lmello.titer.users.entities.UserEntity;
+import com.lmello.titer.users.enums.AuthProvider;
+import com.lmello.titer.users.exception.InvalidCredentialsException;
+import com.lmello.titer.users.repositories.UserAuthRepository;
+import com.lmello.titer.users.services.LocalCredentialService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

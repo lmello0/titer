@@ -1,11 +1,15 @@
 package com.lmello.titer.users.internal.services;
 
-import com.lmello.titer.users.api.AuthResponse;
-import com.lmello.titer.users.api.LoginRequest;
-import com.lmello.titer.users.api.RegisterRequest;
-import com.lmello.titer.users.api.UserResponse;
-import com.lmello.titer.users.internal.entities.UserEntity;
-import com.lmello.titer.users.internal.exception.DuplicateUserException;
+import com.lmello.titer.users.dto.AuthResponse;
+import com.lmello.titer.users.dto.LoginRequest;
+import com.lmello.titer.users.dto.RegisterRequest;
+import com.lmello.titer.users.dto.UserResponse;
+import com.lmello.titer.users.entities.UserEntity;
+import com.lmello.titer.users.exception.DuplicateUserException;
+import com.lmello.titer.users.services.AuthResponseFactory;
+import com.lmello.titer.users.services.AuthServiceImpl;
+import com.lmello.titer.users.services.LocalCredentialService;
+import com.lmello.titer.users.services.UserRegistrationService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;

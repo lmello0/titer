@@ -1,7 +1,0 @@
-#file: noinspection YAMLSchemaValidation
-app:
-  storage:
-    provider: bucket
-    s3:
-      bucket: users-bucket
-      public-base-url: http://localhost:4566/users-bucket

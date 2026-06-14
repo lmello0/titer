@@ -1,12 +1,13 @@
 package com.lmello.titer.users.internal.services;
 
 import com.lmello.titer.shared.api.jwt.JwtService;
-import com.lmello.titer.users.api.AuthResponse;
-import com.lmello.titer.users.api.UserResponse;
-import com.lmello.titer.users.internal.entities.RoleEntity;
-import com.lmello.titer.users.internal.entities.UserEntity;
-import com.lmello.titer.users.internal.mapper.AuthMapper;
-import com.lmello.titer.users.internal.mapper.UserMapper;
+import com.lmello.titer.users.dto.AuthResponse;
+import com.lmello.titer.users.dto.UserResponse;
+import com.lmello.titer.users.entities.RoleEntity;
+import com.lmello.titer.users.entities.UserEntity;
+import com.lmello.titer.users.mapper.AuthMapper;
+import com.lmello.titer.users.mapper.UserMapper;
+import com.lmello.titer.users.services.AuthResponseFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

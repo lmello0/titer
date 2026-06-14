@@ -3,6 +3,8 @@ package com.lmello.titer.storage.infrastructure.provider;
 import com.lmello.titer.storage.api.command.StorageTarget;
 import org.springframework.core.io.Resource;
 
+import java.util.UUID;
+
 public interface StorageProvider {
 
     String name();
@@ -15,5 +17,5 @@ public interface StorageProvider {
 
     void delete(String storageKey);
 
-    String resolvePublicUrl(String storageKey);
+    String resolvePublicUrl(UUID fileId);
 }

@@ -51,15 +51,20 @@ public class StorageController {
         FileRepresentation meta = storageService.findById(fileId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "File not found: " + fileId));
 
-        if (!meta.isReady())
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "File is not ready yet (status: " + meta.status() + ")");
-
-        Resource resource = storageService.load(fileId);
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.parseMediaType(meta.contentType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + meta.filename() + "\"")
-                .body(resource);
+        return switch (meta.status()) {
+            case PENDING, PROCESSING -> ResponseEntity.status(HttpStatus.ACCEPTED)
+                    .header("Retry-After", "2")
+                    .build();
+            case FAILED -> ResponseEntity.status(HttpStatus.GONE).build();
+            case READY -> {
+                Resource resource = storageService.load(fileId);
+                yield ResponseEntity
+                        .ok()
+                        .contentType(MediaType.parseMediaType(meta.contentType()))
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + meta.filename() + "\"")
+                        .body(resource);
+            }
+        };
     }
 
     @DeleteMapping("/{fileId}")

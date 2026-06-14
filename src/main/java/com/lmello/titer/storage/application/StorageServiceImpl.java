@@ -24,6 +24,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
 
 import java.io.IOException;
 import java.net.URI;
+import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,7 +45,12 @@ public class StorageServiceImpl implements StorageService {
     public FileRepresentation store(StoreFileCommand command) {
         StorageProvider provider = providerRegistry.resolve(command.target());
 
+        UUID fileId = UUID.ofEpochMillis(Instant.now().toEpochMilli());
+        String publicUrl = provider.resolvePublicUrl(fileId);
+
         FileEntity file = FileEntity.pending(
+                fileId,
+                publicUrl,
                 command.filename(),
                 command.contentType(),
                 command.contentLength(),
@@ -120,7 +126,7 @@ public class StorageServiceImpl implements StorageService {
 
             StorageProvider provider = providerRegistry.resolve(command.target());
             String storageKey = provider.store(command.filename(), command.contentType(), ctx.data());
-            String publicUrl = provider.resolvePublicUrl(storageKey);
+            String publicUrl = provider.resolvePublicUrl(fileId);
 
             statusUpdater.markReady(fileId, storageKey, publicUrl, ctx);
 

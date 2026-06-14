@@ -1,6 +1,7 @@
 package com.lmello.titer.storage.infrastructure.provider;
 
 import com.lmello.titer.storage.api.command.StorageTarget;
+import com.lmello.titer.storage.properties.StorageProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,12 @@ import java.util.UUID;
 @Component
 @ConditionalOnProperty(name = "app.storage.s3.enabled", havingValue = "true")
 public class S3StorageProvider implements StorageProvider {
+
+    private final String baseUrl;
+
+    public S3StorageProvider(StorageProperties properties) {
+        this.baseUrl = properties.baseUrl();
+    }
 
     @Override
     public String name() {
@@ -40,7 +47,7 @@ public class S3StorageProvider implements StorageProvider {
     }
 
     @Override
-    public String resolvePublicUrl(String storageKey) {
-        return "https://bucket.s3.amazonaws.com/" + storageKey;
+    public String resolvePublicUrl(UUID fileId) {
+        return baseUrl + fileId;
     }
 }

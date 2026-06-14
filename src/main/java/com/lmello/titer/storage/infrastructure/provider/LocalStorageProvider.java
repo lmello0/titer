@@ -27,7 +27,7 @@ public class LocalStorageProvider implements StorageProvider {
         StorageProperties.LocalProperties local = properties.local();
 
         this.rootPath = Paths.get(local.rootPath()).toAbsolutePath();
-        this.baseUrl = local.baseUrl();
+        this.baseUrl = properties.baseUrl();
 
         ensureDirectory(this.rootPath);
     }
@@ -76,8 +76,8 @@ public class LocalStorageProvider implements StorageProvider {
     }
 
     @Override
-    public String resolvePublicUrl(String storageKey) {
-        return baseUrl + "/" + storageKey;
+    public String resolvePublicUrl(UUID fileId) {
+        return baseUrl + "/" + fileId;
     }
 
     private void ensureDirectory(Path path) {

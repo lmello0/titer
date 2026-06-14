@@ -70,16 +70,17 @@ public class FileEntity {
     private String failureReason;
 
     public static FileEntity pending(
+            UUID id,
+            String publicUrl,
             String filename,
             String contentType,
             long originalSizeBytes,
             String provider,
             Map<String, String> customMetadata
     ) {
-        UUID id = UUID.ofEpochMillis(Instant.now().toEpochMilli());
-
         return FileEntity.builder()
                 .id(id)
+                .publicUrl(publicUrl)
                 .filename(filename)
                 .contentType(contentType)
                 .originalSizeBytes(originalSizeBytes)

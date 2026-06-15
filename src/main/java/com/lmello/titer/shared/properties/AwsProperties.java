@@ -1,16 +1,12 @@
 package com.lmello.titer.shared.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @ConfigurationProperties(prefix = "aws")
 public record AwsProperties(
         String region,
-        S3 s3
+        String endpointUrl,
+        @DefaultValue("false") boolean pathStyleAccessEnabled
 ) {
-    public record S3(
-            String endpoint,
-            String accessKeyId,
-            String secretAccessKey
-    ) {
-    }
 }

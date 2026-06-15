@@ -67,6 +67,7 @@ public class FileEntity {
 
     private Instant processedAt;
 
+    @Column(columnDefinition = "text")
     private String failureReason;
 
     public static FileEntity pending(

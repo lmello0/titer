@@ -3,6 +3,8 @@ package com.lmello.titer.storage.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
+import java.time.Duration;
+
 @ConfigurationProperties(prefix = "app.storage")
 public record StorageProperties(
         @DefaultValue("http://localhost:8080/files") String baseUrl,
@@ -20,10 +22,11 @@ public record StorageProperties(
     }
 
     public record S3Properties(
-            boolean enabled,
+            @DefaultValue("false") boolean enabled,
             String bucket,
-            String region
-    ) {
+            @DefaultValue("false") boolean usePresignedUrls,
+            @DefaultValue("1m") Duration presignedUrlExpiry
+            ) {
     }
 
     public String defaultProviderName() {

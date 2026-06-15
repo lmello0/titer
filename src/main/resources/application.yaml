@@ -34,19 +34,24 @@ app:
       secret: "w6MG6ScHfY6GYVNgyTd1pnbaZzH/Wn/akM0EPn7/I14="
       expiration-seconds: 86_400
       issuer: "titer-backend-eefbd064-569b-428c-a68c-bd7d94b7be64"
+
   storage:
-    provider: local
-    public-base-url: "http://localhost:8080"
+    base-url: http://localhost:8080/files
+    provider:
+      default-provider: s3
+
     local:
-      base-path: "uploads"
+      enabled: false
+      root-path: ./uploads
+
+    s3:
+      enabled: true
+      bucket: titer-bucket
 
 aws:
   region: us-east-1
-  s3:
-    endpoint: http://localhost:4566
-    access-key-id: test
-    secret-access-key: test
-
+  endpoint-url: "http://localhost:4566"
+  path-style-access-enabled: true
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
@@ -56,3 +61,8 @@ management:
     web:
       exposure:
         include: health,info,metrics,modulith,flyway
+
+logging:
+  level:
+    com.lmello.titer.storage: DEBUG
+#    org.hibernate.orm.jdbc.bind: TRACE

@@ -39,6 +39,8 @@ public class UserEntity extends AuditableEntity {
     @Column(name = "profile_picture_file_id", length = 2048)
     private UUID profilePicture;
 
+    private boolean isEmailVerified;
+
     @Builder.Default
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

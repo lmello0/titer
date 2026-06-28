@@ -1,6 +1,5 @@
 package com.lmello.titer.storage.entities;
 
-import com.lmello.titer.storage.api.command.StorageTarget;
 import com.lmello.titer.storage.api.representation.FileRepresentation;
 import com.lmello.titer.storage.api.representation.FileStatus;
 import jakarta.persistence.*;
@@ -60,6 +59,7 @@ public class FileEntity {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
+    @Builder.Default
     private Map<String, String> customMetadata = new HashMap<>();
 
     @Column(nullable = false, updatable = false)

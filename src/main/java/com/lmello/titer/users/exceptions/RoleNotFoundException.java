@@ -1,4 +1,4 @@
-package com.lmello.titer.users.exception;
+package com.lmello.titer.users.exceptions;
 
 import com.lmello.titer.shared.exception.DomainException;
 import com.lmello.titer.users.enums.Role;

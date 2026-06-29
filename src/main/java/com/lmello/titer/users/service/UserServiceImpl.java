@@ -2,6 +2,10 @@ package com.lmello.titer.users.service;
 
 import com.lmello.titer.users.api.UserService;
 import com.lmello.titer.users.api.command.CreateUserCommand;
+import com.lmello.titer.users.api.events.UserCreatedEvent;
+import com.lmello.titer.users.api.events.UserDeletedEvent;
+import com.lmello.titer.users.api.events.UserEmailVerifiedEvent;
+import com.lmello.titer.users.api.events.UserPatchedEvent;
 import com.lmello.titer.users.api.representation.UserInfo;
 import com.lmello.titer.users.entities.RoleEntity;
 import com.lmello.titer.users.entities.UserEntity;
@@ -14,6 +18,7 @@ import com.lmello.titer.users.mappers.UserMapper;
 import com.lmello.titer.users.repositories.RoleRepository;
 import com.lmello.titer.users.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,7 +32,6 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     private final RoleRepository roleRepository;
@@ -35,15 +39,10 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    @Override
-    public UserInfo getById(UUID id) {
-        return userRepository
-                .findById(id)
-                .map(userMapper::toUserInfo)
-                .orElseThrow(UserNotFoundException::new);
-    }
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
+    @Transactional(readOnly = true)
     public Page<UserInfo> getAll(Pageable pageable) {
         return userRepository
                 .findAll(pageable)
@@ -76,10 +75,15 @@ public class UserServiceImpl implements UserService {
         u.setModifiedAt(Instant.now());
         u.setModifiedBy("system");
 
-        return userMapper.toUserInfo(userRepository.save(u));
+        UserInfo modifiedUserData = userMapper.toUserInfo(userRepository.save(u));
+
+        eventPublisher.publishEvent(new UserPatchedEvent(modifiedUserData));
+
+        return modifiedUserData;
     }
 
     @Override
+    @Transactional
     public void softDelete(UUID id, String deletedBy) {
         UserEntity u = userRepository
                 .findById(id)
@@ -87,6 +91,8 @@ public class UserServiceImpl implements UserService {
 
         u.setDeletedAt(Instant.now());
         u.setDeletedBy(deletedBy);
+
+        eventPublisher.publishEvent(new UserDeletedEvent(id));
     }
 
     @Override
@@ -114,19 +120,20 @@ public class UserServiceImpl implements UserService {
 
         u.addRole(defaultRole);
 
-        userRepository.saveAndFlush(u);
-
-        String userId = u.getId().toString();
-
-        u.setCreatedBy(userId);
+        u.setCreatedBy(command.createdBy());
         u.setCreatedAt(Instant.now());
-        u.setModifiedBy(userId);
+        u.setModifiedBy(command.createdBy());
         u.setModifiedAt(Instant.now());
 
-        return userMapper.toUserInfo(userRepository.save(u));
+        UserInfo createdUser = userMapper.toUserInfo(userRepository.save(u));
+
+        eventPublisher.publishEvent(new UserCreatedEvent(createdUser));
+
+        return createdUser;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<UserInfo> findByEmail(String email) {
         return userRepository
                 .findByEmail(email)
@@ -134,6 +141,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<UserInfo> findByUsername(String username) {
         return userRepository
                 .findByUsername(username)
@@ -141,6 +149,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<UserInfo> findByUsernameOrEmail(String identifier) {
         return userRepository
                 .findByUsernameOrEmail(identifier)
@@ -148,6 +157,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void markEmailVerified(UUID id) {
         UserEntity u = userRepository
                 .findById(id)
@@ -157,5 +167,14 @@ public class UserServiceImpl implements UserService {
 
         u.setModifiedAt(Instant.now());
         u.setModifiedBy(id.toString());
+
+        eventPublisher.publishEvent(new UserEmailVerifiedEvent(id));
+    }
+
+    @Override
+    public Optional<UserInfo> findById(UUID userId) {
+        return userRepository
+                .findById(userId)
+                .map(userMapper::toUserInfo);
     }
 }

@@ -11,8 +11,9 @@ public record UserInfo(
         String email,
         @Nullable String firstName,
         @Nullable String lastName,
-        boolean emailVerified,
+        boolean isEmailVerified,
         Set<String> roles,
-        @Nullable UUID profilePictureFileId
+        @Nullable UUID profilePictureFileId,
+        boolean isActive
 ) {
 }

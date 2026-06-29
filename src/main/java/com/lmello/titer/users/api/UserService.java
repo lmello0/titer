@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface UserService {
 
-    UserInfo getById(UUID id);
+    Optional<UserInfo> findById(UUID userId);
 
     Page<UserInfo> getAll(Pageable pageable);
 

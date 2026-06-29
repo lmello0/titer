@@ -19,10 +19,10 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     Optional<UserEntity> findByUsername(String username);
 
     @Query("""
-            SELECT u
-            FROM UserEntity u
-            WHERE u.username = :identifier
-            OR u.email = :identifier
+            select u
+            from UserEntity u
+            where u.username = :identifier
+            or u.email = :identifier
             """)
     Optional<UserEntity> findByUsernameOrEmail(String identifier);
 }

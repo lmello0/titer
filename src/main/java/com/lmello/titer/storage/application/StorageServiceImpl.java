@@ -102,8 +102,6 @@ public class StorageServiceImpl implements StorageService {
 
     @Override
     public URI publicUrl(UUID fileId) {
-        // TODO: only return URL if READY
-
         return repository.findById(fileId)
                 .map(entity -> URI.create(entity.getPublicUrl()))
                 .orElse(null);

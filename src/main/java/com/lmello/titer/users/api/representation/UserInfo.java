@@ -1,7 +1,5 @@
 package com.lmello.titer.users.api.representation;
 
-import jakarta.annotation.Nullable;
-
 import java.util.Set;
 import java.util.UUID;
 
@@ -9,11 +7,11 @@ public record UserInfo(
         UUID id,
         String username,
         String email,
-        @Nullable String firstName,
-        @Nullable String lastName,
+        String firstName,
+        String lastName,
         boolean isEmailVerified,
+        boolean isActive,
         Set<String> roles,
-        @Nullable UUID profilePictureFileId,
-        boolean isActive
+        String profilePictureUrl
 ) {
 }

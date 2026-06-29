@@ -4,9 +4,9 @@ spring:
     name: titer
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/titer
-    username: titer_user
-    password: titer_admin
+    url: ${DB_ADMIN}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -30,11 +30,17 @@ spring:
 
 app:
   auth:
+    cors:
+      allowed-origins:
+        - "http://localhost:5500"
     jwt:
-      secret: "w6MG6ScHfY6GYVNgyTd1pnbaZzH/Wn/akM0EPn7/I14="
-      issuer: "titer-backend-eefbd064-569b-428c-a68c-bd7d94b7be64"
+      secret: ${JWT_SECRET}
+      issuer: ${JWT_ISSUER}
       access-token-ttl: 5m
       refresh-token-ttl: 1h
+    social:
+      google:
+        client-ids: ${GOOGLE_CLIENT_IDS}
   storage:
     base-url: http://localhost:8080/files
     provider:
@@ -45,6 +51,9 @@ app:
     s3:
       enabled: true
       bucket: titer-bucket
+  users:
+    email-verification:
+      ttl: 24h
 
 aws:
   region: us-east-1

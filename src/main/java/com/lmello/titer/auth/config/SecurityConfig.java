@@ -1,6 +1,7 @@
 package com.lmello.titer.auth.config;
 
 import com.lmello.titer.auth.properties.CorsProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,6 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -68,13 +70,24 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource(CorsProperties properties) {
         CorsConfiguration config = new CorsConfiguration();
 
+        List<String> allowedMethods = List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS");
+        List<String> allowedHeaders = List.of("*");
+        boolean allowCredentials = true;
+
         config.setAllowedOrigins(properties.allowedOrigins());
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
+        config.setAllowedMethods(allowedMethods);
+        config.setAllowedHeaders(allowedHeaders);
+        config.setAllowCredentials(allowCredentials);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
+
+        log.info("CORS configured for allowedOrigins={} allowedMethods={} allowedHeaders={} allowCredentials={}",
+                properties.allowedOrigins(),
+                allowedMethods,
+                allowedHeaders,
+                allowCredentials
+        );
 
         return source;
     }

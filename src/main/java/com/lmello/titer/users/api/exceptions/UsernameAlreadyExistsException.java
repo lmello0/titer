@@ -1,9 +1,9 @@
-package com.lmello.titer.users.exceptions;
+package com.lmello.titer.users.api.exceptions;
 
 import com.lmello.titer.shared.exception.DomainException;
 
 public class UsernameAlreadyExistsException extends DomainException {
     public UsernameAlreadyExistsException(String username) {
-        super("A user already exists with username: " + username);
+        super("Username already in use: " + username);
     }
 }

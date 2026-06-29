@@ -1,6 +1,6 @@
 package com.lmello.titer.users.enums;
 
-public enum UserRoleAuditAction {
+public enum RoleAuditAction {
     GRANTED,
     REVOKED
 }

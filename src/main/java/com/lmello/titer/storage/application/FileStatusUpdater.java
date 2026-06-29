@@ -2,8 +2,8 @@ package com.lmello.titer.storage.application;
 
 import com.lmello.titer.storage.api.FileProcessor;
 import com.lmello.titer.storage.api.representation.FileRepresentation;
-import com.lmello.titer.storage.events.FileFailedEvent;
-import com.lmello.titer.storage.events.FileReadyEvent;
+import com.lmello.titer.storage.api.events.FileFailedEvent;
+import com.lmello.titer.storage.api.events.FileReadyEvent;
 import com.lmello.titer.storage.infrastructure.persistence.FileRepository;
 import com.lmello.titer.storage.mappers.FileMapper;
 import lombok.RequiredArgsConstructor;

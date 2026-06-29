@@ -7,7 +7,7 @@ public record CreateUserCommand(
         String email,
         @Nullable String firstName,
         @Nullable String lastName,
-        boolean emailVerified,
+        boolean isEmailVerified,
         String createdBy
 ) {
 }

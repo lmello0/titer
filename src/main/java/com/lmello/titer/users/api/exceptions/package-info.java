@@ -1,4 +1,4 @@
 @NamedInterface
-package com.lmello.titer.shared.entities;
+package com.lmello.titer.users.api.exceptions;
 
 import org.springframework.modulith.NamedInterface;
